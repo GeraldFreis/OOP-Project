@@ -1,14 +1,14 @@
-## OOP-Project - Blackjack
+# OOP-Project - Blackjack
 This is a blackjack game
 
-# Design
+## Design
 - Player superclass / abstract class
 - Dealer and Person subclasses
 
 - game window class
 - Saving money class
 
-# Functionality
+## Functionality
 - deal
 - Hit
 - Stand
@@ -19,5 +19,14 @@ This is a blackjack game
 - Dealer needs to decide
 - 
 
-## Breakdown of classes
-# 
+# Breakdown of classes
+## Player
+
+## Dealer
+
+## Person
+
+# Game 
+
+# Saving Money utility 
+
