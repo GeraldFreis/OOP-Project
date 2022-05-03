@@ -1,6 +1,9 @@
 # OOP-Project - Blackjack
 This is a blackjack game
 
+The design document is below
+https://docs.google.com/document/d/18TK9iPlp_BQj7jFwOVNbOGjrs0jVAs7OlHTEV-qrB0U/edit?usp=sharing
+
 
 # marking scheme and what we have designed:
 Has classes (tick)
