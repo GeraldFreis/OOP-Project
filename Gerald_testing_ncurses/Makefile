@@ -1,2 +1,2 @@
-programout: testingncurses.cpp
-	g++ testingncurses.cpp -lncurses -o programout
+programout: test2.cpp
+	g++ test2.cpp -lncurses -o programout

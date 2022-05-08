@@ -10,18 +10,18 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Fri May  6 14:50:07 2022
+# Make data base, printed on Sun May  8 19:28:30 2022
 
 # Variables
 
 # automatic
- 
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
 # environment
 VSCODE_LOG_NATIVE = false
 # automatic
+ 
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
@@ -92,7 +92,6 @@ MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
 # environment
- 
 SHLVL = 1
 # default
 MAKE_VERSION := 3.81
@@ -159,9 +158,9 @@ VSCODE_PID = 15845
 
 # Directories
 
-# . (device 16777233, inode 13822839): 8 files, no impossibilities.
+# . (device 16777233, inode 13822839): 15 files, no impossibilities.
 
-# 8 files, no impossibilities in 1 directories.
+# 15 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -171,7 +170,6 @@ VSCODE_PID = 15845
 
 # Not a target:
 all:
- 
 #  Command-line target.
 #  Implicit rule search has been done.
 #  File does not exist.
@@ -234,6 +232,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Fri May  6 14:50:07 2022
+# Finished Make data base on Sun May  8 19:28:30 2022
 
  

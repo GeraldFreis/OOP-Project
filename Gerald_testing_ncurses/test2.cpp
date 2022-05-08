@@ -10,6 +10,9 @@ int main(){
     int height, width, xpoint, ypoint;
 
     initscr();
+    clear();
+	noecho();
+	cbreak();	/* Line buffering disabled. pass on everything */
 
     // initialising the screen and box position
     height = 40;
@@ -17,7 +20,7 @@ int main(){
     xpoint = 10;
     ypoint = 10;
 
-    printw("Press enter to exit");
+    printw("Press the number 1 to exit");
     refresh();
     mainwindow = create_win(height, width, xpoint, ypoint);
 
@@ -29,31 +32,33 @@ int main(){
 
 
     bool test = true;
-    int input;
+    int input = getch();
     keypad(stdscr, TRUE);
 
     // game loop
-    while((input = getch()) != KEY_ENTER && test == true){
+    while (input != '1'){
         switch(input){
-            case KEY_DOWN:
-                end_win(mainwindow);
-                // mainwindow = create_win(10,20,20,20);
-
-                // initialising the cards
-
+            case '2':
                 end_win(card_1);
                 end_win(card_2);
                 end_win(card_3);
                 end_win(card_4);
+                
 
-                card_1 = create_cards(30,30);
-                card_2 = create_cards(30,45);
+                card_1 = create_cards(10,10);
+                card_2 = create_cards(40,10);
+                
+                card_3 = create_cards(10,60);
+                card_4 = create_cards(40,60);
 
-                card_3 = create_cards(60, 30);
-                card_4 = create_cards(60, 45);
-                // test = false;
-                break;
-        }
+            case KEY_DOWN:
+                continue;
+            case KEY_MOUSE:
+                continue;
+
+            default:
+                continue;
+        }        
     }
     endwin();
     return 0;
@@ -74,7 +79,8 @@ WINDOW *create_cards(int xpoint, int ypoint){
     WINDOW *card; // initialising the cards
 
     // this card
-    card = newwin(10,10, xpoint,ypoint);
+    card = newwin(25,20, xpoint,ypoint);
+    box(card, 0, 0);
     return card;
 }
 
@@ -92,5 +98,5 @@ void end_win(WINDOW *local_win){
 	 * 9. br: character to be used for the bottom right corner of the window
 	 */
 	wrefresh(local_win);
-	delwin(local_win);
+	// delwin(local_win);
 }
