@@ -33,12 +33,12 @@ int main(){
 
     bool test = true;
     int stage = 1;
-    int input = getch();
     keypad(stdscr, TRUE);
 
     // game loop
     while (test){
         while(stage == 1){
+            int input = getch();
             if (input == '2'){
                 end_win(mainwindow);
                 stage = 2; 
