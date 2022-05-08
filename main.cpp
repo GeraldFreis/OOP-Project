@@ -3,6 +3,7 @@
 #include <ncurses.h>
 #include "card.h"
 #include "deck.h"
+#include "game.h"
 using namespace std;
 
 int main(){
@@ -14,7 +15,8 @@ int main(){
         d1.printCard(i+1);
     }
 
-
-
+    Game userinstance;
+    userinstance.createscreen();
+    
     return 0;
 }

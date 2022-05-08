@@ -1,4 +1,7 @@
+#include <iostream>
 #include <ncurses.h>
+using std::cout; using std::string; using std::cin;
+
 #ifndef GAME_H
 #define GAME_H
 
@@ -27,6 +30,8 @@ class Game {
         void createscreen(); // function to create the screen and cards
         void updatescreen();
         void endgame();
+
+        ~Game();
 };
 
 #endif
