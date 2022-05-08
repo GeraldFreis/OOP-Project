@@ -25,41 +25,52 @@ int main(){
     mainwindow = create_win(height, width, xpoint, ypoint);
 
     // creating the cards in the window
-    WINDOW *card_1 = create_win(height, width, xpoint, ypoint);
-    WINDOW *card_2 = create_win(height, width, xpoint, ypoint); 
-    WINDOW *card_3 = create_win(height, width, xpoint, ypoint); 
-    WINDOW *card_4 = create_win(height, width, xpoint, ypoint);
-
+    WINDOW *card_1;
+    WINDOW *card_2;
+                
+    WINDOW *card_3;
+    WINDOW *card_4;
 
     bool test = true;
+    int stage = 1;
     int input = getch();
     keypad(stdscr, TRUE);
 
     // game loop
-    while (input != '1'){
-        switch(input){
-            case '2':
-                end_win(card_1);
-                end_win(card_2);
-                end_win(card_3);
-                end_win(card_4);
-                
-
-                card_1 = create_cards(10,10);
-                card_2 = create_cards(40,10);
-                
-                card_3 = create_cards(10,60);
-                card_4 = create_cards(40,60);
-
-            case KEY_DOWN:
+    while (test){
+        while(stage == 1){
+            if (input == '2'){
+                end_win(mainwindow);
+                stage = 2; 
+                break;
+            }
+            else if(input == '1'){
+                test = false;
+                break;
+            }
+            else {
                 continue;
-            case KEY_MOUSE:
-                continue;
+            }
+        }
+        while(stage == 2){
+            int input = getch();
 
-            default:
-                continue;
-        }        
+            card_1 = create_cards(10,70);
+            card_2 = create_cards(40,70);
+        
+            card_3 = create_cards(10,110);
+            card_4 = create_cards(40,110);
+
+            // game loop
+            
+            if(input == '1'){
+                test = false;
+                break;
+            }
+            
+        }
     }
+    
     endwin();
     return 0;
 }
@@ -79,8 +90,10 @@ WINDOW *create_cards(int xpoint, int ypoint){
     WINDOW *card; // initialising the cards
 
     // this card
-    card = newwin(25,20, xpoint,ypoint);
+    card = newwin(20,30, xpoint,ypoint);
     box(card, 0, 0);
+
+    wrefresh(card);
     return card;
 }
 
