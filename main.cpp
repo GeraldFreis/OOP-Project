@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <ncurses.h>
 #include "card.h"
 #include "deck.h"
 using namespace std;

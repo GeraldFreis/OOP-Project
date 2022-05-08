@@ -53,13 +53,16 @@ int main(){
             }
         }
         while(stage == 2){
+            
             int input = getch();
 
+            mvaddstr(7,85,"Dealer's cards: ");
             card_1 = create_cards(10,70);
             card_2 = create_cards(40,70);
-        
-            card_3 = create_cards(10,110);
-            card_4 = create_cards(40,110);
+
+            mvaddstr(37,85,"Player's cards: ");
+            card_3 = create_cards(10,100);
+            card_4 = create_cards(40,100);
 
             // game loop
             
@@ -90,7 +93,7 @@ WINDOW *create_cards(int xpoint, int ypoint){
     WINDOW *card; // initialising the cards
 
     // this card
-    card = newwin(20,30, xpoint,ypoint);
+    card = newwin(16,24, xpoint,ypoint);
     box(card, 0, 0);
 
     wrefresh(card);
