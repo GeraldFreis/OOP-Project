@@ -39,17 +39,18 @@ void Game::createscreen(){
             Window userwindow;
 
             // setting up the dealer
-            mvaddstr(7,87,"Dealer's cards: ");
+            mvaddstr(7,89,"Dealer's cards: ");
             card_1 = userwindow.create_cards(10,70);
             card_2 = userwindow.create_cards(40,70);
 
             // setting up the player
-            mvaddstr(37,88,"Player's cards: ");
+            mvaddstr(37,89,"Player's cards: ");
             card_3 = userwindow.create_cards(10,100);
             card_4 = userwindow.create_cards(40,100);
 
             // setting up the balance
-            mvaddstr(37,170, "Player balance: ");
+            mvaddstr(37,170, "Player balance: $\n");
+            mvaddstr(40,170, "Bet amount: $\n");
 
             // checking if the user ends the game          
             if(input == '1'){
