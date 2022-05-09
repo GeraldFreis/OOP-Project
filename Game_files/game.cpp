@@ -19,7 +19,7 @@ void Game::Gamescreen(){
 
     // initialising the screen and box position
 
-    printw("Press the number 1 to exit, and the number 2 to start");
+    printw("Press the number 1 to exit, and any other key to move to the game window");
     refresh();
 
     // creating the cards in the window
@@ -38,11 +38,13 @@ void Game::Gamescreen(){
 
     bool test = true;
     int stage = 1;
-    keypad(stdscr, TRUE);
 
     // game loop
     while (test){
         while(stage == 1){
+            keypad(stdscr, TRUE);
+            MEVENT mouse_event;
+
             int input = getch();
             
             // setting up the dealer
@@ -77,19 +79,40 @@ void Game::Gamescreen(){
             mvaddstr(26, 17, "Double");
             double_button = userwindow.create_buttons(10, 25);
 
+
+            mousemask(ALL_MOUSE_EVENTS, NULL); // listening for all mousevents
+
             // checking if the user ends the game          
             if(input == '1'){
                 test = false; // ending the game
+                stage = 2;
                 break;
             }
+
+            // int mouse_input = wgetch(start_button);
+
+            // if(mouse_input == KEY_MOUSE){
+            //     if(getmouse(&mouse_event) == OK)
+            //     {	/* When the user clicks left mouse button */
+            //         if(mouse_event.bstate & BUTTON1_PRESSED)
+            //         {	
+            //             cout << "winner" << "\n";
+                        
+            //             refresh(); 
+            //         }
+            //     }
+            // }
             
         }
     }
-    // ending the windows
+
+
+    // closing the windows
     userwindow.end_win(card_1);
     userwindow.end_win(card_2);
     userwindow.end_win(card_3);
     userwindow.end_win(card_4);
+
     endwin();
     return;
 };
