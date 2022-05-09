@@ -3,7 +3,7 @@
 #include <ncurses.h>
 #include "card.h"
 #include "deck.h"
-#include "game.h"
+#include "Game_files/game.h"
 using namespace std;
 
 int main(){

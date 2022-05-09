@@ -34,7 +34,7 @@ void Game::createscreen(){
     WINDOW *hit_button;
     WINDOW *stand_button;
     WINDOW *double_button;
-    WINDOW *restart_button;
+    WINDOW *start_button;
 
     bool test = true;
     int stage = 1;
@@ -62,15 +62,21 @@ void Game::createscreen(){
 
             // setting up the buttons
 
+            // start button
+            mvaddstr(11, 17, "Start");
+            start_button = userwindow.create_buttons(10, 10);
+
             // hit button
-            mvaddstr()
-            hit_button = userwindow.create_buttons(10,10);
+            mvaddstr(16, 18, "Hit");
+            hit_button = userwindow.create_buttons(10, 15);
 
             // stand button
-            stand_button = userwindow.create_buttons(10,20);
+            mvaddstr(21, 17, "Stand");
+            stand_button = userwindow.create_buttons(10, 20);
 
             // double button
-            double_button = userwindow.create_buttons(10,30);
+            mvaddstr(26, 17, "Double");
+            double_button = userwindow.create_buttons(10, 25);
 
             // checking if the user ends the game          
             if(input == '1'){
