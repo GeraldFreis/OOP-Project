@@ -33,7 +33,6 @@ void Wallet::retreivebalance(){
     while(file.good()){ // while we are still in the range of the file
 
         getline(file, (temparray[index_row]));
-        
         index_row++;
     }
     // iterating over every line in the temporary array and transfering that value into the
@@ -41,11 +40,14 @@ void Wallet::retreivebalance(){
     for(int i = 0; i < 20; i++){
         if(temparray[i] != ""){
             previousbalances[i] = stoi(temparray[i]);
-            number_of_entries += 1;
+            if(i > 0){
+                number_of_entries += 1;
+            }
         }
     }
     
     currentbalance = previousbalances[number_of_entries];
+
 }
 int *Wallet::getpreviousbalances(){
     return previousbalances;
@@ -56,5 +58,9 @@ void Wallet::printpreviousbalances(){
     }
 }
 void Wallet::setbalance(int updated_balance){
-    
+
+}
+
+Wallet::~Wallet(){
+    cout << "wallet closed" << "\n";
 }
