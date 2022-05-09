@@ -28,6 +28,14 @@ void Game::createscreen(){
     WINDOW *card_3;
     WINDOW *card_4;
 
+    Window userwindow;
+
+    // creating the buttons in the window
+    WINDOW *hit_button;
+    WINDOW *stand_button;
+    WINDOW *double_button;
+    WINDOW *restart_button;
+
     bool test = true;
     int stage = 1;
     keypad(stdscr, TRUE);
@@ -36,7 +44,7 @@ void Game::createscreen(){
     while (test){
         while(stage == 1){
             int input = getch();
-            Window userwindow;
+            
 
             // setting up the dealer
             mvaddstr(7,89,"Dealer's cards: ");
@@ -52,6 +60,18 @@ void Game::createscreen(){
             mvaddstr(37,170, "Player balance: ");
             mvaddstr(40,170, "Bet amount: ");
 
+            // setting up the buttons
+
+            // hit button
+            mvaddstr()
+            hit_button = userwindow.create_buttons(10,10);
+
+            // stand button
+            stand_button = userwindow.create_buttons(10,20);
+
+            // double button
+            double_button = userwindow.create_buttons(10,30);
+
             // checking if the user ends the game          
             if(input == '1'){
                 test = false; // ending the game
@@ -60,8 +80,13 @@ void Game::createscreen(){
             
         }
     }
-    
+    // ending the windows
+    userwindow.end_win(card_1);
+    userwindow.end_win(card_2);
+    userwindow.end_win(card_3);
+    userwindow.end_win(card_4);
     endwin();
+    return;
 };
 
 Game::~Game(){
