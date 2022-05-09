@@ -11,7 +11,7 @@ Game::Game(int receivedbalance){
     betamount = 0;
 };
 
-void Game::createscreen(){
+void Game::Gamescreen(){
     initscr();
     clear();
 	noecho();

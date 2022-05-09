@@ -5,5 +5,5 @@
 
 int main(){
     Game userinstance;
-    userinstance.createscreen();
+    userinstance.Gamescreen();
 }

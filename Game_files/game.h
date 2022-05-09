@@ -15,8 +15,7 @@ using std::cout; using std::string; using std::cin;
         int betamount
     
     methods
-        createscreen // creates the UI
-        endgame // destroys the UI
+        Gamescreen // creates the UI for the game
 */
 class Game {
     private:
@@ -27,9 +26,7 @@ class Game {
         Game(); // default constructor 
         Game(int receivedbalance); // parameterized constructor taking user balance
 
-        void createscreen(); // function to create the screen and cards
-        void updatescreen();
-        void endgame();
+        void Gamescreen(); // function to create the screen and cards
 
         ~Game();
 };
