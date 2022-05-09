@@ -49,8 +49,8 @@ void Game::createscreen(){
             card_4 = userwindow.create_cards(40,100);
 
             // setting up the balance
-            mvaddstr(37,170, "Player balance: $\n");
-            mvaddstr(40,170, "Bet amount: $\n");
+            mvaddstr(37,170, "Player balance: ");
+            mvaddstr(40,170, "Bet amount: ");
 
             // checking if the user ends the game          
             if(input == '1'){

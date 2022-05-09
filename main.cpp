@@ -7,7 +7,9 @@
 using namespace std;
 
 int main(){
-
+    Game userinstance;
+    userinstance.createscreen();
+    
     deck d1;
     d1.fillDeck();
 
@@ -15,8 +17,5 @@ int main(){
         d1.printCard(i+1);
     }
 
-    Game userinstance;
-    userinstance.createscreen();
-    
     return 0;
 }
