@@ -7,6 +7,7 @@ class Window{
     public:
         void end_win(WINDOW *usingwin);
         WINDOW *create_cards(int xpoint, int ypoint);
+        
 };
 
 #endif
