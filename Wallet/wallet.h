@@ -13,6 +13,7 @@ Wallet class:
         int currentbalance
         int *previousamounts
         string filename
+        int number_of_entries;
     
     methods:
         int getbalance()
@@ -27,6 +28,7 @@ class Wallet{
         int currentbalance;
         int *previousbalances;
         string filename; // file from which the balances are read and updated to
+        int number_of_entries;
     
     public:
         // constructors
