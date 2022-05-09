@@ -11,7 +11,8 @@ void Window::end_win(WINDOW *usingwin){ // closing the window
     wborder(usingwin, ' ', ' ', ' ',' ',' ',' ',' ',' ');
 	wrefresh(usingwin);
     werase(usingwin);
-}
+};
+
 WINDOW *Window::create_cards(int xpoint, int ypoint){ // creating the cards
     WINDOW *card; // initialising the cards
 
@@ -21,7 +22,7 @@ WINDOW *Window::create_cards(int xpoint, int ypoint){ // creating the cards
 
     wrefresh(card);
     return card;
-}
+};
 
 WINDOW *Window::create_buttons(int xpoint, int ypoint){
     WINDOW *button; // initialising the buttons

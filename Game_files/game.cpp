@@ -45,7 +45,6 @@ void Game::createscreen(){
         while(stage == 1){
             int input = getch();
             
-
             // setting up the dealer
             mvaddstr(7,89,"Dealer's cards: ");
             card_1 = userwindow.create_cards(10,70);
