@@ -36,6 +36,7 @@ void Wallet::retreivebalance(){
     }
     // iterating over every line in the temporary array and transfering that value into the
     // data member previous balances for this class
+    number_of_entries = 0;
     for(int i = 0; i < 20; i++){
         if(temparray[i] != ""){
             previousbalances[i] = stoi(temparray[i]);
@@ -44,9 +45,7 @@ void Wallet::retreivebalance(){
             }
         }
     }
-    
     currentbalance = previousbalances[number_of_entries];
-
 }
 int *Wallet::getpreviousbalances(){
     return previousbalances;
@@ -59,7 +58,16 @@ void Wallet::printpreviousbalances(){
 void Wallet::setbalance(int updated_balance){
     std::ofstream file(filename);
     string balance = std::to_string(updated_balance);
-    file << "\n" << balance;
+
+    for(int i = 0; i <= number_of_entries; i++){
+
+        file << previousbalances[i] << "\n";
+
+        if(i == number_of_entries){
+            file << updated_balance;
+        }
+    }
+    currentbalance = updated_balance;
 }
 
 Wallet::~Wallet(){
