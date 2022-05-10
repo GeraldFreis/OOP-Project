@@ -1,20 +1,27 @@
 #include <iostream>
 #include <string>
+#include <time.h>
+#include <stdlib.h>
 #include <ncurses.h>
 #include "card.h"
 #include "deck.h"
-#include "Game_files/game.h"
+//#include "Game_files/game.h"
 using namespace std;
 
 int main(){
-    Game userinstance;
-    userinstance.createscreen();
-    
+    // Game userinstance;
+    // userinstance.createscreen();
+    srand ( time(NULL) );           // must be included in main function to generate the seed 
     deck d1;
     d1.fillDeck();
 
-    for(int i=0; i<52; i++){
-        d1.printCard(i+1);
+    // for(int i=0; i<312; i++){
+    //     d1.printCard(i+1);
+    // }
+    for(int i=0; i<20; i++){
+        cout << d1.drawCard().getName() << endl; //create a variable top store last card, useful to remove latest card 
+    
+
     }
 
     return 0;

@@ -1,8 +1,10 @@
 #include <iostream>
 #include <string>
+#include <stdlib.h>
+#include <time.h>
 #include "card.h"
 #include "deck.h"
-using namespace std;
+using std::cout; using std::string; using std::endl;
 
 
         // card *array;
@@ -10,8 +12,8 @@ using namespace std;
 
 
 deck::deck(){
-    length = 52;
-    array = new card[52];
+    length = 312;
+    array = new card[312];
 }
 
 void deck::fillDeck(){
@@ -30,25 +32,25 @@ void deck::fillDeck(){
     c12 = card("Queen",10);
     c13 = card("King",10);
 
-    for(int j=0; j<4; j++){
+    for(int j=0; j<24; j++){
         array[j+0] = c1;
-        array[j+4] = c2;
-        array[j+8] = c3;
-        array[j+12] = c4;
-        array[j+16] = c5;
-        array[j+20] = c6;
-        array[j+24] = c7;
-        array[j+28] = c8;
-        array[j+32] = c9;
-        array[j+36] = c10;
-        array[j+40] = c11;
-        array[j+44] = c12;
-        array[j+48] = c13;
+        array[j+24] = c2;
+        array[j+48] = c3;
+        array[j+72] = c4;
+        array[j+96] = c5;
+        array[j+120] = c6;
+        array[j+144] = c7;
+        array[j+168] = c8;
+        array[j+192] = c9;
+        array[j+216] = c10;
+        array[j+240] = c11;
+        array[j+264] = c12;
+        array[j+288] = c13;
     }
 
 }
 
-void deck::addcard(card new_card){
+void deck::addCard(card new_card){
     for(int i=0; i<length; i++){
         if((array[i].getName()=="")&&(array[i].getValue()==0)){
             array[i] = new_card;
@@ -56,6 +58,23 @@ void deck::addcard(card new_card){
         }
     }
 }
+
+void deck::removeCard(int num){
+    array[num].newName("");
+    array[num].newValue(0);
+}
+
+card deck::drawCard(){
+    //srand ( time(NULL) );         need to fix this so it doesnt always use the same seed of rand numbers 
+    int draw =0;
+    draw = rand()%312;
+    while(array[draw].getName()=="" && array[draw].getValue()==0){
+        draw = rand()%312;
+    }
+    //cout << draw << endl;
+    return array[draw];
+}
+
 
 void deck::printCard(int deck_num){
     cout << array[deck_num-1].getName() << " " << array[deck_num-1].getValue() << endl;
