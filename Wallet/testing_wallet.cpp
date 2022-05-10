@@ -5,15 +5,23 @@ using std::cout; using std::string;
 int main(){
     Wallet wallet;
     wallet.retreivebalance();
-    cout << "Balance should be 1000" << "\n";
     cout << "Current balance: " << wallet.getbalance() << "\n";
 
     cout << "\nChanging the current balance" << "\n";
-    wallet.setbalance(200);
-    cout << "Balance should be 200" << "\n";
+
+    int given_balance = 200;
+    wallet.setbalance(given_balance);
+    cout << "Balance should be: " << given_balance << "\n";
     wallet.retreivebalance();
     cout << "Current balance: " << wallet.getbalance() << "\n";
 
-    
+    cout << "\nChanging the current balance" << "\n";
+
+    int updated_balance = 3300;
+    wallet.setbalance(updated_balance);
+    cout << "Balance should be: " << updated_balance << "\n";
+    wallet.retreivebalance();
+    cout << "Current balance: " << wallet.getbalance() << "\n";
+
     return 0;
 }
