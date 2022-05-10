@@ -5,6 +5,7 @@
 #include <ncurses.h>
 #include "card.h"
 #include "deck.h"
+<<<<<<< HEAD
 //#include "Game_files/game.h"
 using namespace std;
 
@@ -12,6 +13,20 @@ int main(){
     // Game userinstance;
     // userinstance.createscreen();
     srand ( time(NULL) );           // must be included in main function to generate the seed 
+=======
+#include "Game_files/game.h"
+#include "Wallet/wallet.h"
+using namespace std;
+
+int main(){
+
+    Wallet users_wallet("users_balances.txt");
+    users_wallet.read();
+    
+    Game userinstance(users_wallet.getbalance());
+    userinstance.Gamescreen();
+    
+>>>>>>> 6122a4b40ab12cd244691f56380b568119f68b1f
     deck d1;
     d1.fillDeck();
 

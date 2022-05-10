@@ -47,6 +47,8 @@ void Game::Gamescreen(){
 
             int input = getch();
             
+            string balance_string = std::to_string(balance);
+            char const *balance_char = balance_string.c_str();
             // setting up the dealer
             mvaddstr(7,89,"Dealer's cards: ");
             card_1 = userwindow.create_cards(10,70);
@@ -54,54 +56,58 @@ void Game::Gamescreen(){
 
             // setting up the player
             mvaddstr(37,89,"Player's cards: ");
+            
             card_3 = userwindow.create_cards(10,100);
             card_4 = userwindow.create_cards(40,100);
 
             // setting up the balance
             mvaddstr(37,170, "Player balance: ");
+            mvaddstr(37,187, balance_char);
             mvaddstr(40,170, "Bet amount: ");
 
             // setting up the buttons
 
             // start button
-            mvaddstr(11, 17, "Start");
+            mvaddstr(11, 16, "Start (s)");
             start_button = userwindow.create_buttons(10, 10);
 
             // hit button
-            mvaddstr(16, 18, "Hit");
+            mvaddstr(16, 17, "Hit (2)");
             hit_button = userwindow.create_buttons(10, 15);
 
             // stand button
-            mvaddstr(21, 17, "Stand");
+            mvaddstr(21, 16, "Stand (3)");
             stand_button = userwindow.create_buttons(10, 20);
 
             // double button
-            mvaddstr(26, 17, "Double");
+            mvaddstr(26, 16, "Double (4)");
             double_button = userwindow.create_buttons(10, 25);
 
 
             mousemask(ALL_MOUSE_EVENTS, NULL); // listening for all mousevents
 
-            // checking if the user ends the game          
-            if(input == '1'){
-                test = false; // ending the game
-                stage = 2;
-                break;
+            switch (input){
+                case '1': // if the user ends the game
+                    test = false;
+                    stage = 2;
+                    break;
+
+                case 's': // if the user starts the game
+                    // place holder for what will occur when start is pressed
+                    break;
+
+                case '2': // if the user presses hit
+                    // place holder for what will occur when hit is pressed
+                    break;
+
+                case '3': // if the user presses stand
+                    // place holder for what will occur when stand is pressed
+                    break;
+
+                case '4': // if the user presses double
+                    // place holder for what will occur when double is pressed
+                    break;
             }
-
-            // int mouse_input = wgetch(start_button);
-
-            // if(mouse_input == KEY_MOUSE){
-            //     if(getmouse(&mouse_event) == OK)
-            //     {	/* When the user clicks left mouse button */
-            //         if(mouse_event.bstate & BUTTON1_PRESSED)
-            //         {	
-            //             cout << "winner" << "\n";
-                        
-            //             refresh(); 
-            //         }
-            //     }
-            // }
             
         }
     }
