@@ -2,6 +2,7 @@
 #include <sstream>
 #include <fstream>
 #include <string>
+#include "serializable.h"
 using std::cout; using std::string;
 
 #ifndef WALLET_H
@@ -23,7 +24,7 @@ Wallet class:
         void printpreviousbalances()
         void setbalance(int updated_balance)
 */
-class Wallet{
+class Wallet: public Serializable{
     private:
         int currentbalance;
         int *previousbalances;
@@ -42,6 +43,8 @@ class Wallet{
         int *getpreviousbalances(); // returns a pointer to the previous balances
         void printpreviousbalances(); // prints the previous balances
         void setbalance(int updated_balance); // sets the balance of the object
+        void read();
+        void write();
 
         // destructor
         ~Wallet();
