@@ -24,7 +24,6 @@ void Wallet::printbalance(){
 void Wallet::retreivebalance(){
     // reading in the data
     std::ifstream file(filename);
-    std::string row;
 
     // initialising an array to capture the line values
     string temparray[40];
@@ -58,7 +57,9 @@ void Wallet::printpreviousbalances(){
     }
 }
 void Wallet::setbalance(int updated_balance){
-
+    std::ofstream file(filename);
+    string balance = std::to_string(updated_balance);
+    file << "\n" << balance;
 }
 
 Wallet::~Wallet(){
