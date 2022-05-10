@@ -39,12 +39,12 @@ class Wallet: public Serializable{
         // methods
         int getbalance(); // returns the current balance
         void printbalance(); // prints the current balance
-        void retreivebalance(); // finds the current balance from a csv file
         int *getpreviousbalances(); // returns a pointer to the previous balances
         void printpreviousbalances(); // prints the previous balances
         void setbalance(int updated_balance); // sets the balance of the object
-        void read();
-        void write();
+
+        void read(); // inherited function to read from the text file
+        void write(); // inherited function to write to the text file
 
         // destructor
         ~Wallet();

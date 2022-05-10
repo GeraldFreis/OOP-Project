@@ -21,7 +21,25 @@ int Wallet::getbalance(){
 void Wallet::printbalance(){
     cout << currentbalance << "\n";
 }
-void Wallet::retreivebalance(){
+
+int *Wallet::getpreviousbalances(){
+    return previousbalances;
+}
+void Wallet::printpreviousbalances(){
+    for(int i = 0; i < number_of_entries; i++){
+        cout << previousbalances[i] << "\n";
+    }
+}
+void Wallet::setbalance(int updated_balance){
+    currentbalance = updated_balance; // updating the current balance
+
+    // updating the previous balances to include this balance
+    previousbalances[number_of_entries + 1] = updated_balance;
+    number_of_entries += 1; // increasing the number of entries
+}
+
+// inherited function
+void Wallet::read() {
     // reading in the data
     std::ifstream file(filename);
 
@@ -47,29 +65,18 @@ void Wallet::retreivebalance(){
     }
     currentbalance = previousbalances[number_of_entries];
 }
-int *Wallet::getpreviousbalances(){
-    return previousbalances;
-}
-void Wallet::printpreviousbalances(){
-    for(int i = 0; i < number_of_entries; i++){
-        cout << previousbalances[i] << "\n";
-    }
-}
-void Wallet::setbalance(int updated_balance){
+
+void Wallet::write(){
+
     std::ofstream file(filename);
-    string balance = std::to_string(updated_balance);
 
+    // iterating over every balance in the previous balances and writing it to the file
     for(int i = 0; i <= number_of_entries; i++){
-
         file << previousbalances[i] << "\n";
-
-        if(i == number_of_entries){
-            file << updated_balance;
-        }
     }
-    currentbalance = updated_balance;
 }
 
 Wallet::~Wallet(){
+    delete [] previousbalances;
     cout << "wallet closed" << "\n";
 }
