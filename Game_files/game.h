@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ncurses.h>
+#include <string.h>
 using std::cout; using std::string; using std::cin;
 
 #ifndef GAME_H

@@ -4,11 +4,15 @@
 #include "card.h"
 #include "deck.h"
 #include "Game_files/game.h"
+#include "Wallet/wallet.h"
 using namespace std;
 
 int main(){
-    Game userinstance;
-    userinstance.createscreen();
+    Wallet users_wallet("users_balances.txt");
+    users_wallet.read();
+    cout << users_wallet.getbalance() << "\n";
+    Game userinstance(users_wallet.getbalance());
+    userinstance.Gamescreen();
     
     deck d1;
     d1.fillDeck();
