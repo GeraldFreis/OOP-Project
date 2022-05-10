@@ -8,9 +8,10 @@
 using namespace std;
 
 int main(){
+
     Wallet users_wallet("users_balances.txt");
     users_wallet.read();
-    cout << users_wallet.getbalance() << "\n";
+    
     Game userinstance(users_wallet.getbalance());
     userinstance.Gamescreen();
     

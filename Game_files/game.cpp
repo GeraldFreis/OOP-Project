@@ -86,26 +86,28 @@ void Game::Gamescreen(){
 
             mousemask(ALL_MOUSE_EVENTS, NULL); // listening for all mousevents
 
-            // checking if the user ends the game          
-            if(input == '1'){
-                test = false; // ending the game
-                stage = 2;
-                break;
+            switch (input){
+                case '1': // if the user ends the game
+                    test = false;
+                    stage = 2;
+                    break;
+
+                case 's': // if the user starts the game
+                    // place holder for what will occur when start is pressed
+                    break;
+
+                case '2': // if the user presses hit
+                    // place holder for what will occur when hit is pressed
+                    break;
+
+                case '3': // if the user presses stand
+                    // place holder for what will occur when stand is pressed
+                    break;
+
+                case '4': // if the user presses double
+                    // place holder for what will occur when double is pressed
+                    break;
             }
-
-            // int mouse_input = wgetch(start_button);
-
-            // if(mouse_input == KEY_MOUSE){
-            //     if(getmouse(&mouse_event) == OK)
-            //     {	/* When the user clicks left mouse button */
-            //         if(mouse_event.bstate & BUTTON1_PRESSED)
-            //         {	
-            //             cout << "winner" << "\n";
-                        
-            //             refresh(); 
-            //         }
-            //     }
-            // }
             
         }
     }
