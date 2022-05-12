@@ -194,15 +194,14 @@ void Game::Gamescreen(){
                             betamount = std::stoi(raw_betamount);
                             continue;
                         }
-                        if(betamount <= balance){
-                            betting_loop = false;
-                        }
+                        
                         unpost_form(betting_form);
                         free_form(betting_form);
 
                         free_field(betamount_field[0]);
                         // free_field(betamount_field[1]);
                         userwindow.end_win(betting_window);
+
                         break;
                     }
                     
