@@ -1,32 +1,12 @@
 #include "game.h"
-#include "window.h"
+
 
 Game::Game(){
     balance = 0;
     betamount = 0;
     game_has_begun = false;
     hit_counter = 0;
-};
 
-Game::Game(int receivedbalance){
-    balance = receivedbalance;
-    betamount = 0;
-    game_has_begun = false;
-    hit_counter = 0;
-};
-
-void Game::Gamescreen(){
-    initscr();
-    clear();
-	noecho();
-	cbreak();	/* Line buffering disabled. pass on everything */
-
-    // initialising the screen and box position
-
-    printw("Press the number 1 to exit, and any other key to move to the game window");
-    refresh();
-
-    // creating the cards in the window
     WINDOW *card_1; // dealer card 1 
     WINDOW *card_2;  // dealer card 2
     WINDOW *card_3; // player card 1
@@ -48,6 +28,50 @@ void Game::Gamescreen(){
     WINDOW *betting_window;
     FIELD *betamount_field[2]; // initialising the field to hold the bet amount
     FORM *betting_form; // initialising the form to hold the bet amount
+};
+
+Game::Game(int receivedbalance){
+    balance = receivedbalance;
+    betamount = 0;
+    game_has_begun = false;
+    hit_counter = 0;
+
+    WINDOW *card_1; // dealer card 1 
+    WINDOW *card_2;  // dealer card 2
+    WINDOW *card_3; // player card 1
+    WINDOW *card_4; // player card 2
+    WINDOW *card_5; // dealer card 3
+    WINDOW *card_6; // dealer card 4
+    WINDOW *card_7; // player card 3
+    WINDOW *card_8; // player card 4;
+
+    Window userwindow;
+
+    // creating the buttons in the window
+    WINDOW *hit_button;
+    WINDOW *stand_button;
+    WINDOW *double_button;
+    WINDOW *start_button;
+    
+    // initialising the betting window:
+    WINDOW *betting_window;
+    FIELD *betamount_field[2]; // initialising the field to hold the bet amount
+    FORM *betting_form; // initialising the form to hold the bet amount
+};
+
+void Game::Gamescreen(){
+    initscr();
+    clear();
+	noecho();
+	cbreak();	/* Line buffering disabled. pass on everything */
+
+    // initialising the screen and box position
+
+    printw("Press the number 1 to exit, and any other key to move to the game window");
+    refresh();
+
+    // creating the cards in the window
+
     int betting_input;
     bool betting_test;
     bool betting_loop;
@@ -64,6 +88,7 @@ void Game::Gamescreen(){
             
             string balance_string = std::to_string(balance);
             char const *balance_char = balance_string.c_str();
+
             string betamount_string = std::to_string(betamount);
             char const *betamount_char = betamount_string.c_str();
 
