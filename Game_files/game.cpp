@@ -35,6 +35,9 @@ void Game::Gamescreen(){
     WINDOW *stand_button;
     WINDOW *double_button;
     WINDOW *start_button;
+    
+    // initialising the betting window:
+    WINDOW *betting_window;
 
     bool test = true;
     int stage = 1;
@@ -43,8 +46,6 @@ void Game::Gamescreen(){
     while (test){
         while(stage == 1){
             keypad(stdscr, TRUE);
-            MEVENT mouse_event;
-
             int input = getch();
             
             string balance_string = std::to_string(balance);
@@ -84,8 +85,6 @@ void Game::Gamescreen(){
             double_button = userwindow.create_buttons(10, 25);
 
 
-            mousemask(ALL_MOUSE_EVENTS, NULL); // listening for all mousevents
-
             switch (input){
                 case '1': // if the user ends the game
                     test = false;
@@ -94,7 +93,14 @@ void Game::Gamescreen(){
 
                 case 's': // if the user starts the game
                     // place holder for what will occur when start is pressed
+                    while(true){
+                        if(input == '1'){
+                            userwindow.end_win(betting_window);
+                            break;
+                        }
+
                     break;
+                    }
 
                 case '2': // if the user presses hit
                     // place holder for what will occur when hit is pressed

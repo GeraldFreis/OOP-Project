@@ -18,11 +18,13 @@ Window
 class Window{
     private:
         int *colour_grey_array; 
+        
     public:
         Window(); // default constructor
         void end_win(WINDOW *usingwin); // closes the window / object in the window
         WINDOW *create_cards(int xpoint, int ypoint); // creates a card in the window at point x and y
         WINDOW *create_buttons(int xpoint, int ypoint); // creates a button in the window at point x and y
+        WINDOW *bet_window(int size);
         ~Window();
 };
 

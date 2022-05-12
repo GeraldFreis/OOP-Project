@@ -43,6 +43,17 @@ WINDOW *Window::create_buttons(int xpoint, int ypoint){
     return button;
 };
 
+
+// window that prompts the user to enter a bet amount, and lets them enter the bet amount
+WINDOW *Window::bet_window(int size){ 
+    WINDOW *betting_window;
+
+    betting_window = newwin(100,100,0,0);
+    wrefresh(betting_window);
+
+    return betting_window;
+};
+
 Window::~Window(){
     delete colour_grey_array;
 }
