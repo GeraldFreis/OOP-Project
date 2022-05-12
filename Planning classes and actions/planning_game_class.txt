@@ -1,0 +1,6 @@
+ how do we want the game to update:
+* when the user presses s to start:
+    -> user has to be able to enter the 
+    -> pre initialised human object calls an starting function which calls the add cards function that returns two
+    -> random cards from the deck. These are then stored in the data member card array of the human object
+    -> the return cards function from the human object is called which enables the screen to know what cards to display
