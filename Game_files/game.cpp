@@ -55,6 +55,9 @@ void Game::Gamescreen(){
             
             string balance_string = std::to_string(balance);
             char const *balance_char = balance_string.c_str();
+            string betamount_string = std::to_string(betamount);
+            char const *betamount_char = betamount_string.c_str();
+
             // setting up the dealer
             mvaddstr(7,89,"Dealer's cards: ");
             card_1 = userwindow.create_cards(10,70);
@@ -70,6 +73,7 @@ void Game::Gamescreen(){
             mvaddstr(37,170, "Player balance: ");
             mvaddstr(37,187, balance_char);
             mvaddstr(40,170, "Bet amount: ");
+            mvaddstr(40,187,betamount_char);
 
             // setting up the buttons
 
@@ -101,7 +105,7 @@ void Game::Gamescreen(){
                     betting_input = getch();
                     betting_window = userwindow.bet_window(10);
 
-                    betamount_field[0] = new_field(1,1,26,180,0,0);
+                    betamount_field[0] = new_field(1,1,30,130,0,0);
                     set_field_back(betamount_field[0], O_AUTOSKIP);
 
                     betamount_field[1] = NULL;
@@ -112,55 +116,70 @@ void Game::Gamescreen(){
                     mvaddch(26, 100, ' ');
                     printw("Please enter a bet amount: (press q when finished typing)");
                     betting_test = true;
+
+                    mvaddch(30, 100, ' ');
+
                     while(betting_test == true){
+                        betting_input = getch();
+                        
+                        switch(betting_input){
+                            case '0':
+                                raw_betamount += '0';
+                                printw("%c", betting_input);
 
-                        while(betting_input == getch()){
-                            switch(betting_input){
-                                case '1':
-                                    raw_betamount += '1';
-                                    form_driver(betting_form, betting_input);
-                                    break;
-                                case '2':
-                                    raw_betamount += '2';
-                                    form_driver(betting_form, betting_input);
-                                    break;
-                                case '3':
-                                    raw_betamount += '3';
-                                    form_driver(betting_form, betting_input);
-                                    break;
-                                case '4':
-                                    raw_betamount += '4';
-                                    form_driver(betting_form, betting_input);
-                                    break;
-                                case '5':
-                                    raw_betamount += '5';
-                                    form_driver(betting_form, betting_input);
-                                    break;
-                                case '6':
-                                    raw_betamount += '6';
-                                    form_driver(betting_form, betting_input);
-                                    break;
-                                case '7':
-                                    raw_betamount += '7';
-                                    form_driver(betting_form, betting_input);
-                                    break;
-                                case '8':
-                                    raw_betamount += '8';
-                                    form_driver(betting_form, betting_input);
-                                    break;
-                                case '9':
-                                    raw_betamount += '9';
-                                    form_driver(betting_form, betting_input);
-                                    break;
-                                case 'q':
-                                    betting_test = false;
-                                    break;
+                            case '1':
+                                raw_betamount += '1';
+                                printw("%c", betting_input);
+                                break;
 
-                                default:
-                                    printw("Not a valid number type");
-                                    break;
-                            }
+                            case '2':
+                                raw_betamount += '2';
+                                printw("%c", betting_input);
+                                break;
+
+                            case '3':
+                                raw_betamount += '3';
+                                printw("%c", betting_input);
+                                break;
+                                
+                            case '4':
+                                raw_betamount += '4';
+                                printw("%c", betting_input);
+                                break;
+
+                            case '5':
+                                raw_betamount += '5';
+                                printw("%c", betting_input);
+                                break;
+
+                            case '6':
+                                raw_betamount += '6';
+                                printw("%c", betting_input);
+                                break;
+
+                            case '7':
+                                raw_betamount += '7';
+                                printw("%c", betting_input);
+                                break;
+
+                            case '8':
+                                raw_betamount += '8';
+                                printw("%c", betting_input);
+                                break;
+
+                            case '9':
+                                raw_betamount += '9';
+                                printw("%c", betting_input);
+                                break;
+
+                            case 'q':
+                                betting_test = false;
+                                break;
+
+                            default:
+                                break;
                         }
+                        
                     }
                     unpost_form(betting_form);
                     free_form(betting_form);
@@ -168,9 +187,14 @@ void Game::Gamescreen(){
                     free_field(betamount_field[0]);
                     // free_field(betamount_field[1]);
                     userwindow.end_win(betting_window);
-
-                    betamount = std::stoi(raw_betamount);
-                    break;
+                    // printw(raw_betamount.c_str());
+                    if(raw_betamount == ""){
+                        break;
+                    }
+                    else{
+                        betamount = std::stoi(raw_betamount);
+                        break;
+                    }
                     
 
                 case '2': // if the user presses hit
