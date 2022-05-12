@@ -93,6 +93,7 @@ void Game::Gamescreen(){
 
                 case 's': // if the user starts the game
                     // place holder for what will occur when start is pressed
+                    betting_window = userwindow.bet_window(10);
                     while(true){
                         if(input == '1'){
                             userwindow.end_win(betting_window);
