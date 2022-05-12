@@ -5,7 +5,7 @@
 
 
 int main(){
-    
-    Game userinstance;
+
+    Game userinstance(1000);
     userinstance.Gamescreen();
 }
