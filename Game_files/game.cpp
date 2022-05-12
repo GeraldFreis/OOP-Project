@@ -79,13 +79,13 @@ void Game::Gamescreen(){
             card_4 = userwindow.create_cards(40,100);
 
             // setting up the balance
-            mvaddstr(37,170, "Player balance: ");
-            mvaddstr(37,187, balance_char);
-            mvaddstr(40,170, "Bet amount: ");
-            mvaddstr(40,187,betamount_char);
+            mvaddstr(27,170, "Player balance: ");
+            mvaddstr(27,187, balance_char);
+            mvaddstr(30,170, "Bet amount: ");
+            mvaddstr(30,187,betamount_char);
 
             // setting up the buttons
-
+            
             // start button
             mvaddstr(11, 16, "Start (s)");
             start_button = userwindow.create_buttons(10, 10);
@@ -226,6 +226,12 @@ void Game::Gamescreen(){
                 case '2': // if the user presses hit
                     // place holder for what will occur when hit is pressed
                     card_7 = userwindow.create_cards(40,130);
+
+                    hit_counter += 1;
+
+                    if(hit_counter >= 3){
+                        card_8 = userwindow.create_cards(40, 160);
+                    }
                     break;
 
                 case '3': // if the user presses stand
