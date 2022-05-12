@@ -48,7 +48,7 @@ WINDOW *Window::create_buttons(int xpoint, int ypoint){
 WINDOW *Window::bet_window(int size){ 
     WINDOW *betting_window;
 
-    betting_window = newwin(100,100,0,0);
+    betting_window = newwin(200,200,0,0);
     wrefresh(betting_window);
 
     return betting_window;
