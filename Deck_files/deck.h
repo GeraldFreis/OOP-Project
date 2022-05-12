@@ -9,6 +9,7 @@ class deck{
     private:
         card *array;
         int length;
+        int *drawn_cards; 
 
     public:
         deck();
@@ -18,6 +19,10 @@ class deck{
         void addCard(card new_card);
 
         void removeCard(int rand_num);
+        void removeLastCard();
+
+        void printInt();
+
 
         card drawCard();
 
