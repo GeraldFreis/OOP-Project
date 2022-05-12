@@ -14,6 +14,8 @@ using std::cout; using std::string; using std::endl;
 deck::deck(){
     length = 312;
     array = new card[312];
+    drawn_cards = new int[312];
+    
 }
 
 void deck::fillDeck(){
@@ -64,6 +66,39 @@ void deck::removeCard(int num){
     array[num].newValue(0);
 }
 
+void deck::removeLastCard(){
+    int card_val;
+    int i=0;
+    card_val = drawn_cards[0];
+    while(card_val!=0 && i<312){
+        card_val = drawn_cards[i];
+        i++;
+    }
+    card_val = drawn_cards[i-1];
+
+    for(int j=0; j<312; j++){
+        if(array[j].getValue() == card_val){
+            array[j].newName("");
+            array[j].newValue(0);
+            break;
+        }
+    }
+
+    // array[num].newName("");
+    // array[num].newValue(0);
+}
+
+//This was used to check that the array initialised full of zeros 
+void deck::printInt(){  
+    for(int i=0; i<312; i++){
+        cout << drawn_cards[i];
+    }
+
+}   
+
+
+
+
 card deck::drawCard(){
     //srand ( time(NULL) );         need to fix this so it doesnt always use the same seed of rand numbers 
     int draw =0;
@@ -71,6 +106,15 @@ card deck::drawCard(){
     while(array[draw].getName()=="" && array[draw].getValue()==0){
         draw = rand()%312;
     }
+
+    int i=0;
+    int a=0;
+    while(i<312 && a!=0){
+        a = drawn_cards[i];
+        i++;
+    }
+    drawn_cards[i-1]= array[draw].getValue();
+
     //cout << draw << endl;
     return array[draw];
 }
