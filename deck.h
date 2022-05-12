@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 #include "card.h"
-using namespace std;
+using std::cout; using std::string;
 
 class deck{
     private:
@@ -15,7 +15,11 @@ class deck{
 
         void fillDeck();
 
-        void addcard(card new_card);
+        void addCard(card new_card);
+
+        void removeCard(int rand_num);
+
+        card drawCard();
 
         void printCard(int deck_num);
 
