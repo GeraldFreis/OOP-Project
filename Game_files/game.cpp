@@ -4,11 +4,15 @@
 Game::Game(){
     balance = 0;
     betamount = 0;
+    game_has_begun = false;
+    hit_counter = 0;
 };
 
 Game::Game(int receivedbalance){
     balance = receivedbalance;
     betamount = 0;
+    game_has_begun = false;
+    hit_counter = 0;
 };
 
 void Game::Gamescreen(){
@@ -23,10 +27,14 @@ void Game::Gamescreen(){
     refresh();
 
     // creating the cards in the window
-    WINDOW *card_1;
-    WINDOW *card_2;    
-    WINDOW *card_3;
-    WINDOW *card_4;
+    WINDOW *card_1; // dealer card 1 
+    WINDOW *card_2;  // dealer card 2
+    WINDOW *card_3; // player card 1
+    WINDOW *card_4; // player card 2
+    WINDOW *card_5; // dealer card 3
+    WINDOW *card_6; // dealer card 4
+    WINDOW *card_7; // player card 3
+    WINDOW *card_8; // player card 4;
 
     Window userwindow;
 
@@ -105,7 +113,7 @@ void Game::Gamescreen(){
                     // place holder for what will occur when start is pressed
                     betting_loop = true;
 
-                    while(betting_loop == true){
+                    while(betting_loop == true && game_has_begun == false){
                         betting_input = getch();
                         betting_window = userwindow.bet_window(10);
 
@@ -203,6 +211,7 @@ void Game::Gamescreen(){
 
                         if(betamount <= balance){
                             betting_loop = false;
+                            game_has_begun = true;
                             break;
                         }
                         else{
@@ -216,6 +225,21 @@ void Game::Gamescreen(){
 
                 case '2': // if the user presses hit
                     // place holder for what will occur when hit is pressed
+                    while(game_has_begun){
+                        if(hit_counter == 0){
+                            card_7 = userwindow.create_cards(40, 130);
+                            hit_counter = 1;
+                            break;
+                        }
+                        else if(hit_counter == 1){
+                            card_8 = userwindow.create_cards(40, 160);
+                            hit_counter += 1;
+                            break;
+                        }
+                        else{
+                            continue;
+                        }
+                    }
                     break;
 
                 case '3': // if the user presses stand
@@ -236,6 +260,8 @@ void Game::Gamescreen(){
     userwindow.end_win(card_2);
     userwindow.end_win(card_3);
     userwindow.end_win(card_4);
+    userwindow.end_win(card_7);
+    userwindow.end_win(card_8);
 
     endwin();
     return;

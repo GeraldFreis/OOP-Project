@@ -23,6 +23,8 @@ class Game {
     private:
         int balance;
         int betamount;
+        bool game_has_begun;
+        int hit_counter;
 
     public:
         Game(); // default constructor 
