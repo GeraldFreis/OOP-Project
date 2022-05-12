@@ -225,13 +225,21 @@ void Game::Gamescreen(){
 
                 case '2': // if the user presses hit
                     // place holder for what will occur when hit is pressed
-                    card_7 = userwindow.create_cards(40,130);
+                    if(game_has_begun){
+                        card_7 = userwindow.create_cards(40,130);
 
-                    hit_counter += 1;
+                        hit_counter += 1;
 
-                    if(hit_counter >= 3){
-                        card_8 = userwindow.create_cards(40, 160);
+                        if(hit_counter >= 3){
+                            card_8 = userwindow.create_cards(40, 160);
+                        }
+                    } 
+
+                    else {
+                        mvaddch(0,0,' ');
+                        printw("Please start the game first");
                     }
+
                     break;
 
                 case '3': // if the user presses stand
