@@ -131,13 +131,25 @@ void Bet::set_bet_amount(){
     while(bet_amount == 0){
         raw_bet_amount = bet_interface();
 
-        if (raw_bet_amount != "") {bet_amount = std::stoi(raw_bet_amount); return;}
-        else{bet_amount = 0; printw("Please enter a number");}
+        if (raw_bet_amount != "") { // if the user entered a valid number
+            bet_amount = std::stoi(raw_bet_amount);
 
-        if(bet_amount > balance){ // if the bet amount is greater than the user's balance
-            bet_amount = 0;
-            raw_bet_amount = "";
+            if(bet_amount > balance){ // if the bet amount is greater than the user's balance
+                bet_amount = 0;
+                raw_bet_amount = "";
+            }
+
+            else {
+                return;
+            }
+            
         }
+        
+        else{
+            bet_amount = 0;
+        }
+
+        
     }
 };
 
