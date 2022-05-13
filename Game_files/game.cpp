@@ -2,7 +2,7 @@
 
 
 Game::Game(){
-    balance = 0;
+    balance = 1000;
     bet_amount = 0;
     game_has_begun = false;
     hit_counter = 0;
@@ -167,6 +167,9 @@ int Game::get_bet_amount(){
     return bet_amount;
 }
 
+int Game::get_balance(){
+    return balance;
+}
 
 Game::~Game(){
     cout << "Thanks for playing" << "\n";

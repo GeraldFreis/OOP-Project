@@ -144,7 +144,7 @@ void Bet::set_bet_amount(){
             }
             
         }
-        
+
         else{
             bet_amount = 0;
         }

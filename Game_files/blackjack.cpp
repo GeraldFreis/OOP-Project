@@ -8,7 +8,9 @@ Blackjack::Blackjack(){
 };
 
 Blackjack::Blackjack(int _balance){
-    balance = _balance;
+    if(_balance > 0){balance = _balance;}
+    else{balance = 0;}
+    
     bet_amount = 0;
     Bet betting(balance);
     array.resize(13);
@@ -37,7 +39,7 @@ std::vector<WINDOW *> Blackjack::game_template(){
     // double button
     WINDOW *double_button = windowtools.create_buttons(10, 25);
 
-    // adding each window to the window array
+    // adding each window to the window array that will be returned
     array.push_back(dealer_card_1);
     array.push_back(dealer_card_2);
     array.push_back(player_card_1);

@@ -70,6 +70,7 @@ class Game: public Blackjack {
         // methods
         void mainscreen();
         int get_bet_amount();
+        int get_balance();
 
         ~Game();
 
