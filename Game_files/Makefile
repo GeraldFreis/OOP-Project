@@ -1,7 +1,7 @@
-testall: test
+testall: tests
 
-test: gameoutput
-	./gameoutput
+tests: programoutput
+	./programoutput
 
-gameoutput: game.h game.cpp window.h window.cpp main-game.cpp
-	g++ window.cpp game.cpp main-game.cpp -lncurses -lform -o gameoutput
+programoutput: game.h window.h bet.h blackjack.h game.cpp window.cpp bet.cpp blackjack.cpp game_testing.cpp
+	g++ game.cpp window.cpp bet.cpp blackjack.cpp game_testing.cpp -lncurses -lform -o programoutput

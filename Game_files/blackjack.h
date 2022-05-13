@@ -1,24 +1,28 @@
 #include <iostream>
-#include <ncurses.h>
-#include <form.h>
-using std::string;
+#include "window.h"
+#include "bet.h"
+#include <vector>
 
 #ifndef BLACKJACK_H
 #define BLACKJACK_H
 
-/*
-Blackjack
-    attrs:
-
-    methods:
-        hit(){this will include the code to run the hit functions in the game}
-        winner() {this will include the code to compare the dealer and the player and see who won the game}
-*/
-class Blackjack{
-    public:
-
+class Blackjack: public Bet {
     private:
-        void hit();
+        int balance;
+        int bet_amount;
+        Window windowtools;
+        Bet betting;
+        std::vector<WINDOW *> array; 
+
+    public:
+        Blackjack();
+        Blackjack(int _balance);
+        
+        std::vector<WINDOW *> game_template();
+        std::vector<WINDOW *> start_game(); // returns a pointer to an array of windows
+        std::vector<WINDOW *> hit();
+        std::vector<WINDOW *> stand();
+        int get_bet_amount(); // from Bet
 };
 
 #endif

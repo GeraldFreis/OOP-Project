@@ -1,44 +1,57 @@
 #include <iostream>
 #include <ncurses.h>
 #include <form.h>
-#include <string.h>
 #include "window.h"
-using std::cout; using std::string; using std::cin;
+#include "bet.h"
+#include "blackjack.h"
+#include <vector>
+
+using std::string; using std::cout;
 
 #ifndef GAME_H
 #define GAME_H
 
 /*
-    Game objects create the ncurses screen / interface
-        interface includes:
-            player and dealers' cards, player's balance, player's bet amount, and buttons controlling actions
-    
-    attrs
-        int balance
-        int betamount
-    
-    methods
-        Gamescreen // creates the UI for the game
+    class Game:
+        attrs: all non public:
+            -> balance
+            -> betamount
+            -> game has begun
+            -> hit counter
+
+            cards (1-8) {4 cards for both the user and dealer}
+
+            userwindow (Window object that enables creation of the cards onto the window)
+
+            buttons (hit, stand, double, start) {all created on screen by userwindow object}
 */
-class Game {
+class Game: public Blackjack {
     private:
         int balance;
-        int betamount;
+        int bet_amount;
         bool game_has_begun;
         int hit_counter;
 
-        WINDOW *card_1; // dealer card 1 
-        WINDOW *card_2;  // dealer card 2
-        WINDOW *card_3; // player card 1
-        WINDOW *card_4; // player card 2
-        WINDOW *card_5; // dealer card 3
-        WINDOW *card_6; // dealer card 4
-        WINDOW *card_7; // player card 3
-        WINDOW *card_8; // player card 4;
+        // initialising the cards for the screen
+        // dealer cards
+        WINDOW *dealer_card_1; // dealer card 1 
+        WINDOW *dealer_card_2;  // dealer card 2
+        WINDOW *dealer_card_3; // dealer card 3
+        WINDOW *dealer_card_4; // dealer card 4
 
-        Window userwindow;
+        // player cards
+        WINDOW *player_card_1; // player card 1
+        WINDOW *player_card_2; // player card 4
+        WINDOW *player_card_3; // player card 3
+        WINDOW *player_card_4; // player card 4;
 
-        // creating the buttons in the window
+        // initialising the window object to create the cards, destroy the cards, and create the buttons
+        Window window_tools;
+
+        // initialising the blackjack object to handle the start, hit, stand, double and other functions
+        Blackjack blackjack;
+
+        // initialising the buttons for the game options
         WINDOW *hit_button;
         WINDOW *stand_button;
         WINDOW *double_button;
@@ -46,16 +59,20 @@ class Game {
         
         // initialising the betting window:
         WINDOW *betting_window;
-        FIELD *betamount_field[2]; // initialising the field to hold the bet amount
-        FORM *betting_form; // initialising the form to hold the bet amount
+
+
 
     public:
-        Game(); // default constructor 
-        Game(int receivedbalance); // parameterized constructor taking user balance
+        // constructors
+        Game();
+        Game(int balance);
 
-        void Gamescreen(); // function to create the screen and cards
+        // methods
+        void mainscreen();
+        int get_bet_amount();
 
         ~Game();
-};
 
+
+};
 #endif
