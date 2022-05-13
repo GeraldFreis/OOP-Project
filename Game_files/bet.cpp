@@ -98,17 +98,17 @@ string Bet::bet_interface(){
     post_form(betting_form);
 
     
-    mvaddch(26, 100, ' ');
+    mvaddch(26, 70, ' ');
     printw("Please enter a bet amount that is less than your balance: (press q when finished typing)"); 
-    mvaddstr(26, 190, "Balance: ");
-
+    
+    mvaddstr(30, 70, "Balance: ");
     string balance_string = std::to_string(balance); // converting the int to a const char
     char const *balance_char = balance_string.c_str();
-    mvaddstr(26, 200, balance_char);
+    mvaddstr(30, 90, balance_char);
 
     bool betting_test = true;
     
-    mvaddch(30, 100, ' '); // moves where the user enters the number
+    mvaddch(35, 100, ' '); // moves where the user enters the number
 
     while(betting_test == true){ // checking the user input
         betting_input = getch();
