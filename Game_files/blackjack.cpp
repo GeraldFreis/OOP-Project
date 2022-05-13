@@ -3,16 +3,16 @@
 Blackjack::Blackjack(){
     balance = 1000;
     bet_amount = 0;
-    Bet betting(1000); // default setting the Balance to 1000
+    betting = new Bet(1000); // default setting the Balance to 1000
     array.resize(13);
 };
 
 Blackjack::Blackjack(int _balance){
     if(_balance > 0){balance = _balance;}
     else{balance = 0;}
-    
+
     bet_amount = 0;
-    Bet betting(balance);
+    betting = new Bet(balance);
     array.resize(13);
 }
 
@@ -71,8 +71,8 @@ std::vector<WINDOW *> Blackjack::start_game(){
     array[3] = player_card_2;
 
     // getting the bet amount 
-    betting.set_bet_amount();
-    bet_amount = betting.get_bet_amount();
+    betting->set_bet_amount();
+    bet_amount = betting->get_bet_amount();
 
     return array;
 
@@ -99,4 +99,7 @@ std::vector<WINDOW *> Blackjack::stand(){
 
 int Blackjack::get_bet_amount(){
     return bet_amount;
+}
+Blackjack::~Blackjack(){
+    delete betting;
 }

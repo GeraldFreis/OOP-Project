@@ -7,13 +7,6 @@ Bet::Bet(int _balance){
 };
 
 
-Bet::Bet(){
-    balance = 1000; // default balance is 1000
-    raw_bet_amount = "";
-    bet_amount = 0;
-
-};
-
 bool Bet::isvalid_bet_amount(char betting_input){
     switch(betting_input){
             case '0':

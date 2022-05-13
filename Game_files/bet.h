@@ -22,10 +22,10 @@ class Bet {
         bool isvalid_bet_amount(char betting_input);
         
     public:
-        Bet();
         Bet(int _balance);
         void set_bet_amount(); // uses bet_interface to create a window that asks the user to enter the bet amount
         int get_bet_amount(); // converts the raw_bet_amount to a string
+        int get_balance(); // returns the balance
 };
 
 #endif
