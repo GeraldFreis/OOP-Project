@@ -23,6 +23,7 @@
                 std::vector<WINDOW *> hit(); // returns the user's cards and the dealers cards if they hit
                 std::vector<WINDOW *> stand(); // returns the dealers cards if they hit
 
+                string winner()
                 int get_bet_amount(); // from Bet
 */
 class Blackjack: public Bet {
@@ -41,6 +42,8 @@ class Blackjack: public Bet {
         std::vector<WINDOW *> start_game(); // returns a pointer to an array of windows
         std::vector<WINDOW *> hit(int hit_number);
         std::vector<WINDOW *> stand();
+        WINDOW winner(); // function that returns who won the game
+        bool bust(); // checks if the dealer is bust
 
         int get_bet_amount(); // from Bet
         ~Blackjack();

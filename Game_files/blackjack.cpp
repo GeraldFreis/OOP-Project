@@ -79,7 +79,7 @@ std::vector<WINDOW *> Blackjack::start_game(){ // starting the game protocol (gi
 }
 
 
-std::vector<WINDOW *> Blackjack::hit(int hit_number){
+std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to hit
 
     // creating the two new cards for the player and then if the dealer decides to play displaying
     // returning their cards as well
@@ -99,6 +99,7 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){
 }
 
 std::vector<WINDOW *> Blackjack::stand(){
+    // user does nothing, dealer makes a decision based on their total
     return array;
 };
 
