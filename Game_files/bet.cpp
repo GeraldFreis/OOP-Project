@@ -7,66 +7,66 @@ Bet::Bet(int _balance){
 };
 
 
-bool Bet::isvalid_bet_amount(char betting_input){ // checks if the entered character is a number, and if so adds it to raw_bet_amount
-    switch(betting_input){
-            case '0': // if the user enters a 0
-                raw_bet_amount += '0';
-                printw("%c", betting_input);
-                return true;
+bool Bet::isvalid_bet_amount(char betting_input) { // checks if the entered character is a number, and if so adds it to raw_bet_amount
+    switch(betting_input) {
+        case '0': // if the user enters a 0
+            raw_bet_amount += '0';
+            printw("%c", betting_input);
+            return true;
+        
+
+        case '1': // if the user enters a 1
+            raw_bet_amount += '1';
+            printw("%c", betting_input);
+            return true;
+
+        case '2': // if the user enters a 2
+            raw_bet_amount += '2';
+            printw("%c", betting_input);
+            return true;
+
+        case '3': // if the user enters a 3
+            raw_bet_amount += '3';
+            printw("%c", betting_input);
+            return true;
+            
+        case '4': // if the user enters a 4
+            raw_bet_amount += '4';
+            printw("%c", betting_input);
+            return true;
+
+        case '5': // if the user enters a 5
+            raw_bet_amount += '5';
+            printw("%c", betting_input);
+            return true;
+
+        case '6': // if the user enters a 6
+            raw_bet_amount += '6';
+            printw("%c", betting_input);
+            return true;
+
+        case '7': // if the user enters a 7
+            raw_bet_amount += '7';
+            printw("%c", betting_input);
+            return true;
+
+        case '8': // if the user enters a 8
+            raw_bet_amount += '8';
+            printw("%c", betting_input);
+            return true;
+
+        case '9': // if the user enters a 9
+            raw_bet_amount += '9';
+            printw("%c", betting_input);
+            return true;
+
+        case 'q': // if the user enters a q (they want to quit the screen)
+            return false;
             
 
-            case '1': // if the user enters a 1
-                raw_bet_amount += '1';
-                printw("%c", betting_input);
-                return true;
-
-            case '2': // if the user enters a 2
-                raw_bet_amount += '2';
-                printw("%c", betting_input);
-                return true;
-
-            case '3': // if the user enters a 3
-                raw_bet_amount += '3';
-                printw("%c", betting_input);
-                return true;
-                
-            case '4': // if the user enters a 4
-                raw_bet_amount += '4';
-                printw("%c", betting_input);
-                return true;
-
-            case '5': // if the user enters a 5
-                raw_bet_amount += '5';
-                printw("%c", betting_input);
-                return true;
-
-            case '6': // if the user enters a 6
-                raw_bet_amount += '6';
-                printw("%c", betting_input);
-                return true;
-
-            case '7': // if the user enters a 7
-                raw_bet_amount += '7';
-                printw("%c", betting_input);
-                return true;
-
-            case '8': // if the user enters a 8
-                raw_bet_amount += '8';
-                printw("%c", betting_input);
-                return true;
-
-            case '9': // if the user enters a 9
-                raw_bet_amount += '9';
-                printw("%c", betting_input);
-                return true;
-
-            case 'q': // if the user enters a q (they want to quit the screen)
-                return false;
-                
-
-            default: // if the user entered a key which was not a number, just ignore
-                return true;
-        }     
+        default: // if the user entered a key which was not a number, just ignore
+            return true;
+    }     
 };
 
 string Bet::bet_interface(){ // creates the window and prompts the user for the bet amount
