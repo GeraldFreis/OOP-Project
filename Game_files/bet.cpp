@@ -8,7 +8,7 @@ Bet::Bet(int _balance){
 
 
 Bet::Bet(){
-    balance = 0;
+    balance = 1000; // default balance is 1000
     raw_bet_amount = "";
     bet_amount = 0;
 
