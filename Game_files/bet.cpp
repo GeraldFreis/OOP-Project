@@ -8,7 +8,9 @@ Bet::Bet(int _balance){
 
 
 bool Bet::isvalid_bet_amount(char betting_input) { // checks if the entered character is a number, and if so adds it to raw_bet_amount
+    
     switch(betting_input) {
+
         case '0': // if the user enters a 0
             raw_bet_amount += '0';
             printw("%c", betting_input);
@@ -73,14 +75,16 @@ string Bet::bet_interface(){ // creates the window and prompts the user for the 
     initscr();
     clear();
 	noecho();
-	cbreak();	/* Line buffering disabled. pass on everything */
+	cbreak();
 
+    // initialising the window
     WINDOW *betting_window = window_creation.bet_window(10);
 
     int betting_input;
 
     betting_input = getch();
 
+    // initialising the input fields
     betamount_field[0] = new_field(1,1,30,130,0,0);
     set_field_back(betamount_field[0], O_AUTOSKIP);
 
@@ -90,7 +94,7 @@ string Bet::bet_interface(){ // creates the window and prompts the user for the 
     
     post_form(betting_form);
 
-    
+    // initialising the text
     mvaddch(26, 70, ' ');
     printw("Please enter a bet amount that is less than your balance: (press q when finished typing)"); 
     
@@ -103,18 +107,19 @@ string Bet::bet_interface(){ // creates the window and prompts the user for the 
     
     mvaddch(35, 100, ' '); // moves where the user enters the number
 
-    while(betting_test == true){ // checking the user input
+    // checking user input
+    while(betting_test == true){
         betting_input = getch();
         if(isvalid_bet_amount(betting_input) != true){ // if the input was a 'q'
            betting_test = false;
         } 
     }
     
+    // clearing the window
     unpost_form(betting_form);
     free_form(betting_form);
 
     free_field(betamount_field[0]);
-    // free_field(betamount_field[1]);
     endwin();
 
     return raw_bet_amount;

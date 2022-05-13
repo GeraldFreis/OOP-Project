@@ -1,13 +1,13 @@
 #include "blackjack.h"
 
-Blackjack::Blackjack(){
+Blackjack::Blackjack(): Bet(1000){
     balance = 1000;
     bet_amount = 0;
     betting = new Bet(1000); // default setting the Balance to 1000
     array.resize(13);
 };
 
-Blackjack::Blackjack(int _balance){
+Blackjack::Blackjack(int _balance): Bet (_balance){
     if(_balance > 0){balance = _balance;}
     else{balance = 0;}
 

@@ -25,7 +25,7 @@
 
                 int get_bet_amount(); // from Bet
 */
-class Blackjack {
+class Blackjack: public Bet {
     private:
         int balance;
         int bet_amount;
