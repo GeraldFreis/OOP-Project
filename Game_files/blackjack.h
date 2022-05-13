@@ -39,7 +39,7 @@ class Blackjack {
         
         std::vector<WINDOW *> game_template();
         std::vector<WINDOW *> start_game(); // returns a pointer to an array of windows
-        std::vector<WINDOW *> hit();
+        std::vector<WINDOW *> hit(int hit_number);
         std::vector<WINDOW *> stand();
 
         int get_bet_amount(); // from Bet

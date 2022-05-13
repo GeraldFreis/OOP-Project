@@ -7,69 +7,69 @@ Bet::Bet(int _balance){
 };
 
 
-bool Bet::isvalid_bet_amount(char betting_input){
+bool Bet::isvalid_bet_amount(char betting_input){ // checks if the entered character is a number, and if so adds it to raw_bet_amount
     switch(betting_input){
-            case '0':
+            case '0': // if the user enters a 0
                 raw_bet_amount += '0';
                 printw("%c", betting_input);
                 return true;
             
 
-            case '1':
+            case '1': // if the user enters a 1
                 raw_bet_amount += '1';
                 printw("%c", betting_input);
                 return true;
 
-            case '2':
+            case '2': // if the user enters a 2
                 raw_bet_amount += '2';
                 printw("%c", betting_input);
                 return true;
 
-            case '3':
+            case '3': // if the user enters a 3
                 raw_bet_amount += '3';
                 printw("%c", betting_input);
                 return true;
                 
-            case '4':
+            case '4': // if the user enters a 4
                 raw_bet_amount += '4';
                 printw("%c", betting_input);
                 return true;
 
-            case '5':
+            case '5': // if the user enters a 5
                 raw_bet_amount += '5';
                 printw("%c", betting_input);
                 return true;
 
-            case '6':
+            case '6': // if the user enters a 6
                 raw_bet_amount += '6';
                 printw("%c", betting_input);
                 return true;
 
-            case '7':
+            case '7': // if the user enters a 7
                 raw_bet_amount += '7';
                 printw("%c", betting_input);
                 return true;
 
-            case '8':
+            case '8': // if the user enters a 8
                 raw_bet_amount += '8';
                 printw("%c", betting_input);
                 return true;
 
-            case '9':
+            case '9': // if the user enters a 9
                 raw_bet_amount += '9';
                 printw("%c", betting_input);
                 return true;
 
-            case 'q':
+            case 'q': // if the user enters a q (they want to quit the screen)
                 return false;
                 
 
-            default:
+            default: // if the user entered a key which was not a number, just ignore
                 return true;
         }     
 };
 
-string Bet::bet_interface(){
+string Bet::bet_interface(){ // creates the window and prompts the user for the bet amount
     initscr();
     clear();
 	noecho();
@@ -120,9 +120,9 @@ string Bet::bet_interface(){
     return raw_bet_amount;
 };
 
-void Bet::set_bet_amount(){
+void Bet::set_bet_amount(){ // uses bet_interface to find the bet amount and checks if it is less than the balance
     while(bet_amount == 0){
-        raw_bet_amount = bet_interface();
+        raw_bet_amount = bet_interface(); // opening the interface to ask for the bet amount
 
         if (raw_bet_amount != "") { // if the user entered a valid number
             bet_amount = std::stoi(raw_bet_amount);
@@ -132,20 +132,20 @@ void Bet::set_bet_amount(){
                 raw_bet_amount = "";
             }
 
-            else {
+            else { // if the bet_amount is less than the average
                 return;
             }
             
         }
 
         else{
-            bet_amount = 0;
+            bet_amount = 0; // resetting the bet amount if the user did not enter anything
         }
 
         
     }
 };
 
-int Bet::get_bet_amount(){
+int Bet::get_bet_amount(){ // returns bet amount 
     return bet_amount;
 }

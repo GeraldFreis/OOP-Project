@@ -142,8 +142,10 @@ void Game::mainscreen(){
                 
                 case '2': // if the user wants to hit
                     if(game_has_begun){ // if the user has pressed start game already
-                        dealt_cards = blackjack.hit();
+                        dealt_cards = blackjack.hit(hit_counter);
                         player_card_3 = dealt_cards[8];
+                        player_card_4 = dealt_cards[9];
+                        hit_counter += 1;
                     }
                     break;
 
@@ -161,14 +163,6 @@ void Game::mainscreen(){
 
     endwin();
     return;
-}
-
-int Game::get_bet_amount(){
-    return bet_amount;
-}
-
-int Game::get_balance(){
-    return balance;
 }
 
 Game::~Game(){

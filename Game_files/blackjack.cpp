@@ -16,7 +16,7 @@ Blackjack::Blackjack(int _balance){
     array.resize(13);
 }
 
-std::vector<WINDOW *> Blackjack::game_template(){
+std::vector<WINDOW *> Blackjack::game_template(){ // creates the template for the screen 
 
     // creating the dealers cards
     WINDOW *dealer_card_1 = windowtools.create_cards(10, 70);
@@ -52,7 +52,7 @@ std::vector<WINDOW *> Blackjack::game_template(){
     return array;
 }
 
-std::vector<WINDOW *> Blackjack::start_game(){
+std::vector<WINDOW *> Blackjack::start_game(){ // starting the game protocol (gives the user and dealer 2 cards)
     WINDOW *dealer_card_1 = windowtools.create_cards(10,70);
     WINDOW *dealer_card_2 = windowtools.create_cards(10,100);
 
@@ -79,16 +79,21 @@ std::vector<WINDOW *> Blackjack::start_game(){
 }
 
 
-std::vector<WINDOW *> Blackjack::hit(){
+std::vector<WINDOW *> Blackjack::hit(int hit_number){
 
     // creating the two new cards for the player and then if the dealer decides to play displaying
     // returning their cards as well
+    if(hit_number == 0){
+        WINDOW *new_player_card = windowtools.create_cards(40, 130);
+        
+        array.push_back(new_player_card);
 
-    WINDOW *new_player_card = windowtools.create_cards(40, 130);
-    
-    array.push_back(new_player_card);
-
-    // calling the dealer place
+        // calling the dealer place
+    }
+    else {
+        WINDOW *new_player_card = windowtools.create_cards(40, 160);
+        array.push_back(new_player_card);
+    }
 
     return array;
 }
