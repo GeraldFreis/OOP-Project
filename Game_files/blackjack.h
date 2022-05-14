@@ -27,12 +27,14 @@
                 int get_bet_amount(); // from Bet
 */
 class Blackjack: public Bet {
+
     private:
         int balance;
         int bet_amount;
         Window windowtools;
         Bet *betting;
         std::vector<WINDOW *> array; 
+
 
     public:
         Blackjack();

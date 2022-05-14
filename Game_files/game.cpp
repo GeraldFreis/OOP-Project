@@ -66,7 +66,9 @@ void Game::mainscreen(){
     int stage = 1; // variable to control what stage we are in (i.e what screen to show)
 
     while (test) { // the game loop
+    
         while(stage == 1) {
+
             keypad(stdscr, TRUE);
             int key_input = getch();
 
@@ -168,4 +170,3 @@ void Game::mainscreen(){
 Game::~Game(){
     cout << "Thanks for playing" << "\n";
 };
-

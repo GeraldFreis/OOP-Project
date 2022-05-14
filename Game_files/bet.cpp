@@ -126,7 +126,7 @@ string Bet::bet_interface(){ // creates the window and prompts the user for the 
 };
 
 void Bet::set_bet_amount(){ // uses bet_interface to find the bet amount and checks if it is less than the balance
-    while(bet_amount == 0){
+    while(bet_amount == 0) {
         raw_bet_amount = bet_interface(); // opening the interface to ask for the bet amount
 
         if (raw_bet_amount != "") { // if the user entered a valid number
@@ -143,11 +143,9 @@ void Bet::set_bet_amount(){ // uses bet_interface to find the bet amount and che
             
         }
 
-        else{
+        else {
             bet_amount = 0; // resetting the bet amount if the user did not enter anything
         }
-
-        
     }
 };
 

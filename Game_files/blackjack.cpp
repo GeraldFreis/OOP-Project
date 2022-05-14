@@ -90,6 +90,7 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
 
         // calling the dealer place
     }
+    
     else {
         WINDOW *new_player_card = windowtools.create_cards(40, 160);
         array.push_back(new_player_card);
@@ -106,6 +107,7 @@ std::vector<WINDOW *> Blackjack::stand(){
 int Blackjack::get_bet_amount(){
     return bet_amount;
 }
+
 Blackjack::~Blackjack(){
     delete betting;
 }
