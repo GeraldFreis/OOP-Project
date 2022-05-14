@@ -44,8 +44,9 @@ class Blackjack: public Bet {
         std::vector<WINDOW *> start_game(); // returns a pointer to an array of windows
         std::vector<WINDOW *> hit(int hit_number);
         std::vector<WINDOW *> stand();
-        WINDOW winner(); // function that returns who won the game
+        WINDOW *winner(); // function that returns who won the game
         bool bust(); // checks if the dealer is bust
+
 
         int get_bet_amount(); // from Bet
         ~Blackjack();

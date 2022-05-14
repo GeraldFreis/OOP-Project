@@ -90,11 +90,13 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
 
         // calling the dealer place
     }
-    
+
     else {
         WINDOW *new_player_card = windowtools.create_cards(40, 160);
         array.push_back(new_player_card);
     }
+
+    // 
 
     return array;
 }
@@ -103,6 +105,10 @@ std::vector<WINDOW *> Blackjack::stand(){
     // user does nothing, dealer makes a decision based on their total
     return array;
 };
+
+bool Blackjack::bust(){ // checks if the user or dealer is bust, if neither is bust then returns false, and if either is returns true
+    return false;
+}
 
 int Blackjack::get_bet_amount(){
     return bet_amount;
