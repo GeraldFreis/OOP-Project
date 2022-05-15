@@ -2,12 +2,12 @@
 #define DEALER_H
 #include <iostream>
 using std::cout; using std::string; using std::cin;
-#include "Person.h"
+#include "person.h"
 #include "card.h"
 
 
 
-class Dealer: public Person {
+class Dealer{
     private:
         int card_total;
         card *card_array;
@@ -19,11 +19,17 @@ class Dealer: public Person {
         
         void dealerMove();
 
+        void addCardDealer(card new_card);
+
+        void printCardDealer(int num);
+        
+        int getCountDealer();
+        
         string getMoves();    
 
         void hit();
     
-        int getCount();
+        
                                           
         ~Dealer();
 };
