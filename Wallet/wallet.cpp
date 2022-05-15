@@ -1,13 +1,13 @@
 #include "wallet.h"
 
-Wallet::Wallet(){
+Wallet::Wallet(){ // default constructor
     currentbalance = 0;
     previousbalances = new int[20];
     filename = "users_balances.txt";
     number_of_entries = 0;
 }
 
-Wallet::Wallet(string _filename){
+Wallet::Wallet(string _filename){ // parameterized constructor
     currentbalance = 0;
     previousbalances = new int[20];
     filename = _filename;
@@ -38,7 +38,7 @@ void Wallet::setbalance(int updated_balance){
     number_of_entries += 1; // increasing the number of entries
 }
 
-// inherited function
+// inherited function from deserializable (reads funds from file)
 void Wallet::read() {
     // reading in the data
     std::ifstream file(filename);
