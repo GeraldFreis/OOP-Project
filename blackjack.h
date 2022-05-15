@@ -55,8 +55,8 @@ class Blackjack: public Bet {
         WINDOW *winner(); // function that returns who won the game
         bool bust(); // checks if the dealer is bust
 
-        Human gethuman();
-        Dealer getdealer();
+        Human *gethuman();
+        Dealer *getdealer();
 
 
         int get_bet_amount(); // from Bet

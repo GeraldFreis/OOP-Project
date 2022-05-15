@@ -162,11 +162,11 @@ int Blackjack::get_bet_amount(){
     return bet_amount;
 }
 
-Human Blackjack::gethuman(){
+Human *Blackjack::gethuman(){
     return user;
 }
 
-Dealer Blackjack::getdealer(){
+Dealer *Blackjack::getdealer(){
     return dealer;
 }
 

@@ -42,4 +42,4 @@ card *Dealer::getCards() {
     return card_array;
 }
 
-Dealer::~Dealer(){delete[] card_array;}
+Dealer::~Dealer(){delete [] card_array;}

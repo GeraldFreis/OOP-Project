@@ -112,6 +112,7 @@ string Bet::bet_interface(){ // creates the window and prompts the user for the 
         betting_input = getch();
         if(isvalid_bet_amount(betting_input) != true){ // if the input was a 'q'
            betting_test = false;
+           endwin();
             // clearing the window
             unpost_form(betting_form);
             free_form(betting_form);

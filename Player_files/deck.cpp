@@ -125,5 +125,5 @@ void deck::printCard(int deck_num){
 }
 
 
-deck::~deck(){delete[] array;}
+deck::~deck(){delete [] array; delete [] drawn_cards;}
 

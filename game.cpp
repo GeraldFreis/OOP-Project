@@ -65,6 +65,9 @@ void Game::mainscreen(){ // actual game loop
     bool test = true; // variable to control the game loop and end if the game is over
     int stage = 1; // variable to control what stage we are in (i.e what screen to show)
 
+    Dealer *received_dealer; // dealer object that is returned by blackjack when a change to the cards is made
+    Human *received_user; // dealer object that is returned by blackjack when a change to the cards is made
+
     while (test) { // the game loop
     
         while(stage == 1) {
@@ -103,7 +106,7 @@ void Game::mainscreen(){ // actual game loop
             mvaddstr(27,170, "Player balance: ");
             mvaddstr(27,187, balance_char);
             mvaddstr(30,170, "Bet amount: ");
-            mvaddstr(30,187,betamount_char);
+            mvaddstr(30,187, betamount_char);
 
             // setting up the buttons text
             
@@ -121,6 +124,15 @@ void Game::mainscreen(){ // actual game loop
 
             std::vector<WINDOW *> dealt_cards; // vector to hold cards dealt at the beginning of the game
 
+            received_dealer = blackjack.getdealer();
+            received_user = blackjack.gethuman();
+
+            // // showing the dealer cards on screen
+            mvaddch(15,85, ' ');
+            printw(received_dealer->getCards()[0].getName().c_str());
+            mvaddch(15,105, ' ');
+            printw(received_dealer->getCards()[1].getName().c_str());
+
             switch(key_input) { // testing the user input
                 case '1': // if the user wants to exit the game
                     test = false;
@@ -137,16 +149,10 @@ void Game::mainscreen(){ // actual game loop
 
                     player_card_1 = dealt_cards[2];
                     player_card_2 = dealt_cards[3];
-
+                    refresh();
                     // showing the cards that were dealt on the screen as a string
-                    Dealer received_dealer = blackjack.getdealer();
-                    Human received_user = blackjack.gethuman();
-
-                    // showing the dealer cards on screen
-                    
 
                     game_has_begun = true;
-                    refresh();
                     break;
                 
                 case '2': // if the user wants to hit
