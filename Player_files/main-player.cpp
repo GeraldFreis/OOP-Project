@@ -16,9 +16,7 @@ int main(){
     deck d1;
     d1.fillDeck();
 
-//create a dealer and a human 
-    Dealer dealer1;
-    Human player1;  
+
 
 //get the player to place a bet 
     double wallet = 1000;
@@ -26,7 +24,7 @@ int main(){
 
 //while loop to run so player can play again 
     char play = 'y';
-    while (play=='y' || play=='Y'){
+    while ((play=='y' || play=='Y') && wallet>0){
         cout << endl;
         cout << endl;
         cout << "Would you like to play BlackJack? (Y/N)" << endl;
@@ -50,6 +48,11 @@ int main(){
         cout << "bet of $" << bet << " accepted" << endl;
         cout << endl;
         wallet = wallet - bet;
+
+    //create a dealer and a human 
+    Dealer dealer1;
+    Human player1;  
+
 
     //deal cards, 2 to player, 1 to dealer 
         //2 cards to player 
@@ -163,8 +166,6 @@ int main(){
         }
         wallet = wallet + profit;
         bet = 0;
-        player1.~Human();
-        dealer1.~Dealer();
     }
 
     return 0;
