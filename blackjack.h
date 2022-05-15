@@ -4,6 +4,8 @@
 #include "Game_files/bet.h"
 #include "Player_files/Dealer.h"
 #include "Player_files/Human.h"
+#include "Player_files/card.h"
+#include "Player_files/deck.h"
 
 #ifndef BLACKJACK_H
 #define BLACKJACK_H
@@ -37,7 +39,7 @@ class Blackjack: public Bet {
         Bet *betting;
         std::vector<WINDOW *> array; 
         Human *user;
-        Dealer *house;
+        Dealer *dealer;
 
 
     public:

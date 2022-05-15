@@ -7,8 +7,9 @@ Blackjack::Blackjack(): Bet(1000){
     array.resize(13);
     
     // initialising the human and the dealer
-    user = new person;
-    
+    user = new Human();
+    dealer = new Dealer();
+
 };
 
 Blackjack::Blackjack(int _balance): Bet (_balance){
@@ -18,6 +19,9 @@ Blackjack::Blackjack(int _balance): Bet (_balance){
     bet_amount = 0;
     betting = new Bet(balance);
     array.resize(13);
+
+    user = new Human();
+    dealer = new Dealer();
 }
 
 std::vector<WINDOW *> Blackjack::game_template(){ // creates the template for the screen 
@@ -57,22 +61,44 @@ std::vector<WINDOW *> Blackjack::game_template(){ // creates the template for th
 }
 
 std::vector<WINDOW *> Blackjack::start_game(){ // starting the game protocol (gives the user and dealer 2 cards)
-    WINDOW *dealer_card_1 = windowtools.create_cards(10,70);
-    WINDOW *dealer_card_2 = windowtools.create_cards(10,100);
+    
+    // adding the cards to the player and dealer and retrieving the cards
+    // initialising the deck
+    srand ( time(NULL) );  
+    deck initialised_deck;
+    initialised_deck.fillDeck();
+
+    // initialising the cards
+    card *cards = new card[4];
+    for(int i = 0; i < 4; i++) {cards[i] = initialised_deck.drawCard();
+                                 initialised_deck.removeLastCard();}
+
+    // adding the cards to the user and dealer
+    user->addCardHuman(cards[0]);
+    user->addCardHuman(cards[1]);
+
+    dealer->addCardDealer(cards[2]);
+    dealer->addCardDealer(cards[3]);
+    
+    // initialising the card windows
+    
+    WINDOW *dealer_card_1_window = windowtools.create_cards(10,70);
+    waddstr(dealer_card_1_window, "a");
+    WINDOW *dealer_card_2_window = windowtools.create_cards(10,100);
 
     // creating the players cards
-    WINDOW *player_card_1 = windowtools.create_cards(40, 70);
-    WINDOW *player_card_2 = windowtools.create_cards(40, 100);
+    WINDOW *player_card_1_window = windowtools.create_cards(40, 70);
+    WINDOW *player_card_2_window = windowtools.create_cards(40, 100);
 
     // erasing the pre-existing dealer and player cards
     array.erase(array.begin(), array.begin()+3);
 
 
-    array[0] = dealer_card_1;
-    array[1] = dealer_card_2;
+    array[0] = dealer_card_1_window;
+    array[1] = dealer_card_2_window;
 
-    array[2] = player_card_1;
-    array[3] = player_card_2;
+    array[2] = player_card_1_window;
+    array[3] = player_card_2_window;
 
     // getting the bet amount 
     betting->set_bet_amount();
@@ -120,4 +146,6 @@ int Blackjack::get_bet_amount(){
 
 Blackjack::~Blackjack(){
     delete betting;
+    delete dealer;
+    delete user;
 }

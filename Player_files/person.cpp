@@ -2,44 +2,41 @@
 #include <string>
 #include <ncurses.h>
 #include "person.h"
-#include "Dealer.h"
-#include "Human.h"
-#include "deck.h"
-#include "card.h"
+
 using namespace std;
 
-
-    // card *card array;
-    // int CardTotal;
     
 person::person(){
-    //card = [];
-   // CardTotal=0;
+    card_array = new card[10];
+    CardTotal = 0;
 }
-
-
 
 int person::getMove(){
     // retrieve the move of 
-    return 6;
 }
 
 int person::getCount(){
-    //return CardTotal;
-    return 7;
-
+    return CardTotal;
 }
 
-
-void person::hit(){
+//void person::hit(){
     // what will happen when someone hits?
     //
-}
+//}
+
 
 bool person::winGame(){
-    return true;
+    if (CardTotal > 21){
+        return true;
+    }
+    else if (CardTotal <= 21){
+        return false; 
+    }
+    else {
+        return false;
+    }
 }
 
 person::~person(){
-
+    delete [] card_array;
 }
