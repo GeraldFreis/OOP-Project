@@ -138,6 +138,13 @@ void Game::mainscreen(){ // actual game loop
                     player_card_1 = dealt_cards[2];
                     player_card_2 = dealt_cards[3];
 
+                    // showing the cards that were dealt on the screen as a string
+                    Dealer received_dealer = blackjack.getdealer();
+                    Human received_user = blackjack.gethuman();
+
+                    // showing the dealer cards on screen
+                    
+
                     game_has_begun = true;
                     refresh();
                     break;

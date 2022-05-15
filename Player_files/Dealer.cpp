@@ -38,5 +38,8 @@ int Dealer::getCountDealer(){
 
 // void Dealer::hit(){
 // }
+card *Dealer::getCards() {
+    return card_array;
+}
 
 Dealer::~Dealer(){delete[] card_array;}

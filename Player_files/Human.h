@@ -12,6 +12,7 @@ class Human {
     private:
         int card_total;
         card *card_array;
+        int number_of_cards;
         //string choosen_move;
         
 
@@ -24,6 +25,9 @@ class Human {
         
         int getCountHuman();
         
+        card getLastCard();
+
+        card *getCards();
         //card hit(card n_card);
         
         //void playerMove();

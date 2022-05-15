@@ -12,7 +12,7 @@ person::person(){
 }
 
 int person::getMove(){
-    // retrieve the move of 
+    return 0;
 }
 
 int person::getCount(){

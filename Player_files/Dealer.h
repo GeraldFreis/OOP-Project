@@ -25,6 +25,8 @@ class Dealer{
         void printCardDealer(int num);
         
         int getCountDealer();
+
+        card *getCards();
         
         // string getMoves();    
 

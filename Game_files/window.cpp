@@ -24,6 +24,17 @@ WINDOW *Window::create_cards(int xpoint, int ypoint){ // creating the cards
     return card;
 };
 
+WINDOW *Window::create_cards(int xpoint, int ypoint, string cardname){ // creating the cards
+    WINDOW *card; // initialising the cards
+
+    // this card
+    card = newwin(16,24, xpoint,ypoint);
+    box(card, 0, 0);
+
+    wrefresh(card);
+    return card;
+};
+
 WINDOW *Window::create_buttons(int xpoint, int ypoint){
     WINDOW *button; // initialising the buttons
 

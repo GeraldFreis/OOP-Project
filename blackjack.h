@@ -40,6 +40,8 @@ class Blackjack: public Bet {
         std::vector<WINDOW *> array; 
         Human *user;
         Dealer *dealer;
+        deck initialised_deck;
+
 
 
     public:
@@ -52,6 +54,9 @@ class Blackjack: public Bet {
         std::vector<WINDOW *> stand();
         WINDOW *winner(); // function that returns who won the game
         bool bust(); // checks if the dealer is bust
+
+        Human gethuman();
+        Dealer getdealer();
 
 
         int get_bet_amount(); // from Bet
