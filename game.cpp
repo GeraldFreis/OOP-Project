@@ -51,7 +51,7 @@ Game::Game(int _balance){
     WINDOW *start_button;
 }
 
-void Game::mainscreen(){
+void Game::mainscreen(){ // actual game loop
     initscr();
     clear();
 	noecho();

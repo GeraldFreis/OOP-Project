@@ -10,5 +10,6 @@ int main() {
 
     // initialising the game window
     Game game(user_funds.getbalance());
-    game.mainscreen();
+    game.mainscreen(); // game window
+    
 }

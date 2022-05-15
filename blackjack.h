@@ -1,7 +1,9 @@
 #include <iostream>
+#include <vector>
 #include "Game_files/window.h"
 #include "Game_files/bet.h"
-#include <vector>
+#include "Player_files/Dealer.h"
+#include "Player_files/Human.h"
 
 #ifndef BLACKJACK_H
 #define BLACKJACK_H
@@ -34,6 +36,8 @@ class Blackjack: public Bet {
         Window windowtools;
         Bet *betting;
         std::vector<WINDOW *> array; 
+        Human *user;
+        Dealer *house;
 
 
     public:

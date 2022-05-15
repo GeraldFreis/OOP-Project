@@ -5,6 +5,10 @@ Blackjack::Blackjack(): Bet(1000){
     bet_amount = 0;
     betting = new Bet(1000); // default setting the Balance to 1000
     array.resize(13);
+    
+    // initialising the human and the dealer
+    user = new person;
+    
 };
 
 Blackjack::Blackjack(int _balance): Bet (_balance){
