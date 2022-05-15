@@ -74,6 +74,7 @@ void Game::mainscreen(){ // actual game loop
     Dealer *received_dealer; // dealer object that is returned by blackjack when a change to the cards is made
     Human *received_user; // dealer object that is returned by blackjack when a change to the cards is made
 
+    
     while (test) { // the game loop
     
         while(stage == 1) {
@@ -81,6 +82,12 @@ void Game::mainscreen(){ // actual game loop
             keypad(stdscr, TRUE);
             int key_input = getch();
 
+            // ensuring that the dealer and user are not bust, and if they are enforcing the winner protocol
+            if(blackjack.bust()) {
+                endwin();
+                return;
+            }
+            
             // initialising the blackjack start function into a vector
             std::vector<WINDOW *> screen_object_arr = blackjack.game_template();
 
@@ -196,27 +203,6 @@ void Game::mainscreen(){ // actual game loop
 
             bool winner_test = true;
 
-            // ensuring that the dealer and user are not bust, and if they are enforcing the winner protocol
-            while(blackjack.bust() && winner_test == true) { // if either the user or dealer is bust
-                winner = window_tools.winner_window();
-                printw(blackjack.winner().c_str());
-
-                mvaddstr(30, 150, "if you would like to play again press 2, if you would like to exit press 1");
-                switch(key_input) {
-                    case '1':
-                        winner_test = false;
-                        stage = 2;
-                        test = false;
-                        break;
-
-                    case '2':
-                        winner_test = false;
-                        break;
-                    
-                    default:
-                        break;
-                }
-            }
         }
     }
 
