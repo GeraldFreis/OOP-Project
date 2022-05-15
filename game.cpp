@@ -24,6 +24,9 @@ Game::Game(){
     WINDOW *stand_button;
     WINDOW *double_button;
     WINDOW *start_button;
+
+    // the winner window
+    WINDOW *winner;
 }
 
 Game::Game(int _balance){
@@ -49,6 +52,9 @@ Game::Game(int _balance){
     WINDOW *stand_button;
     WINDOW *double_button;
     WINDOW *start_button;
+
+    // the winner window
+    WINDOW *winner;
 }
 
 void Game::mainscreen(){ // actual game loop
@@ -129,15 +135,15 @@ void Game::mainscreen(){ // actual game loop
             received_user = blackjack.gethuman();
 
             // // showing the dealer cards on screen
-            mvaddch(15,85, ' ');
+            mvaddch(15,80, ' ');
             printw(received_dealer->getCards()[0].getName().c_str());
-            mvaddch(15,105, ' ');
+            mvaddch(15,110, ' ');
             printw(received_dealer->getCards()[1].getName().c_str());
-            mvaddch(15,125, ' ');
+            mvaddch(15,135, ' ');
             printw(received_dealer->getCards()[2].getName().c_str());
-            mvaddch(15,145, ' ');
+            mvaddch(15,160, ' ');
             printw(received_dealer->getCards()[3].getName().c_str());
-            mvaddch(15, 165, ' ');
+            mvaddch(15, 185, ' ');
             printw(received_dealer->getCards()[4].getName().c_str());
 
             // showing the user's cards on the screen
@@ -186,6 +192,30 @@ void Game::mainscreen(){ // actual game loop
 
                 default:
                     break;
+            }
+
+            bool winner_test = true;
+
+            // ensuring that the dealer and user are not bust, and if they are enforcing the winner protocol
+            while(blackjack.bust() && winner_test == true) { // if either the user or dealer is bust
+                winner = window_tools.winner_window();
+                printw(blackjack.winner().c_str());
+
+                mvaddstr(30, 150, "if you would like to play again press 2, if you would like to exit press 1");
+                switch(key_input) {
+                    case '1':
+                        winner_test = false;
+                        stage = 2;
+                        test = false;
+                        break;
+
+                    case '2':
+                        winner_test = false;
+                        break;
+                    
+                    default:
+                        break;
+                }
             }
         }
     }

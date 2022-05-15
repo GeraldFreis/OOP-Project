@@ -1,29 +1,29 @@
 #ifndef PERSON_H
 #define PERSON_H
 #include <iostream>
-#include "Dealer.h"
-#include "Human.h"
 #include "deck.h"
 #include "card.h"
 using namespace std;
 
-class person {
+class Person {
     private:
         card *card_array;
-        int CardTotal;
+        int card_total;
+        string last_card;
+        string last_move;
     
     public:
-        person();
+        Person();
         virtual void Move()=0;
-        int getMove();
+        string getMove();
         int getCount();
         int addCard();
         string lastCard();
+        void setMove(string move);
         //void hit();
 
         bool winGame();
-        ~person();
-
-
+        virtual ~Person();
 };
+
 #endif

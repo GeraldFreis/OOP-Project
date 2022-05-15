@@ -33,7 +33,8 @@ Blackjack::Blackjack(int _balance): Bet (_balance){
     initialised_deck.fillDeck();
 }
 
-std::vector<WINDOW *> Blackjack::game_template(){ // creates the template for the screen 
+ // creates the template for the screen and returns a vector of the card templates
+std::vector<WINDOW *> Blackjack::game_template(){
 
     // creating the dealers cards
     WINDOW *dealer_card_1 = windowtools.create_cards(10, 70);
@@ -69,7 +70,8 @@ std::vector<WINDOW *> Blackjack::game_template(){ // creates the template for th
     return array;
 }
 
-std::vector<WINDOW *> Blackjack::start_game(){ // starting the game protocol (gives the user and dealer 2 cards)
+// starting the game protocol (gives the user and dealer 2 cards)
+std::vector<WINDOW *> Blackjack::start_game(){ 
     
     // adding the cards to the player and dealer and retrieving the cards
     // initialising the deck
@@ -113,7 +115,7 @@ std::vector<WINDOW *> Blackjack::start_game(){ // starting the game protocol (gi
 
 }
 
-
+// hit protocol (if user decides to hit)
 std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to hit
 
     // creating the two new cards for the player and then if the dealer decides to play displaying
@@ -128,7 +130,7 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
         initialised_deck.removeLastCard();
 
         user->addCardHuman(user_card);
-
+        user->setMove("hit");
         // calling the dealer place
     }
 
@@ -142,6 +144,7 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
         initialised_deck.removeLastCard();
 
         user->addCardHuman(user_card);
+        user->setMove("hit");
     }
 
     // 
@@ -149,13 +152,48 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
     return array;
 }
 
+// protocol if the user hits stand
 std::vector<WINDOW *> Blackjack::stand(){
+    user->setMove("stand");
     // user does nothing, dealer makes a decision based on their total
     return array;
 };
 
-bool Blackjack::bust(){ // checks if the user or dealer is bust, if neither is bust then returns false, and if either is returns true
+// checks if the user or dealer is bust, if neither is bust then returns false, and if either is returns true
+bool Blackjack::bust(){ 
+
+    if(user->getCount() > 21 || dealer->getCount() > 21){ // if either the dealer or user are bust
+        return true;
+    }
     return false;
+}
+
+// function that returns a string of who won the game (can be called if either is bust or both stand)
+string Blackjack::winner() {
+    if(dealer->getCount() > 21) { // if the dealer is bust the user wins
+        return "user";
+    }
+
+    else if (user->getCount() > 21) { // if the user is bust the dealer wins
+        return "dealer";
+    }
+
+    else if (user->getMove() == "stand" && dealer->getMove() == "stand") { // if both the user and dealer stand
+    
+        if(user->getCount() > dealer->getCount()) { // if the user has a greater total (less than 21)
+            return "user";
+        }
+        else if (user->getCount() == dealer->getCount()) { // if the user and dealer have the same total
+            return "draw";
+        }
+        else { // if the dealer has a greater total than the user
+            return "dealer"; 
+        }
+    }
+
+    else { // if none of the conditions were met, this function should not have been called
+        return "false alarm";
+    }
 }
 
 int Blackjack::get_bet_amount(){

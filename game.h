@@ -63,6 +63,8 @@ class Game: public Blackjack {
         // initialising the betting window:
         WINDOW *betting_window;
 
+        WINDOW *winner;
+
 
 
     public:

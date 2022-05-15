@@ -1,22 +1,35 @@
-#include <iostream>
-#include <string>
-#include <ncurses.h>
 #include "person.h"
 
 using namespace std;
 
     
-person::person(){
+Person::Person(){
     card_array = new card[10];
-    CardTotal = 0;
+    card_total = 0;
+    last_card = "";
+    last_move = "";
 }
 
-int person::getMove(){
-    return 0;
+string Person::getMove(){
+    return last_move;
 }
 
-int person::getCount(){
-    return CardTotal;
+void Person::setMove(string move) {
+    last_move = move;
+}
+
+string Person::lastCard(){
+    return last_card;
+}
+
+int Person::getCount(){
+    card_total = 0;  
+    for(int i=0; i<5; i++){ 
+        card_total = card_total + card_array[i].getValue();
+    }
+
+    return card_total;
+
 }
 
 //void person::hit(){
@@ -25,11 +38,11 @@ int person::getCount(){
 //}
 
 
-bool person::winGame(){
-    if (CardTotal > 21){
+bool Person::winGame(){
+    if (card_total > 21){
         return true;
     }
-    else if (CardTotal <= 21){
+    else if (card_total <= 21){
         return false; 
     }
     else {
@@ -37,6 +50,6 @@ bool person::winGame(){
     }
 }
 
-person::~person(){
+Person::~Person(){
     delete [] card_array;
 }

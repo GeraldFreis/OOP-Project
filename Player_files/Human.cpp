@@ -1,17 +1,11 @@
-#include <iostream>
-#include <string>
 #include "Human.h"
-#include "card.h"
-#include "deck.h"
-#include "person.h"
-using namespace std;
-
 
 Human::Human(){
     card_array = new card[5];
     //choosen_move = "";
     card_total = 0;
     number_of_cards = 0;
+    last_move = "";
 }                       
         
 void Human::addCardHuman(card new_card){
@@ -25,17 +19,26 @@ void Human::addCardHuman(card new_card){
 }
 
 
+void Human::Move() {
+    if(card_total < 14) {
+        last_move = "hit";
+    }
+    else {
+        last_move = "stand";
+    }
+}
+
 void Human::printCardHuman(int num){
     cout << card_array[num-1].getName() << " " << card_array[num-1].getValue() << endl;
 }
 
-int Human::getCountHuman(){
-    card_total =0;  
-    for(int i=0; i<5; i++){ 
-        card_total = card_total + card_array[i].getValue();
-    }
-    return card_total;
-}
+// int Human::getCountHuman(){
+//     card_total = 0;  
+//     for(int i=0; i<5; i++){ 
+//         card_total = card_total + card_array[i].getValue();
+//     }
+//     return card_total;
+// }
 
 card Human::getLastCard() {
     return card_array[number_of_cards];

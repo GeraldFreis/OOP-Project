@@ -59,6 +59,15 @@ WINDOW *Window::bet_window(int size){
     return betting_window;
 };
 
+WINDOW *Window::winner_window(){
+    WINDOW *winner_win;
+
+    winner_win = newwin(200, 200, 0, 0);
+    wrefresh(winner_win);
+
+    return winner_win;
+}
+
 Window::~Window(){
     delete colour_grey_array;
 }
