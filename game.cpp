@@ -90,7 +90,7 @@ void Game::mainscreen(){ // actual game loop
             stand_button = screen_object_arr[6];
             double_button = screen_object_arr[7];
 
-            refresh();
+            // refresh();
 
             // adding the text:
             mvaddstr(7,89,"Dealer's cards: ");
@@ -124,6 +124,7 @@ void Game::mainscreen(){ // actual game loop
 
             std::vector<WINDOW *> dealt_cards; // vector to hold cards dealt at the beginning of the game
 
+            // showing the cards that were dealt on the screen as a string
             received_dealer = blackjack.getdealer();
             received_user = blackjack.gethuman();
 
@@ -132,6 +133,25 @@ void Game::mainscreen(){ // actual game loop
             printw(received_dealer->getCards()[0].getName().c_str());
             mvaddch(15,105, ' ');
             printw(received_dealer->getCards()[1].getName().c_str());
+            mvaddch(15,125, ' ');
+            printw(received_dealer->getCards()[2].getName().c_str());
+            mvaddch(15,145, ' ');
+            printw(received_dealer->getCards()[3].getName().c_str());
+            mvaddch(15, 165, ' ');
+            printw(received_dealer->getCards()[4].getName().c_str());
+
+            // showing the user's cards on the screen
+            mvaddch(45,80, ' ');
+            printw(received_user->getCards()[0].getName().c_str());
+            mvaddch(45,110, ' ');
+            printw(received_user->getCards()[1].getName().c_str());
+            mvaddch(45,135, ' ');
+            printw(received_user->getCards()[2].getName().c_str());
+            mvaddch(45,160, ' ');
+            printw(received_user->getCards()[3].getName().c_str());
+            mvaddch(45, 185, ' ');
+            printw(received_user->getCards()[4].getName().c_str());
+            refresh();
 
             switch(key_input) { // testing the user input
                 case '1': // if the user wants to exit the game
@@ -149,9 +169,9 @@ void Game::mainscreen(){ // actual game loop
 
                     player_card_1 = dealt_cards[2];
                     player_card_2 = dealt_cards[3];
+                    printw("press any key to begin");
                     refresh();
-                    // showing the cards that were dealt on the screen as a string
-
+                    
                     game_has_begun = true;
                     break;
                 
