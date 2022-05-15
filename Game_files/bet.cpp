@@ -112,15 +112,17 @@ string Bet::bet_interface(){ // creates the window and prompts the user for the 
         betting_input = getch();
         if(isvalid_bet_amount(betting_input) != true){ // if the input was a 'q'
            betting_test = false;
+           endwin();
+            // clearing the window
+            unpost_form(betting_form);
+            free_form(betting_form);
+            free_field(betamount_field[0]);
+            window_creation.end_win(betting_window);
+            
+            endwin();
         } 
     }
     
-    // clearing the window
-    unpost_form(betting_form);
-    free_form(betting_form);
-
-    free_field(betamount_field[0]);
-    endwin();
 
     return raw_bet_amount;
 };
