@@ -1,6 +1,6 @@
 #include <iostream>
-#include "window.h"
-#include "bet.h"
+#include "Game_files/window.h"
+#include "Game_files/bet.h"
 #include <vector>
 
 #ifndef BLACKJACK_H
