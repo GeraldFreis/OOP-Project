@@ -1,30 +1,35 @@
 #ifndef HUMAN_H
 #define HUMAN_H
 #include <iostream>
-using std::cout; using std::string; using std::cin;
-#include "Person.h"
+#include <string>
+#include "person.h"
+#include "deck.h"
 #include "card.h"
+using namespace std;
 
 
-
-class Human: public Person {
+class Human {
     private:
         int card_total;
         card *card_array;
-        string choosen_move;
+        //string choosen_move;
         
 
     public:
-        Human();                       
+        Human();   
+
+        void addCardHuman(card n_card);
+
+        void printCardHuman(int num);                   
         
-        void playerMove();
+        int getCountHuman();
+        
+        //card hit(card n_card);
+        
+        //void playerMove();
 
-        string getMoves();    
-
-        void hit();
-    
-        int getCount();
-                                          
+        //string getMoves();    
+                                  
         ~Human();
 };
 

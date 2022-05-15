@@ -12,7 +12,9 @@ class person{
         virtual void Move()=0;
         int getMove();
         int getCount();
-        void hit();
+        int addCard();
+        string lastCard();
+        //void hit();
 
         bool winGame();
         ~Person();

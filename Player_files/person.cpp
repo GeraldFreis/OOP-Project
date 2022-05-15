@@ -20,13 +20,18 @@ int person::getCount(){
     return CardTotal;
 }
 
-void person::hit(){
+//void person::hit(){
     // what will happen when someone hits?
     //
-}
+//}
+
 
 bool person::winGame(){
-
+    if (cardTotal>21){
+        return false;
+    else if (cardTotal < 21)
+        return true; 
+    }
 }
 
 person::~Person(){
