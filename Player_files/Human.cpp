@@ -1,15 +1,15 @@
 #include <iostream>
+#include <string>
 #include "Human.h"
 #include "card.h"
 #include "deck.h"
 #include "person.h"
-
 using namespace std;
 
 
 Human::Human(){
     card_array = new card[5];
-    choosen_move = "";
+    //choosen_move = "";
     card_total = 0;
 }                       
         
@@ -26,10 +26,6 @@ void Human::printCardHuman(int num){
     cout << card_array[num-1].getName() << " " << card_array[num-1].getValue() << endl;
 }
 
-// card Human::hit(card new_card){
-
-// }
-
 int Human::getCountHuman(){
     card_total =0;  
     for(int i=0; i<5; i++){ 
@@ -38,14 +34,13 @@ int Human::getCountHuman(){
     return card_total;
 }
 
-void Human::playerMove(){}
+// card Human::hit(card new_card){
+// }
 
-string Human::getMoves(){
-    return "human lol";
-} 
+//void Human::playerMove(){}
 
-
-
-
-                                    
+// string Human::getMoves(){
+//     return "human lol";
+// } 
+          
 Human::~Human(){delete[] card_array;}

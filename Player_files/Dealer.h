@@ -1,9 +1,10 @@
 #ifndef DEALER_H
 #define DEALER_H
 #include <iostream>
-using std::cout; using std::string; using std::cin;
 #include "person.h"
+#include "deck.h"
 #include "card.h"
+using std::cout; using std::string; using std::cin;
 
 
 
@@ -11,7 +12,7 @@ class Dealer{
     private:
         int card_total;
         card *card_array;
-        string choosen_move;
+        //string choosen_move;
         
 
     public:
@@ -25,11 +26,9 @@ class Dealer{
         
         int getCountDealer();
         
-        string getMoves();    
+        // string getMoves();    
 
-        void hit();
-    
-        
+        // void hit(); 
                                           
         ~Dealer();
 };

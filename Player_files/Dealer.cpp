@@ -1,14 +1,13 @@
 #include <iostream>
+#include <string>
 #include "Dealer.h"
 
 Dealer::Dealer(){                       
     card_array = new card[5];
-    choosen_move = "";
+    //choosen_move = "";
     card_total = 0;
 }
 
-                   
-        
 void Dealer::addCardDealer(card new_card){
     for(int i=0; i<5; i++){
         if((card_array[i].getName()=="")&&(card_array[i].getValue()==0)){
@@ -30,22 +29,14 @@ int Dealer::getCountDealer(){
     return card_total;
 }
 
-void Dealer::dealerMove(){                                       
-    
-}
+// void Dealer::dealerMove(){                                       
+// }
 
+// string Dealer::getMoves(){                              
+//     return "lol";
+// }
 
-string Dealer::getMoves(){                              
-    return "lol";
-}
+// void Dealer::hit(){
+// }
 
-
-void Dealer::hit(){
-
-}
-
-
-
-
-
-Dealer::~Dealer(){}
+Dealer::~Dealer(){delete[] card_array;}

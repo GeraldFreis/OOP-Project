@@ -8,13 +8,11 @@
 using namespace std;
 
 
-
-
 class Human {
     private:
         int card_total;
         card *card_array;
-        string choosen_move;
+        //string choosen_move;
         
 
     public:
@@ -28,14 +26,10 @@ class Human {
         
         //card hit(card n_card);
         
-        void playerMove();
+        //void playerMove();
 
-        string getMoves();    
-
-        
-    
-        
-                                          
+        //string getMoves();    
+                                  
         ~Human();
 };
 
