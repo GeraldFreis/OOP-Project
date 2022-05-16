@@ -2,16 +2,18 @@
 #define HUMAN_H
 #include <iostream>
 #include <string>
-#include "person.h"
 #include "deck.h"
 #include "card.h"
+#include "person.h"
 using namespace std;
 
 
-class Human {
+class Human: public Person {
     private:
         int card_total;
         card *card_array;
+        int number_of_cards;
+        string last_move;
         //string choosen_move;
         
 
@@ -22,8 +24,9 @@ class Human {
 
         void printCardHuman(int num);                   
         
-        int getCountHuman();
-        
+        // int getCountHuman();
+        void Move();
+        card getLastCard();
         //card hit(card n_card);
         
         //void playerMove();

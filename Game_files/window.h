@@ -2,7 +2,7 @@
 #include <ncurses.h>
 #ifndef WINDOW_H
 #define WINDOW_H
-
+using std::string;
 
 /*
 Window
@@ -23,9 +23,11 @@ class Window{
     public:
         Window(); // default constructor
         void end_win(WINDOW *usingwin); // closes the window / object in the window
-        WINDOW *create_cards(int xpoint, int ypoint); // creates a card in the window at point x and y
+        WINDOW *create_cards(int xpoint, int ypoint, string cardtype); // creates a card in the window at point x and y
+        WINDOW *create_cards(int xpoint, int ypoint);
         WINDOW *create_buttons(int xpoint, int ypoint); // creates a button in the window at point x and y
         WINDOW *bet_window(int size);
+        WINDOW *winner_window();
         ~Window();
 };
 

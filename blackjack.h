@@ -1,7 +1,11 @@
 #include <iostream>
-#include "window.h"
-#include "bet.h"
 #include <vector>
+#include "Game_files/window.h"
+#include "Game_files/bet.h"
+#include "Player_files/Dealer.h"
+#include "Player_files/Human.h"
+#include "Player_files/card.h"
+#include "Player_files/deck.h"
 
 #ifndef BLACKJACK_H
 #define BLACKJACK_H
@@ -34,6 +38,9 @@ class Blackjack: public Bet {
         Window windowtools;
         Bet *betting;
         std::vector<WINDOW *> array; 
+        Human *user;
+        Dealer *dealer;
+        deck initialised_deck;
 
 
     public:
@@ -44,8 +51,13 @@ class Blackjack: public Bet {
         std::vector<WINDOW *> start_game(); // returns a pointer to an array of windows
         std::vector<WINDOW *> hit(int hit_number);
         std::vector<WINDOW *> stand();
-        WINDOW *winner(); // function that returns who won the game
-        bool bust(); // checks if the dealer is bust
+        string winner(); // function that returns a string of who won the game
+        bool bust(); // checks if either the dealer or user is bust
+
+        Human *gethuman();
+        Dealer *getdealer();
+        int usercount();
+        int dealercount();
 
 
         int get_bet_amount(); // from Bet

@@ -1,10 +1,13 @@
 #include <iostream>
 #include <ncurses.h>
 #include <form.h>
-#include "window.h"
-#include "bet.h"
-#include "blackjack.h"
 #include <vector>
+
+#include "Game_files/window.h"
+#include "Game_files/bet.h"
+#include "blackjack.h"
+#include "Player_files/Dealer.h"
+#include "Player_files/Human.h"
 
 using std::string; using std::cout;
 
@@ -59,6 +62,8 @@ class Game: public Blackjack {
         
         // initialising the betting window:
         WINDOW *betting_window;
+
+        WINDOW *winner;
 
 
 

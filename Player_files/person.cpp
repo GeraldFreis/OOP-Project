@@ -1,39 +1,50 @@
-#include <iostream>
-#include <string>
 #include "person.h"
-using namespace std;
 
-
-    // card *card array;
-    // int CardTotal;
-    
-person::Person(){
-    card = [];
-    CardTotal=0;
+Person::Person(){
+    card_array = new card[10];
+    card_total = 0;
+    last_card = "";
+    last_move = "";
+    number_of_cards = 0;
 }
 
-int person::getMove(){
-    // retrieve the move of 
+string Person::getMove(){
+    return last_move;
 }
 
-int person::getCount(){
-    return CardTotal;
+void Person::setMove(string move) {
+    last_move = move;
 }
 
-//void person::hit(){
-    // what will happen when someone hits?
-    //
-//}
+string Person::lastCard(){
+    return last_card;
+}
 
+int Person::getCount(){
+    return card_total;
+}
 
-bool person::winGame(){
-    if (cardTotal>21){
-        return false;
-    else if (cardTotal < 21)
-        return true; 
+card *Person::getCards(){
+    return card_array;
+}
+
+void Person::setCount() {
+    card_total = 0;  
+    for(int i=0; i<5; i++){ 
+        card_total = card_total + card_array[i].getValue();
     }
 }
 
-person::~Person(){
+void Person::addCard(card new_card) {
+    for(int i=0; i<5; i++){
+        if((card_array[i].getName()=="")&&(card_array[i].getValue()==0)){
+            card_array[i] = new_card;
+            break;
+        }
+    }
+    number_of_cards += 1;
+}
 
+Person::~Person(){
+    delete [] card_array;
 }

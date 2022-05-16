@@ -24,6 +24,9 @@ Game::Game(){
     WINDOW *stand_button;
     WINDOW *double_button;
     WINDOW *start_button;
+
+    // the winner window
+    WINDOW *winner;
 }
 
 Game::Game(int _balance){
@@ -49,9 +52,12 @@ Game::Game(int _balance){
     WINDOW *stand_button;
     WINDOW *double_button;
     WINDOW *start_button;
+
+    // the winner window
+    WINDOW *winner;
 }
 
-void Game::mainscreen(){
+void Game::mainscreen(){ // actual game loop
     initscr();
     clear();
 	noecho();
@@ -65,13 +71,17 @@ void Game::mainscreen(){
     bool test = true; // variable to control the game loop and end if the game is over
     int stage = 1; // variable to control what stage we are in (i.e what screen to show)
 
+    Dealer *received_dealer; // dealer object that is returned by blackjack when a change to the cards is made
+    Human *received_user; // dealer object that is returned by blackjack when a change to the cards is made
+
+    
     while (test) { // the game loop
     
         while(stage == 1) {
 
             keypad(stdscr, TRUE);
             int key_input = getch();
-
+            
             // initialising the blackjack start function into a vector
             std::vector<WINDOW *> screen_object_arr = blackjack.game_template();
 
@@ -87,7 +97,7 @@ void Game::mainscreen(){
             stand_button = screen_object_arr[6];
             double_button = screen_object_arr[7];
 
-            refresh();
+            // refresh();
 
             // adding the text:
             mvaddstr(7,89,"Dealer's cards: ");
@@ -103,7 +113,7 @@ void Game::mainscreen(){
             mvaddstr(27,170, "Player balance: ");
             mvaddstr(27,187, balance_char);
             mvaddstr(30,170, "Bet amount: ");
-            mvaddstr(30,187,betamount_char);
+            mvaddstr(30,187, betamount_char);
 
             // setting up the buttons text
             
@@ -121,6 +131,35 @@ void Game::mainscreen(){
 
             std::vector<WINDOW *> dealt_cards; // vector to hold cards dealt at the beginning of the game
 
+            received_dealer = blackjack.getdealer(); // holds the dealer and the user
+            received_user = blackjack.gethuman();
+            // showing the cards that were dealt on the screen as a string
+
+            // // showing the dealer cards on screen
+            mvaddch(15,80, ' ');
+            printw(received_dealer->getCards()[0].getName().c_str());
+            mvaddch(15,110, ' ');
+            printw(received_dealer->getCards()[1].getName().c_str());
+            mvaddch(15,135, ' ');
+            printw(received_dealer->getCards()[2].getName().c_str());
+            mvaddch(15,160, ' ');
+            printw(received_dealer->getCards()[3].getName().c_str());
+            mvaddch(15, 185, ' ');
+            printw(received_dealer->getCards()[4].getName().c_str());
+
+            // showing the user's cards on the screen
+            mvaddch(45,80, ' ');
+            printw(received_user->getCards()[0].getName().c_str());
+            mvaddch(45,110, ' ');
+            printw(received_user->getCards()[1].getName().c_str());
+            mvaddch(45,135, ' ');
+            printw(received_user->getCards()[2].getName().c_str());
+            mvaddch(45,160, ' ');
+            printw(received_user->getCards()[3].getName().c_str());
+            mvaddch(45, 185, ' ');
+            printw(received_user->getCards()[4].getName().c_str());
+            refresh();
+
             switch(key_input) { // testing the user input
                 case '1': // if the user wants to exit the game
                     test = false;
@@ -137,9 +176,10 @@ void Game::mainscreen(){
 
                     player_card_1 = dealt_cards[2];
                     player_card_2 = dealt_cards[3];
-
-                    game_has_begun = true;
+                    printw("press any key to begin");
                     refresh();
+                    
+                    game_has_begun = true;
                     break;
                 
                 case '2': // if the user wants to hit
@@ -148,12 +188,23 @@ void Game::mainscreen(){
                         player_card_3 = dealt_cards[8];
                         player_card_4 = dealt_cards[9];
                         hit_counter += 1;
+
+                        // ensuring that the dealer and user are not bust, and if they are enforcing the winner protocol
+                        if(blackjack.bust() == true) {
+                            winner = window_tools.winner_window();
+                            mvaddstr(35,89, "The winner was: ");
+                            printw(blackjack.winner().c_str());
+                            refresh();
+                        }
                     }
+                    
                     break;
 
                 default:
                     break;
             }
+
+            
         }
     }
 
