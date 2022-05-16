@@ -162,9 +162,11 @@ std::vector<WINDOW *> Blackjack::stand(){
 // checks if the user or dealer is bust, if neither is bust then returns false, and if either is returns true
 bool Blackjack::bust(){ 
 
-    if(user->getCount() > 21 || dealer->getCount() > 21){ // if either the dealer or user are bust
+    if(user->winGame() == true || dealer->winGame() == true){ // if either the dealer or user are bust
+        std::cout << "worked" << "\n";
         return true;
     }
+
     return false;
 }
 
@@ -206,6 +208,14 @@ Human *Blackjack::gethuman(){
 
 Dealer *Blackjack::getdealer(){
     return dealer;
+}
+
+int Blackjack::dealercount() {
+    return dealer->getCount();
+}
+
+int Blackjack::usercount() {
+    return user->getCount();
 }
 
 Blackjack::~Blackjack(){

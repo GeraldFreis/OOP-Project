@@ -56,6 +56,8 @@ class Blackjack: public Bet {
 
         Human *gethuman();
         Dealer *getdealer();
+        int usercount();
+        int dealercount();
 
 
         int get_bet_amount(); // from Bet

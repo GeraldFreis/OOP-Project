@@ -23,12 +23,12 @@ string Person::lastCard(){
 }
 
 int Person::getCount(){
-    card_total = 0;  
+    this->card_total = 0;  
     for(int i=0; i<5; i++){ 
-        card_total = card_total + card_array[i].getValue();
+        this->card_total = this->card_total + this->card_array[i].getValue();
     }
 
-    return card_total;
+    return this->card_total;
 
 }
 
@@ -39,11 +39,8 @@ int Person::getCount(){
 
 
 bool Person::winGame(){
-    if (card_total > 21){
+    if (this->card_total > 21){
         return true;
-    }
-    else if (card_total <= 21){
-        return false; 
     }
     else {
         return false;

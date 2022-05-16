@@ -200,9 +200,6 @@ void Game::mainscreen(){ // actual game loop
                 default:
                     break;
             }
-
-            bool winner_test = true;
-
         }
     }
 
