@@ -3,7 +3,7 @@
 Person::Person(){
     card_array = new card[10];
     card_total = 0;
-    last_card = "";
+    lastcard = "";
     last_move = "";
     number_of_cards = 0;
 }
@@ -17,7 +17,7 @@ void Person::setMove(string move) {
 }
 
 string Person::lastCard(){
-    return last_card;
+    return lastcard;
 }
 
 int Person::getCount(){
@@ -43,6 +43,13 @@ void Person::addCard(card new_card) {
         }
     }
     number_of_cards += 1;
+}
+
+bool Person::winGame() {
+    if(card_total > 21) {
+        return false;
+    }
+    return true;
 }
 
 Person::~Person(){

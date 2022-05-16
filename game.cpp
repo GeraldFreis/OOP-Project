@@ -190,14 +190,15 @@ void Game::mainscreen(){ // actual game loop
                         hit_counter += 1;
 
                         // ensuring that the dealer and user are not bust, and if they are enforcing the winner protocol
-                        if(blackjack.bust() == true) {
+                        if(blackjack.bust() == true && blackjack.winner() != "false alarm") {
                             winner = window_tools.winner_window();
                             mvaddstr(35,89, "The winner was: ");
                             printw(blackjack.winner().c_str());
+                            mvaddstr(0,0, "Press 1 to exit window");
                             refresh();
                         }
                     }
-                    
+
                     break;
 
                 default:
