@@ -133,7 +133,10 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
         user->addCard(user_card);
         user->setMove("hit");
         user->setCount(); // updating the count to include the new card
+
         // calling the dealer place
+        // dealer->Move();
+        // string move = dealer->getMove();
     }
 
     else {
@@ -166,7 +169,7 @@ std::vector<WINDOW *> Blackjack::stand(){
 bool Blackjack::bust(){ 
     user->setCount(); // ensuring that the count data member is updated
     dealer->setCount(); // ensuring that the count data member is updated
-    
+
     if(user->winGame() == true || dealer->winGame() == true){ // if either the dealer or user are bust
         return true;
     }

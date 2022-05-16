@@ -81,13 +81,6 @@ void Game::mainscreen(){ // actual game loop
 
             keypad(stdscr, TRUE);
             int key_input = getch();
-
-            // ensuring that the dealer and user are not bust, and if they are enforcing the winner protocol
-            if(blackjack.bust() == true) {
-                endwin();
-                stage = 2;
-                break;
-            }
             
             // initialising the blackjack start function into a vector
             std::vector<WINDOW *> screen_object_arr = blackjack.game_template();
@@ -138,9 +131,9 @@ void Game::mainscreen(){ // actual game loop
 
             std::vector<WINDOW *> dealt_cards; // vector to hold cards dealt at the beginning of the game
 
-            // showing the cards that were dealt on the screen as a string
-            received_dealer = blackjack.getdealer();
+            received_dealer = blackjack.getdealer(); // holds the dealer and the user
             received_user = blackjack.gethuman();
+            // showing the cards that were dealt on the screen as a string
 
             // // showing the dealer cards on screen
             mvaddch(15,80, ' ');
@@ -195,16 +188,23 @@ void Game::mainscreen(){ // actual game loop
                         player_card_3 = dealt_cards[8];
                         player_card_4 = dealt_cards[9];
                         hit_counter += 1;
+
+                        // ensuring that the dealer and user are not bust, and if they are enforcing the winner protocol
+                        if(blackjack.bust() == true) {
+                            winner = window_tools.winner_window();
+                            mvaddstr(35,89, "The winner was: ");
+                            printw(blackjack.winner().c_str());
+                            refresh();
+                        }
                     }
+                    
                     break;
 
                 default:
                     break;
             }
+
             
-            winner = window_tools.winner_window();
-            printw(blackjack.winner().c_str());
-            refresh();
         }
     }
 
