@@ -56,6 +56,7 @@ int main() {
         cout << "Test 4 failed (the user and dealer were not over 21)" << "\n";
     }
     else {
+        cout << user->getCount() << " " << dealer->getCount() << "\n";
         cout << "Test 4 passed" << "\n";
     }
 

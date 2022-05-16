@@ -83,9 +83,10 @@ void Game::mainscreen(){ // actual game loop
             int key_input = getch();
 
             // ensuring that the dealer and user are not bust, and if they are enforcing the winner protocol
-            if(blackjack.bust()) {
+            if(blackjack.bust() == true) {
                 endwin();
-                return;
+                stage = 2;
+                break;
             }
             
             // initialising the blackjack start function into a vector
@@ -200,6 +201,10 @@ void Game::mainscreen(){ // actual game loop
                 default:
                     break;
             }
+            
+            winner = window_tools.winner_window();
+            printw(blackjack.winner().c_str());
+            refresh();
         }
     }
 

@@ -164,8 +164,9 @@ std::vector<WINDOW *> Blackjack::stand(){
 
 // checks if the user or dealer is bust, if neither is bust then returns false, and if either is returns true
 bool Blackjack::bust(){ 
-    user->setCount();
-    dealer->setCount();
+    user->setCount(); // ensuring that the count data member is updated
+    dealer->setCount(); // ensuring that the count data member is updated
+    
     if(user->winGame() == true || dealer->winGame() == true){ // if either the dealer or user are bust
         return true;
     }
