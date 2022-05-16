@@ -7,9 +7,9 @@ using std::cout; using std::string;
 int main() {
     Blackjack blackjack;
     int hitnum = 0;
-    cout << blackjack.usercount();
-    std::vector<WINDOW*> winvecs = blackjack.hit(hitnum);
-    cout << blackjack.usercount();
+    std::vector<WINDOW *> win = blackjack.hit(hitnum);
+    win = blackjack.hit(hitnum);
+    cout << blackjack.winner();
     // if(blackjack.bust()) // if the user or dealer is bust
     // {
     //     cout << "Test 1 failed" << "\n";

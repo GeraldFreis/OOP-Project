@@ -84,10 +84,11 @@ std::vector<WINDOW *> Blackjack::start_game(){
     // adding the cards to the user and dealer
     user->addCardHuman(cards[0]);
     user->addCardHuman(cards[1]);
+    user->setCount();
 
     dealer->addCardDealer(cards[2]);
     dealer->addCardDealer(cards[3]);
-    
+    dealer->setCount();
     // initialising the card windows
     
     WINDOW *dealer_card_1_window = windowtools.create_cards(10,70);
@@ -161,9 +162,9 @@ std::vector<WINDOW *> Blackjack::stand(){
 
 // checks if the user or dealer is bust, if neither is bust then returns false, and if either is returns true
 bool Blackjack::bust(){ 
-
+    user->setCount();
+    dealer->setCount();
     if(user->winGame() == true || dealer->winGame() == true){ // if either the dealer or user are bust
-        std::cout << "worked" << "\n";
         return true;
     }
 

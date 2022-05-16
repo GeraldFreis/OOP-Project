@@ -17,7 +17,9 @@ class Person {
         virtual void Move()=0;
         string getMove();
         int getCount();
+        void setCount();
         int addCard();
+        
         string lastCard();
         void setMove(string move);
         //void hit();

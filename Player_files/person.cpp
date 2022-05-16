@@ -23,13 +23,14 @@ string Person::lastCard(){
 }
 
 int Person::getCount(){
+    return this->card_total;
+}
+
+void Person::setCount() {
     this->card_total = 0;  
     for(int i=0; i<5; i++){ 
         this->card_total = this->card_total + this->card_array[i].getValue();
     }
-
-    return this->card_total;
-
 }
 
 //void person::hit(){
