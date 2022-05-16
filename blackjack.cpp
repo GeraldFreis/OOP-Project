@@ -82,12 +82,12 @@ std::vector<WINDOW *> Blackjack::start_game(){
                                  initialised_deck.removeLastCard();}
 
     // adding the cards to the user and dealer
-    user->addCardHuman(cards[0]);
-    user->addCardHuman(cards[1]);
+    user->addCard(cards[0]);
+    user->addCard(cards[1]);
     user->setCount();
 
-    dealer->addCardDealer(cards[2]);
-    dealer->addCardDealer(cards[3]);
+    dealer->addCard(cards[2]);
+    dealer->addCard(cards[3]);
     dealer->setCount();
     // initialising the card windows
     
@@ -130,8 +130,9 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
         card user_card = initialised_deck.drawCard();
         initialised_deck.removeLastCard();
 
-        user->addCardHuman(user_card);
+        user->addCard(user_card);
         user->setMove("hit");
+        user->setCount(); // updating the count to include the new card
         // calling the dealer place
     }
 
@@ -144,8 +145,9 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
         card user_card = initialised_deck.drawCard();
         initialised_deck.removeLastCard();
 
-        user->addCardHuman(user_card);
+        user->addCard(user_card);
         user->setMove("hit");
+        user->setCount();
     }
 
     // 

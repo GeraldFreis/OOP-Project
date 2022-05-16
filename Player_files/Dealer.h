@@ -24,8 +24,6 @@ class Dealer: public Person {
         
 
         // int getCountDealer();
-
-        card *getCards();
         
         // string getMoves();    
 

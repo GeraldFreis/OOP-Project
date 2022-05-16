@@ -11,6 +11,7 @@ class Person {
         int card_total;
         string last_card;
         string last_move;
+        int number_of_cards;
     
     public:
         Person();
@@ -18,7 +19,9 @@ class Person {
         string getMove();
         int getCount();
         void setCount();
+        void addCard(card new_card);
         int addCard();
+        card *getCards();
         
         string lastCard();
         void setMove(string move);

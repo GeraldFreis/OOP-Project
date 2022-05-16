@@ -51,9 +51,6 @@ card Human::getLastCard() {
 // string Human::getMoves(){
 //     return "human lol";
 // } 
-          
-card *Human::getCards() {
-    return card_array;
-}
+
 
 Human::~Human(){delete[] card_array;}

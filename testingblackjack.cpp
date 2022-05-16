@@ -1,4 +1,7 @@
 #include "blackjack.h"
+#include "Player_files/Human.h"
+#include "Player_files/card.h"
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -6,58 +9,55 @@ using std::cout; using std::string;
 
 int main() {
     Blackjack blackjack;
+    // blackjack.start_game();
     int hitnum = 0;
-    std::vector<WINDOW *> win = blackjack.hit(hitnum);
+    vector<WINDOW *> win = blackjack.hit(hitnum);
+    hitnum++;
+    if(blackjack.bust()){
+        cout << "Test 1 failed" << "\n";
+    }
+    else {
+        cout << "Test 1 passed" << "\n";
+    }
+
     win = blackjack.hit(hitnum);
-    cout << blackjack.winner();
-    // if(blackjack.bust()) // if the user or dealer is bust
-    // {
-    //     cout << "Test 1 failed" << "\n";
-    // }
-    // else 
-    // {
-    //     cout << "Test 1 passed" << "\n";
-    // }
+    Human *user = blackjack.gethuman();
+    Dealer *dealer = blackjack.getdealer();
+    user->setCount();
+    dealer->setCount();
+    hitnum++;
+    
+    if(blackjack.bust() && (user->getCount() < 21 && dealer->getCount() < 21)) {
+        cout << "Test 2 failed (the user and dealer were not over 21" << "\n";
+    }
+    else {
+        cout << "Test 2 passed" << "\n";
+    }
 
-    // hitnum ++; // increasing the hit number
-    // winvecs = blackjack.hit(hitnum);
-    // if(blackjack.bust()){
-    //     cout << "Test 2 failed" << "\n";
-    // }
-    // else {
-    //     cout << "Test 2 passed" << "\n";
-    // }
+    win = blackjack.hit(hitnum);
+    user = blackjack.gethuman();
+    dealer = blackjack.getdealer();
+    user->setCount();
+    dealer->setCount();
+    hitnum++;
+    if(blackjack.bust() && (user->getCount() < 21 && dealer->getCount() < 21)) {
+        cout << "Test 3 failed (the user and dealer were not over 21)" << "\n";
+    }
+    else {
+        cout << "Test 3 passed" << "\n";
+    }
+     win = blackjack.hit(hitnum);
+    user = blackjack.gethuman();
+    dealer = blackjack.getdealer();
+    user->setCount();
+    dealer->setCount();
 
-    // hitnum ++; // increasing the hit number
-    // winvecs = blackjack.hit(hitnum);
-    // if(blackjack.bust() == true){
-    //     cout << "test 3 passed" << "\n";
-    // }
-    // else {
-    //     cout << "test 3 failed" << "\n";
-    // }
-
-    // hitnum ++; // increasing the hit number
-    // winvecs = blackjack.hit(hitnum);
-    // bool returnval = blackjack.bust();
-    // if(returnval == true){
-    //     cout << "test 4 passed" << "\n";
-    // }
-    // else {
-    //     cout << "test 4 failed" << "\n";
-    // }
-
-    // hitnum++; // increasing the hit number
-    // winvecs = blackjack.hit(hitnum);
-    // returnval = blackjack.bust();
-    // if(returnval == true){
-    //     cout << "test 5 passed" << "\n";
-    // }
-    // else {
-    //     cout << "test 5 failed" << "\n";
-    // }
-
-    // cout << blackjack.bust() << "\n";
+    if(blackjack.bust() && (user->getCount() < 21 && dealer->getCount() < 21)) {
+        cout << "Test 4 failed (the user and dealer were not over 21)" << "\n";
+    }
+    else {
+        cout << "Test 4 passed" << "\n";
+    }
 
     return 0;
 }
