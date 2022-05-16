@@ -156,7 +156,7 @@ void Game::mainscreen(){ // actual game loop
             printw(received_dealer->getCards()[0].getName().c_str());
             mvaddch(15,110, ' ');
             printw(received_dealer->getCards()[1].getName().c_str());
-            mvaddch(15,135, ' ');
+            mvaddch(15,130, ' ');
             printw(received_dealer->getCards()[2].getName().c_str());
             mvaddch(15,160, ' ');
             printw(received_dealer->getCards()[3].getName().c_str());
@@ -203,8 +203,23 @@ void Game::mainscreen(){ // actual game loop
                 case '2': // if the user wants to hit
                     if(game_has_begun){ // if the user has pressed start game already
                         dealt_cards = blackjack.hit(hit_counter);
-                        player_card_3 = dealt_cards[8];
-                        player_card_4 = dealt_cards[9];
+
+                        if(hit_counter == 0){
+                            player_card_3 = dealt_cards[dealt_cards.size()-2];
+
+                            if(blackjack.getdealer()->getMove()=="hit") {
+                                dealer_card_3 = dealt_cards[dealt_cards.size()-1];
+                                continue;
+                            }
+                        }
+                        else {
+                            player_card_4 = dealt_cards[9];
+
+                            if(blackjack.getdealer()->getMove()=="hit"){
+                                dealer_card_3 = dealt_cards[dealt_cards.size()-1];
+                                continue;
+                            }
+                        }
                         hit_counter += 1;
                         }
                     

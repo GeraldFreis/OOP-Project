@@ -4,7 +4,6 @@ Blackjack::Blackjack(): Bet(1000){
     balance = 1000;
     bet_amount = 0;
     betting = new Bet(1000); // default setting the Balance to 1000
-    array.resize(13);
     
     // initialising the human and the dealer
     user = new Human();
@@ -22,7 +21,6 @@ Blackjack::Blackjack(int _balance): Bet (_balance){
 
     bet_amount = 0;
     betting = new Bet(balance);
-    array.resize(13);
 
     // initialising the user and dealer
     user = new Human();
@@ -133,10 +131,6 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
         user->addCard(user_card);
         user->setMove("hit");
         user->setCount(); // updating the count to include the new card
-
-        // calling the dealer place
-        // dealer->Move();
-        // string move = dealer->getMove();
     }
 
     else {
@@ -151,9 +145,21 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
         user->addCard(user_card);
         user->setMove("hit");
         user->setCount();
+    
     }
 
-    // 
+    // calling the dealer to check what the dealer wants to do
+    dealer->Move();
+    if(dealer->getMove() == "hit"){
+        WINDOW *dealer_card_window  = windowtools.create_cards(10, 130);
+        array.push_back(dealer_card_window);
+        
+        // adding the card to the dealer
+        dealer->addCard(initialised_deck.drawCard());
+        initialised_deck.removeLastCard();
+        dealer->setCount(); // ensuring that the dealer's card_total is updated
+    }
+
 
     return array;
 }
@@ -170,7 +176,7 @@ std::vector<WINDOW *> Blackjack::stand(){
     }
 
     else { // if the dealer chose to hit
-        WINDOW *dealercard = windowtools.create_cards(40, 130); // creating the card
+        WINDOW *dealercard = windowtools.create_cards(10, 130); // creating the card
         dealer->addCard(initialised_deck.drawCard()); // adding the card to the dealer
         initialised_deck.removeLastCard();
 
