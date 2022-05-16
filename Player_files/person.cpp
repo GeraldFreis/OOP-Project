@@ -1,8 +1,5 @@
 #include "person.h"
 
-using namespace std;
-
-    
 Person::Person(){
     card_array = new card[10];
     card_total = 0;
@@ -46,20 +43,6 @@ void Person::addCard(card new_card) {
         }
     }
     number_of_cards += 1;
-}
-//void person::hit(){
-    // what will happen when someone hits?
-    //
-//}
-
-
-bool Person::winGame(){
-    if (card_total > 21){
-        return true;
-    }
-    else {
-        return false;
-    }
 }
 
 Person::~Person(){
