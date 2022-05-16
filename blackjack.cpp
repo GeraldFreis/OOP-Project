@@ -162,7 +162,22 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
 std::vector<WINDOW *> Blackjack::stand(){
     user->setMove("stand");
     // user does nothing, dealer makes a decision based on their total
-    return array;
+    dealer->Move(); // dealer calculates move
+
+
+    if(dealer->getMove() == "stand"){ // if the dealer chose to stand
+        return array;
+    }
+
+    else { // if the dealer chose to hit
+        WINDOW *dealercard = windowtools.create_cards(40, 130); // creating the card
+        dealer->addCard(initialised_deck.drawCard()); // adding the card to the dealer
+        initialised_deck.removeLastCard();
+
+        array.push_back(dealercard); // adding the card to the back of the array
+        dealer->setCount(); // ensuring that the count for the dealer is updated
+        return array;
+    }
 };
 
 // checks if the user or dealer is bust, if neither is bust then returns false, and if either is returns true

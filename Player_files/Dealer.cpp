@@ -16,7 +16,7 @@ void Dealer::addCardDealer(card new_card){
 }
 
 void Dealer::Move(){
-    if(card_total > 13) {
+    if(card_total > 14) {
         last_move = "stand";
     }
     else {

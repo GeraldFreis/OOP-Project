@@ -85,6 +85,22 @@ void Game::mainscreen(){ // actual game loop
             // initialising the blackjack start function into a vector
             std::vector<WINDOW *> screen_object_arr = blackjack.game_template();
 
+            // ensuring that the dealer and user are not bust, and if they are enforcing the winner protocol
+            if(blackjack.bust() == true && blackjack.winner() != "false alarm") {
+                winner = window_tools.winner_window();
+                mvaddstr(25, 109, "The winner was: ");
+                printw(blackjack.winner().c_str());
+
+                mvaddstr(28, 104, "Totals of user vs dealer: ");
+                printw(to_string(blackjack.gethuman()->getCount()).c_str());
+
+                printw(" vs ");
+
+                printw(to_string(blackjack.getdealer()->getCount()).c_str());
+                mvaddstr(0,0, "Press 1 to exit window");
+
+                refresh();
+            }
             // setting each object on the screen to the created screen object
             dealer_card_1 = screen_object_arr[0];
             dealer_card_2 = screen_object_arr[1];
@@ -152,7 +168,7 @@ void Game::mainscreen(){ // actual game loop
             printw(received_user->getCards()[0].getName().c_str());
             mvaddch(45,110, ' ');
             printw(received_user->getCards()[1].getName().c_str());
-            mvaddch(45,135, ' ');
+            mvaddch(45,130, ' ');
             printw(received_user->getCards()[2].getName().c_str());
             mvaddch(45,160, ' ');
             printw(received_user->getCards()[3].getName().c_str());
@@ -167,19 +183,21 @@ void Game::mainscreen(){ // actual game loop
                     break;
 
                 case 's': // if the user wants to start the game
-                    dealt_cards = blackjack.start_game();
-                    bet_amount = blackjack.get_bet_amount();
+                    if(game_has_begun == false){
+                        dealt_cards = blackjack.start_game();
+                        bet_amount = blackjack.get_bet_amount();
 
-                    // setting the dealer cards and player cards to those dealt
-                    dealer_card_1 = dealt_cards[0];
-                    dealer_card_2 = dealt_cards[1];
+                        // setting the dealer cards and player cards to those dealt
+                        dealer_card_1 = dealt_cards[0];
+                        dealer_card_2 = dealt_cards[1];
 
-                    player_card_1 = dealt_cards[2];
-                    player_card_2 = dealt_cards[3];
-                    printw("press any key to begin");
-                    refresh();
-                    
-                    game_has_begun = true;
+                        player_card_1 = dealt_cards[2];
+                        player_card_2 = dealt_cards[3];
+                        printw("press any key to begin");
+                        refresh();
+                        
+                        game_has_begun = true;
+                    }
                     break;
                 
                 case '2': // if the user wants to hit
@@ -188,15 +206,15 @@ void Game::mainscreen(){ // actual game loop
                         player_card_3 = dealt_cards[8];
                         player_card_4 = dealt_cards[9];
                         hit_counter += 1;
-
-                        // ensuring that the dealer and user are not bust, and if they are enforcing the winner protocol
-                        if(blackjack.bust() == true && blackjack.winner() != "false alarm") {
-                            winner = window_tools.winner_window();
-                            mvaddstr(35,89, "The winner was: ");
-                            printw(blackjack.winner().c_str());
-                            mvaddstr(0,0, "Press 1 to exit window");
-                            refresh();
                         }
+                    
+
+                    break;
+                
+                case '3':
+                    if(game_has_begun) {
+                        dealt_cards = blackjack.stand();
+                        dealer_card_3 = dealt_cards[10];
                     }
 
                     break;
