@@ -113,7 +113,7 @@ void Game::mainscreen(){ // actual game loop
             stand_button = screen_object_arr[6];
             double_button = screen_object_arr[7];
 
-            // refresh();
+            refresh();
 
             // adding the text:
             mvaddstr(7,89,"Dealer's cards: ");
@@ -146,7 +146,7 @@ void Game::mainscreen(){ // actual game loop
             mvaddstr(26, 16, "Double (4)");
 
             std::vector<WINDOW *> dealt_cards; // vector to hold cards dealt at the beginning of the game
-
+            refresh();
             received_dealer = blackjack.getdealer(); // holds the dealer and the user
             received_user = blackjack.gethuman();
             // showing the cards that were dealt on the screen as a string
@@ -162,7 +162,7 @@ void Game::mainscreen(){ // actual game loop
             printw(received_dealer->getCards()[3].getName().c_str());
             mvaddch(15, 185, ' ');
             printw(received_dealer->getCards()[4].getName().c_str());
-
+            refresh();
             // showing the user's cards on the screen
             mvaddch(45,80, ' ');
             printw(received_user->getCards()[0].getName().c_str());
