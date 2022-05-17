@@ -18,14 +18,14 @@ void Dealer::addCardDealer(card new_card){
 }
 
 // 
-// void Dealer::Move(){
-//     if(card_total > 15) {
-//         last_move = "stand";
-//     }
-//     else {
-//         last_move = "hit";
-//     }
-// }
+void Dealer::Move(){
+    if(card_total > 15) {
+        last_move = "stand";
+    }
+    else {
+        last_move = "hit";
+    }
+}
 
 // prints the dealers card at num position
 void Dealer::printCardDealer(int num){
