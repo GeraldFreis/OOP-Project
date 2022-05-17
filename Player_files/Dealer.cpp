@@ -50,4 +50,4 @@ void Dealer::printCardDealer(int num){
 // void Dealer::hit(){
 // }
 
-Dealer::~Dealer(){delete [] card_array;}
+Dealer::~Dealer(){delete [] card_array;} // clear contents of dealers cards to be ready for next round
