@@ -1,7 +1,7 @@
 #include "Risky_dealer.h"
 
 Risky_dealer::Risky_dealer(){
-    card_total = 0;;
+    card_total = 0;
     card_array = new card[5];
     last_move = "";
 }
