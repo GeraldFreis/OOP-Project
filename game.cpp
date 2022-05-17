@@ -72,7 +72,7 @@ void Game::mainscreen(){ // actual game loop
 
     int key_input = 0;
     while(test){
-        
+        // nodelay(stdscr, TRUE);
         key_input = getch();
 
         switch (key_input)
@@ -112,11 +112,9 @@ void Game::mainscreen(){ // actual game loop
         Human *received_user; // dealer object that is returned by blackjack when a change to the cards is made
 
 
-
-
-
         while(stage==1){    
             keypad(stdscr, TRUE);
+            // nodelay(stdscr, TRUE);
             
             // initialising the blackjack start function into a vector
             std::vector<WINDOW *> screen_object_arr = blackjack.game_template();
