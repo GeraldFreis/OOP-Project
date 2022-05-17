@@ -20,7 +20,6 @@ class Person {
 
         void setCount();
         void addCard(card new_card);
-        int addCard();
         card *getCards();
         
         string lastCard();

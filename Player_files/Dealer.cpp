@@ -1,11 +1,13 @@
 #include "Dealer.h"
 
-Dealer::Dealer(){   // dealer constructor class which sets the card total to zero                    
-    card_array = new card[5]; // sets 5 spots for cards for the dealer
+// default constructor
+Dealer::Dealer(){                       
+    card_array = new card[5];
     card_total = 0;
     string last_move;
 }
 
+// adds a card to the dealer
 void Dealer::addCardDealer(card new_card){
     for(int i=0; i<5; i++){
         if((card_array[i].getName()=="")&&(card_array[i].getValue()==0)){
@@ -15,15 +17,17 @@ void Dealer::addCardDealer(card new_card){
     }
 }
 
-void Dealer::Move(){ 
-    if(card_total >= 17) { // if the dealers cards are at 17 or greater than they would stand
-        last_move = "stand";
-    }
-    else {
-        last_move = "hit"; // if they are less than 17, they woudld hit
-    }
-}
+// 
+// void Dealer::Move(){
+//     if(card_total > 15) {
+//         last_move = "stand";
+//     }
+//     else {
+//         last_move = "hit";
+//     }
+// }
 
+// prints the dealers card at num position
 void Dealer::printCardDealer(int num){
     cout << card_array[num-1].getName() << " " << card_array[num-1].getValue() << std::endl;
 }

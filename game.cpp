@@ -69,6 +69,7 @@ void Game::mainscreen(){ // actual game loop
     refresh();
 
     bool test = true; // variable to control the game loop and end if the game is over
+    bool game_end = false;
     int stage = 1; // variable to control what stage we are in (i.e what screen to show)
 
     Dealer *received_dealer; // dealer object that is returned by blackjack when a change to the cards is made
@@ -98,8 +99,9 @@ void Game::mainscreen(){ // actual game loop
 
                 printw(to_string(blackjack.getdealer()->getCount()).c_str());
                 mvaddstr(0,0, "Press 1 to exit window");
-
                 refresh();
+                game_end = true;
+
             }
 
             // setting each object on the screen to the created screen object
@@ -126,10 +128,10 @@ void Game::mainscreen(){ // actual game loop
             string betamount_string = std::to_string(bet_amount);
             char const *betamount_char = betamount_string.c_str();
 
-            mvaddstr(27,170, "Player balance: ");
-            mvaddstr(27,187, balance_char);
-            mvaddstr(30,170, "Bet amount: ");
-            mvaddstr(30,187, betamount_char);
+            mvaddstr(31,10, "Player balance: ");
+            mvaddstr(31,28, balance_char);
+            mvaddstr(33,10, "Bet amount: ");
+            mvaddstr(33,28, betamount_char);
 
             // setting up the buttons text
             
@@ -175,6 +177,8 @@ void Game::mainscreen(){ // actual game loop
             printw(received_user->getCards()[4].getName().c_str());
             refresh();
 
+            // //////////////////       careful connars been messing with this bit check main for og ////////////////////////////////////
+
             switch(key_input) { // testing the user input
                 case '1': // if the user wants to exit the game
                     test = false;
@@ -182,7 +186,7 @@ void Game::mainscreen(){ // actual game loop
                     break;
 
                 case 's': // if the user wants to start the game
-                    if(game_has_begun == false){
+                    if(game_has_begun == false && game_end == false){
                         dealt_cards = blackjack.start_game();
                         bet_amount = blackjack.get_bet_amount();
 
@@ -194,13 +198,14 @@ void Game::mainscreen(){ // actual game loop
                         player_card_2 = dealt_cards[3];
                         printw("press any key to begin");
                         refresh();
+                        key_input=getch(); //does this help
                         
                         game_has_begun = true;
                     }
                     break;
                 
                 case '2': // if the user wants to hit
-                    if(game_has_begun){ // if the user has pressed start game already
+                    if(game_has_begun && game_end == false){ // if the user has pressed start game already
                         dealt_cards = blackjack.hit(hit_counter);
 
                         if(hit_counter == 0){
@@ -223,24 +228,21 @@ void Game::mainscreen(){ // actual game loop
                         }
                     
 
-                    break;
-                
+                    break;                
                 case '3':
-                    if(game_has_begun) {
+                    if(game_has_begun && game_end == false) {
                         dealt_cards = blackjack.stand();
                         dealer_card_3 = dealt_cards[10];
                         refresh();
+                        
                     }
-
                     break;
 
-                default:
+                default:                                       // so if anything else if pressed it breaks out of the loop to what.. what does this mean for the user
                     break;
             }
-
-            
         }
-    }
+    }   
 
     // closing the windows
     window_tools.end_win(dealer_card_1);

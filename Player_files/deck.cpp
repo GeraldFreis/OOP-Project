@@ -61,11 +61,13 @@ void deck::addCard(card new_card){
     }
 }
 
+// removing a given card from the deck (precondition is a param (num))
 void deck::removeCard(int num){
     array[num].newName("");
     array[num].newValue(0);
 }
 
+// removing the last card drawn from the deck (no preconditions)
 void deck::removeLastCard(){
     int card_val;
     int i=0;
@@ -98,7 +100,7 @@ void deck::printInt(){
 
 
 
-
+// drawing a card from the deck
 card deck::drawCard(){
     //srand ( time(NULL) );         need to fix this so it doesnt always use the same seed of rand numbers 
     int draw =0;
@@ -119,7 +121,7 @@ card deck::drawCard(){
     return array[draw];
 }
 
-
+// printing a card given an index number
 void deck::printCard(int deck_num){
     cout << array[deck_num-1].getName() << " " << array[deck_num-1].getValue() << endl;
 }
