@@ -75,27 +75,31 @@ void Game::mainscreen(){ // actual game loop
         
         key_input = getch();
 
-            switch (key_input)
+        switch (key_input)
             {
             case '1':
                 test = false;
+                
                 break;
 
             case '0':
                 stage=1;
+
                 break;
             default:
                 break;
             }
+        
 
         bool game_has_begun = false;
         hit_counter = 0;
+        
         initscr();
         clear();
         noecho();
         cbreak();    /* Line buffering disabled. pass on everything */
 
-         Blackjack blackjack(balance);
+        Blackjack blackjack(balance);
 
         // initialising the screen and box position
 
@@ -219,82 +223,11 @@ void Game::mainscreen(){ // actual game loop
                 }
                 game_has_begun = true;
 
-            // case '2':
-            //     if(game_has_begun){ // if the user has pressed start game already
-            //         dealt_cards = blackjack.hit(hit_counter);
-
-            //         if(hit_counter == 0){
-            //             player_card_3 = dealt_cards[dealt_cards.size()-2];
-            //             if(blackjack.getdealer()->getMove()=="hit") {
-            //                 dealer_card_3 = dealt_cards[dealt_cards.size()-1];
-            //                 continue;
-            //             }
-            //         }
-            //         else {
-            //             player_card_4 = dealt_cards[9];
-            //             wrefresh(player_card_4);
-            //             if(blackjack.getdealer()->getMove()=="hit"){
-            //                 dealer_card_3 = dealt_cards[dealt_cards.size()-1];
-            //                 continue;
-            //             }
-            //         }
-            //         hit_counter += 1;
-            //         refresh();
-            //         if(blackjack.bust() == true && blackjack.winner() != "false alarm") {
-            //             winner = window_tools.winner_window();
-            //             mvaddstr(25, 109, "The winner was: ");
-            //             printw(blackjack.winner().c_str());
-
-            //             mvaddstr(28, 104, "Totals of user vs dealer: ");
-            //             printw(to_string(blackjack.gethuman()->getCount()).c_str());
-
-            //             printw(" vs ");
-
-            //             printw(to_string(blackjack.getdealer()->getCount()).c_str());
-            //             mvaddstr(0,0, "Press 1 to exit window or 0 to play again");
-
-            //             refresh();
-            //         }
-
-
-            //     }
-            //     break;
-
-            // case '3':
-            //     if(game_has_begun) {
-            //         dealt_cards = blackjack.stand();
-            //         dealer_card_3 = dealt_cards[10];
-            //         refresh();
-
-            //         if(blackjack.bust() == true && blackjack.winner() != "false alarm") {
-            //             winner = window_tools.winner_window();
-            //             mvaddstr(25, 109, "The winner was: ");
-            //             printw(blackjack.winner().c_str());
-
-            //             mvaddstr(28, 104, "Totals of user vs dealer: ");
-            //             printw(to_string(blackjack.gethuman()->getCount()).c_str());
-
-            //             printw(" vs ");
-
-            //             printw(to_string(blackjack.getdealer()->getCount()).c_str());
-            //             mvaddstr(0,0, "Press 1 to exit window or 0 to play again");
-
-            //             refresh();
-            //         }
-
-                    
-            //     }
-            //     break;
-
-
             default:
                 break;
             }
+
             refresh();
-
-
-
-
         
             key_input = getch();
 
@@ -337,6 +270,13 @@ void Game::mainscreen(){ // actual game loop
 
                         printw(to_string(blackjack.getdealer()->getCount()).c_str());
                         mvaddstr(0,0, "Press 1 to exit window or 0 to play again");
+                        
+                        if(blackjack.gethuman()->getCount() > 21){
+                            balance = balance - bet_amount;
+                        }
+                        else {
+                            balance = balance + bet_amount;
+                        }
 
                         key_input = getch();
                         switch (key_input)
@@ -373,7 +313,13 @@ void Game::mainscreen(){ // actual game loop
 
                         printw(to_string(blackjack.getdealer()->getCount()).c_str());
                         mvaddstr(0,0, "Press 1 to exit window or 0 to play again");
-                        
+                        if(blackjack.gethuman()->getCount() > 21){
+                            balance = balance - bet_amount;
+                        }
+                        else {
+                            balance = balance + bet_amount;
+                        }
+
                         key_input = getch();
                         switch (key_input)
                         {
@@ -394,38 +340,8 @@ void Game::mainscreen(){ // actual game loop
 
             default:
                 break;
-            }
-
-            // ////////////////profit 
-            // if(user == winner ){
-            //     profit = bet*2; 
-            // }
-            // else if(stand == true){
-            //     profit = bet;
-            // }
-            // else
-            //     profit = 0;
-            // }
-            // wallet = wallet + profit;
-            // bet = 0;
-            // }
-            // take bet away from balance at start 
-
-
-
-
-
-
-
-
-
-
-            
+            }            
         }
-        
-        
-
-
 
        // closing the windows
         window_tools.end_win(dealer_card_1);
@@ -436,4 +352,8 @@ void Game::mainscreen(){ // actual game loop
         endwin();
     }
     
+}
+
+int Game::get_balance() {
+    return balance;
 }
