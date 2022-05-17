@@ -19,14 +19,14 @@ void Human::addCardHuman(card new_card){
 }
 
 
-void Human::Move() {
-    if(card_total < 14) {
-        last_move = "hit";
-    }
-    else {
-        last_move = "stand";
-    }
-}
+// void Human::Move() {
+//     if(card_total < 14) {
+//         last_move = "hit";
+//     }
+//     else {
+//         last_move = "stand";
+//     }
+// }
 
 void Human::printCardHuman(int num){
     cout << card_array[num-1].getName() << " " << card_array[num-1].getValue() << endl;
