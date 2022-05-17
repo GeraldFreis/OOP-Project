@@ -17,7 +17,7 @@ class Dealer: public Person {
 
     public:
         Dealer();                       
-        void Move();
+        virtual void Move() = 0;
         void addCardDealer(card new_card);
 
         void printCardDealer(int num);

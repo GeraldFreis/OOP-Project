@@ -25,7 +25,7 @@ class Human: public Person {
         void printCardHuman(int num);                   
         
         // int getCountHuman();
-        void Move();
+        // void Move();
         card getLastCard();
         //card hit(card n_card);
         

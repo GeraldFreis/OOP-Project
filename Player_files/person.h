@@ -14,7 +14,7 @@ class Person {
     
     public:
         Person();
-        virtual void Move()=0;
+        
         string getMove();
         int getCount();
 
