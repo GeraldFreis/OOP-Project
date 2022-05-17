@@ -1,9 +1,9 @@
 #include "Human.h"
 
-Human::Human(){
-    card_array = new card[5];
+Human::Human(){ // intializing the values as 0 for the constructor function
+    card_array = new card[5]; // 5 cards for the human
     //choosen_move = "";
-    card_total = 0;
+    card_total = 0; 
     number_of_cards = 0;
     last_move = "";
 }                       
@@ -28,7 +28,7 @@ void Human::addCardHuman(card new_card){
 //     }
 // }
 
-void Human::printCardHuman(int num){
+void Human::printCardHuman(int num){ // printing the card for the human player. it is needed to seperate the dealers cards and human cards
     cout << card_array[num-1].getName() << " " << card_array[num-1].getValue() << endl;
 }
 
@@ -40,8 +40,8 @@ void Human::printCardHuman(int num){
 //     return card_total;
 // }
 
-card Human::getLastCard() {
-    return card_array[number_of_cards];
+card Human::getLastCard() { // retrieving the last card that was dealt
+    return card_array[number_of_cards]; // accessing the card array of which how many number of cards have been used
 }
 // card Human::hit(card new_card){
 // }
@@ -53,4 +53,4 @@ card Human::getLastCard() {
 // } 
 
 
-Human::~Human(){delete[] card_array;}
+Human::~Human(){delete[] card_array;} // clearing the card array so it can be used every round
