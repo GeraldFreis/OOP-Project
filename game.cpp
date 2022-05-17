@@ -101,7 +101,6 @@ void Game::mainscreen(){ // actual game loop
                 mvaddstr(0,0, "Press 1 to exit window");
                 refresh();
                 game_end = true;
-
             }
 
             // setting each object on the screen to the created screen object
@@ -215,6 +214,7 @@ void Game::mainscreen(){ // actual game loop
                                 continue;
                             }
                         }
+
                         else {
                             player_card_4 = dealt_cards[9];
                             wrefresh(player_card_4);
@@ -223,6 +223,7 @@ void Game::mainscreen(){ // actual game loop
                                 continue;
                             }
                         }
+
                         hit_counter += 1;
                         refresh();
                         }
