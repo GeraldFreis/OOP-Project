@@ -63,7 +63,7 @@ WINDOW *Window::winner_window(){
     WINDOW *winner_win;
 
     winner_win = newwin(200, 200, 0, 0);
-    wrefresh(winner_win);
+    // wrefresh(winner_win);
 
     return winner_win;
 }

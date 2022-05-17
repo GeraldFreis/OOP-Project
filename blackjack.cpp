@@ -7,9 +7,9 @@ Blackjack::Blackjack(): Bet(1000){
     
     // initialising the human and the dealer
     user = new Human();
-    dealer = new Dealer();
-
-    // intialising the deck
+    dealer = new Safe_dealer();
+    
+    // intialising the deck 
     srand ( time(NULL) );  
     initialised_deck.fillDeck();
 
@@ -24,7 +24,7 @@ Blackjack::Blackjack(int _balance): Bet (_balance){
 
     // initialising the user and dealer
     user = new Human();
-    dealer = new Dealer();
+    dealer = new Safe_dealer();
 
     // initialising the deck
     srand ( time(NULL) );  

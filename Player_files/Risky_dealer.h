@@ -6,6 +6,9 @@ using namespace std;
 
 class Risky_dealer: public Dealer {
     private:
+        int card_total;
+        card *card_array;
+        string last_move;
         
     public:
         Risky_dealer();

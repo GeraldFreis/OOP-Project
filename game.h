@@ -6,8 +6,9 @@
 #include "Game_files/window.h"
 #include "Game_files/bet.h"
 #include "blackjack.h"
-#include "Player_files/Dealer.h"
+// #include "Player_files/Dealer.h"
 #include "Player_files/Human.h"
+#include "Player_files/Safe_dealer.h"
 
 using std::string; using std::cout;
 

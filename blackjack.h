@@ -6,6 +6,7 @@
 #include "Player_files/Human.h"
 #include "Player_files/card.h"
 #include "Player_files/deck.h"
+#include "Player_files/Safe_dealer.h"
 
 #ifndef BLACKJACK_H
 #define BLACKJACK_H

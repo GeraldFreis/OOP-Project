@@ -6,13 +6,15 @@ using namespace std;
 
 class Safe_dealer: public Dealer {
     private:
-        
+        int card_total;
+        card *card_array;
+        string last_move;
     public:
         Safe_dealer();
 
         void Move();
 
         ~Safe_dealer();
-}
+};
 
 #endif

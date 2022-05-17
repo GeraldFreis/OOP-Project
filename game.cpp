@@ -101,6 +101,7 @@ void Game::mainscreen(){ // actual game loop
 
                 refresh();
             }
+
             // setting each object on the screen to the created screen object
             dealer_card_1 = screen_object_arr[0];
             dealer_card_2 = screen_object_arr[1];
@@ -112,8 +113,7 @@ void Game::mainscreen(){ // actual game loop
             hit_button = screen_object_arr[5];
             stand_button = screen_object_arr[6];
             double_button = screen_object_arr[7];
-
-            refresh();
+            // refresh()
 
             // adding the text:
             mvaddstr(7,89,"Dealer's cards: ");
@@ -146,7 +146,6 @@ void Game::mainscreen(){ // actual game loop
             mvaddstr(26, 16, "Double (4)");
 
             std::vector<WINDOW *> dealt_cards; // vector to hold cards dealt at the beginning of the game
-            refresh();
             received_dealer = blackjack.getdealer(); // holds the dealer and the user
             received_user = blackjack.gethuman();
             // showing the cards that were dealt on the screen as a string
@@ -206,7 +205,6 @@ void Game::mainscreen(){ // actual game loop
 
                         if(hit_counter == 0){
                             player_card_3 = dealt_cards[dealt_cards.size()-2];
-
                             if(blackjack.getdealer()->getMove()=="hit") {
                                 dealer_card_3 = dealt_cards[dealt_cards.size()-1];
                                 continue;
@@ -214,13 +212,14 @@ void Game::mainscreen(){ // actual game loop
                         }
                         else {
                             player_card_4 = dealt_cards[9];
-
+                            wrefresh(player_card_4);
                             if(blackjack.getdealer()->getMove()=="hit"){
                                 dealer_card_3 = dealt_cards[dealt_cards.size()-1];
                                 continue;
                             }
                         }
                         hit_counter += 1;
+                        refresh();
                         }
                     
 
@@ -230,6 +229,7 @@ void Game::mainscreen(){ // actual game loop
                     if(game_has_begun) {
                         dealt_cards = blackjack.stand();
                         dealer_card_3 = dealt_cards[10];
+                        refresh();
                     }
 
                     break;

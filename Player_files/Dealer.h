@@ -29,7 +29,7 @@ class Dealer: public Person {
 
         // void hit(); 
                                           
-        ~Dealer();
+        virtual ~Dealer();
 };
 
 #endif
