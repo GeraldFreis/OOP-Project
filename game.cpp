@@ -62,7 +62,7 @@ void Game::mainscreen(){ // actual game loop
     clear();
 	noecho();
 	cbreak();	/* Line buffering disabled. pass on everything */
-
+    // nodelay(stdscr, TRUE);
     // initialising the screen and box position
 
     printw("Press the number 1 to exit, and any other key to move to the game window");
