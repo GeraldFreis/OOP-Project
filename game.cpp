@@ -128,10 +128,10 @@ void Game::mainscreen(){ // actual game loop
             string betamount_string = std::to_string(bet_amount);
             char const *betamount_char = betamount_string.c_str();
 
-            mvaddstr(27,170, "Player balance: ");
-            mvaddstr(27,187, balance_char);
-            mvaddstr(30,170, "Bet amount: ");
-            mvaddstr(30,187, betamount_char);
+            mvaddstr(31,10, "Player balance: ");
+            mvaddstr(31,28, balance_char);
+            mvaddstr(33,10, "Bet amount: ");
+            mvaddstr(33,28, betamount_char);
 
             // setting up the buttons text
             
@@ -177,6 +177,8 @@ void Game::mainscreen(){ // actual game loop
             printw(received_user->getCards()[4].getName().c_str());
             refresh();
 
+            // //////////////////       careful connars been messing with this bit check main for og ////////////////////////////////////
+
             switch(key_input) { // testing the user input
                 case '1': // if the user wants to exit the game
                     test = false;
@@ -196,6 +198,7 @@ void Game::mainscreen(){ // actual game loop
                         player_card_2 = dealt_cards[3];
                         printw("press any key to begin");
                         refresh();
+                        key_input=getch(); //does this help
                         
                         game_has_begun = true;
                     }
@@ -225,23 +228,21 @@ void Game::mainscreen(){ // actual game loop
                         }
                     
 
-                    break;
-                
+                    break;                
                 case '3':
                     if(game_has_begun && game_end == false) {
                         dealt_cards = blackjack.stand();
                         dealer_card_3 = dealt_cards[10];
                         refresh();
+                        
                     }
-
                     break;
 
-                default:
+                default:                                       // so if anything else if pressed it breaks out of the loop to what.. what does this mean for the user
                     break;
             }
         }
-        
-    }
+    }   
 
     // closing the windows
     window_tools.end_win(dealer_card_1);
