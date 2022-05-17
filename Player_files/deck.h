@@ -5,6 +5,29 @@
 #include "card.h"
 using std::cout; using std::string;
 
+
+/*
+Class deck
+    has attrs:
+        array {array of the cards in the deck}
+        length {integer of the current length of the deck}
+        drawn_cards {array of the cards drawn from the deck}
+    
+    has methods:
+        void fillDeck() {fills the array with all possible cards}
+
+        void addCard(card new_card){adds a new card to the deck}
+
+        void removeCard(int rand_num) {removes a card from the deck}
+        void removeLastCard() {removes the last card drawn from the deck}
+
+        void printInt(){prints the values of all cards}
+
+
+        card drawCard(){picks a random card from the deck}
+
+        void printCard(int deck_num){prints a given card from the deck based on formal param deck_num}
+*/
 class deck{
     private:
         card *array;

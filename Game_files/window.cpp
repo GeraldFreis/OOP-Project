@@ -7,13 +7,26 @@ Window::Window(){
     colour_grey_array[2] = 128;
 }
 
-void Window::end_win(WINDOW *usingwin){ // closing the window
+// closing the window
+void Window::end_win(WINDOW *usingwin){
     wborder(usingwin, ' ', ' ', ' ',' ',' ',' ',' ',' ');
 	wrefresh(usingwin);
     werase(usingwin);
 };
 
-WINDOW *Window::create_cards(int xpoint, int ypoint){ // creating the cards
+// creating the cards
+WINDOW *Window::create_cards(int xpoint, int ypoint){ 
+    WINDOW *card; // initialising the cards
+
+    // this card
+    card = newwin(16,24, xpoint,ypoint);
+    box(card, 0, 0);
+
+    wrefresh(card);
+    return card;
+};
+// creating the cards
+WINDOW *Window::create_cards(int xpoint, int ypoint, string cardname){ 
     WINDOW *card; // initialising the cards
 
     // this card
@@ -24,17 +37,7 @@ WINDOW *Window::create_cards(int xpoint, int ypoint){ // creating the cards
     return card;
 };
 
-WINDOW *Window::create_cards(int xpoint, int ypoint, string cardname){ // creating the cards
-    WINDOW *card; // initialising the cards
-
-    // this card
-    card = newwin(16,24, xpoint,ypoint);
-    box(card, 0, 0);
-
-    wrefresh(card);
-    return card;
-};
-
+// creating the buttons in the window
 WINDOW *Window::create_buttons(int xpoint, int ypoint){
     WINDOW *button; // initialising the buttons
 
@@ -59,6 +62,7 @@ WINDOW *Window::bet_window(int size){
     return betting_window;
 };
 
+// winner window to show the user if a party has won
 WINDOW *Window::winner_window(){
     WINDOW *winner_win;
 
