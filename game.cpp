@@ -115,7 +115,7 @@ void Game::mainscreen(){ // actual game loop
 
 
         while(stage==1){    
-            nodelay(stdscr, TRUE);
+            //nodelay(stdscr, TRUE);
             
             // initialising the blackjack start function into a vector
             std::vector<WINDOW *> screen_object_arr = blackjack.game_template();
