@@ -72,7 +72,12 @@ void Game::mainscreen(){ // actual game loop
 
     int key_input = 0;
     while(test){
+        initscr();
+        clear();
+        noecho();
+        cbreak();    /* Line buffering disabled. pass on everything */
         // nodelay(stdscr, TRUE);
+        keypad(stdscr, FALSE);
         key_input = getch();
 
         switch (key_input)
@@ -92,12 +97,9 @@ void Game::mainscreen(){ // actual game loop
         
 
         bool game_has_begun = false;
+        bool end_test = true;
         hit_counter = 0;
         
-        initscr();
-        clear();
-        noecho();
-        cbreak();    /* Line buffering disabled. pass on everything */
 
         Blackjack blackjack(balance);
 
@@ -113,8 +115,7 @@ void Game::mainscreen(){ // actual game loop
 
 
         while(stage==1){    
-            keypad(stdscr, TRUE);
-            // nodelay(stdscr, TRUE);
+            nodelay(stdscr, TRUE);
             
             // initialising the blackjack start function into a vector
             std::vector<WINDOW *> screen_object_arr = blackjack.game_template();
@@ -144,7 +145,7 @@ void Game::mainscreen(){ // actual game loop
             hit_button = screen_object_arr[5];
             stand_button = screen_object_arr[6];
             double_button = screen_object_arr[7];
-            refresh();
+            // refresh();
 
             // adding the text:
             mvaddstr(7,89,"Dealer's cards: ");
@@ -192,7 +193,7 @@ void Game::mainscreen(){ // actual game loop
             printw(received_user->getCards()[3].getName().c_str());
             mvaddch(45, 185, ' ');
             printw(received_user->getCards()[4].getName().c_str());
-            refresh();
+            // refresh();
 
             int key_input = getch();
 
@@ -200,6 +201,7 @@ void Game::mainscreen(){ // actual game loop
             {
             case '1':
                 test = false;
+                stage ++;
                 break;
 
             case 's':
@@ -214,7 +216,7 @@ void Game::mainscreen(){ // actual game loop
                     player_card_1 = dealt_cards[2];
                     player_card_2 = dealt_cards[3];
                     printw("press any key to begin");
-                    refresh();
+                    // refresh();
                     //key_input=getch(); //does this help
                     
                     
@@ -225,9 +227,9 @@ void Game::mainscreen(){ // actual game loop
                 break;
             }
 
-            refresh();
+            // refresh();
         
-            key_input = getch();
+            // key_input = getch();
 
             switch (key_input)
             {
@@ -255,8 +257,10 @@ void Game::mainscreen(){ // actual game loop
                         }
                     }
                     hit_counter += 1;
-                    refresh();
-                    if(blackjack.bust() == true && blackjack.winner() != "false alarm") {
+                    // refresh();
+                    
+
+                    while(blackjack.bust() == true && blackjack.winner() != "false alarm" && end_test == true) {
                         winner = window_tools.winner_window();
                         mvaddstr(25, 109, "The winner was: ");
                         printw(blackjack.winner().c_str());
@@ -282,11 +286,16 @@ void Game::mainscreen(){ // actual game loop
                         case '1':
                             stage++;
                             test = false;
+                            end_test = false;
                             break;
                         default:
+                            end_test = false;
                             stage++;
+                            break;
                         }
-                        refresh();
+                        nodelay(stdscr, FALSE);
+                        endwin();
+                        // refresh();
                     }
 
 
@@ -299,7 +308,7 @@ void Game::mainscreen(){ // actual game loop
                     dealer_card_3 = dealt_cards[10];
                     refresh();
 
-                    if(blackjack.bust() == true && blackjack.winner() != "false alarm") {
+                    while(blackjack.bust() == true && blackjack.winner() != "false alarm" && end_test == true) {
                         winner = window_tools.winner_window();
                         mvaddstr(25, 109, "The winner was: ");
                         printw(blackjack.winner().c_str());
@@ -317,18 +326,23 @@ void Game::mainscreen(){ // actual game loop
                         else {
                             balance = balance + bet_amount;
                         }
-
+                        nodelay(stdscr, FALSE);
                         key_input = getch();
                         switch (key_input)
                         {
                         case '1':
                             stage++;
                             test = false;
+                            end_test = false;
                             break;
                         default:
                             stage++;
+                            end_test = false;
+                            break;
                         }
-                        refresh();
+                        
+                        endwin();
+                        // refresh();
                     }
 
                     
@@ -338,18 +352,25 @@ void Game::mainscreen(){ // actual game loop
 
             default:
                 break;
-            }            
+            } 
+            // // closing the windows
+            // window_tools.end_win(dealer_card_1);
+            // window_tools.end_win(dealer_card_2);
+            // window_tools.end_win(player_card_1);
+            // window_tools.end_win(player_card_2);
+            // clear();
+            // endwin();
         }
-
-       // closing the windows
-        window_tools.end_win(dealer_card_1);
-        window_tools.end_win(dealer_card_2);
-        window_tools.end_win(player_card_1);
-        window_tools.end_win(player_card_2);
-        clear();
-        endwin();
+        // refresh();
     }
-    
+    // closing the windows
+    window_tools.end_win(dealer_card_1);
+    window_tools.end_win(dealer_card_2);
+    window_tools.end_win(player_card_1);
+    window_tools.end_win(player_card_2);
+    clear();
+    endwin();
+
 }
 
 int Game::get_balance() {

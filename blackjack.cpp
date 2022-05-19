@@ -191,7 +191,7 @@ bool Blackjack::bust(){
     user->setCount(); // ensuring that the count data member is updated
     dealer->setCount(); // ensuring that the count data member is updated
 
-    if(user->winGame() == true || dealer->winGame() == true){ // if either the dealer or user are bust
+    if((user->winGame() == true) || dealer->winGame() == true){ // if either the dealer or user are bust
         return true;
     }
 
@@ -200,6 +200,9 @@ bool Blackjack::bust(){
 
 // function that returns a string of who won the game (can be called if either is bust or both stand)
 string Blackjack::winner() {
+    user->setCount();
+    dealer->setCount();
+
     if(dealer->getCount() > 21) { // if the dealer is bust the user wins
         return "user";
     }
