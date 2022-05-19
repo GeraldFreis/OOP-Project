@@ -279,7 +279,7 @@ void Game::mainscreen(){ // actual game loop
                         else {
                             balance = balance + bet_amount;
                         }
-
+                        nodelay(stdscr, FALSE);
                         key_input = getch();
                         switch (key_input)
                         {
@@ -293,7 +293,7 @@ void Game::mainscreen(){ // actual game loop
                             stage++;
                             break;
                         }
-                        nodelay(stdscr, FALSE);
+                        
                         endwin();
                         // refresh();
                     }
