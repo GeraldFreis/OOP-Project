@@ -247,14 +247,16 @@ void Game::mainscreen(){ // actual game loop
                             dealer_card_3 = dealt_cards[dealt_cards.size()-1];
                             continue;
                         }
+                        refresh();
                     }
                     else {
                         player_card_4 = dealt_cards[9];
-                        wrefresh(player_card_4);
+                        // wrefresh(player_card_4);
                         if(blackjack.getdealer()->getMove()=="hit"){
                             dealer_card_3 = dealt_cards[dealt_cards.size()-1];
                             continue;
                         }
+                        refresh();
                     }
                     hit_counter += 1;
                     // refresh();
@@ -288,6 +290,7 @@ void Game::mainscreen(){ // actual game loop
                             test = false;
                             end_test = false;
                             break;
+
                         default:
                             end_test = false;
                             stage++;
@@ -310,6 +313,7 @@ void Game::mainscreen(){ // actual game loop
 
                     while(blackjack.bust() == true && blackjack.winner() != "false alarm" && end_test == true) {
                         winner = window_tools.winner_window();
+                        refresh();
                         mvaddstr(25, 109, "The winner was: ");
                         printw(blackjack.winner().c_str());
 
