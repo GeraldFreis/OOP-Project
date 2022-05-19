@@ -26,7 +26,7 @@ class Dealer: public Person {
         // int getCountDealer();
         
         // string getMoves();    
-
+        // string getMove();
         // void hit(); 
                                           
         virtual ~Dealer();

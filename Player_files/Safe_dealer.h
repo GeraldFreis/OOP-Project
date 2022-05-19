@@ -11,9 +11,7 @@ class Safe_dealer: public Dealer {
         string last_move;
     public:
         Safe_dealer();
-
         void Move();
-
         ~Safe_dealer();
 };
 

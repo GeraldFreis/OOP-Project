@@ -15,14 +15,15 @@ void Dealer::addCardDealer(card new_card){
     }
 }
 
-void Dealer::Move(){
-    if(card_total > 15) {
-        last_move = "stand";
-    }
-    else {
-        last_move = "hit";
-    }
-}
+// void Dealer::Move(){
+//     if(card_total > 15) {
+//         last_move = "stand";
+//     }
+//     else {
+//         last_move = "hit";
+//     }
+// }
+
 
 void Dealer::printCardDealer(int num){
     cout << card_array[num-1].getName() << " " << card_array[num-1].getValue() << std::endl;

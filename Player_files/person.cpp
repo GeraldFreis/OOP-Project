@@ -9,7 +9,7 @@ Person::Person(){ // intialize values for the constructor function
 }
 
 string Person::getMove(){ // function to return the last move
-    return last_move;
+    return this->last_move;
 }
 
 void Person::setMove(string move) {
