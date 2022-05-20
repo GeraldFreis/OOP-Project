@@ -12,7 +12,6 @@ class Dealer: public Person {
         int card_total;
         card *card_array;
         string last_move;
-        //string choosen_move;
         
 
     public:
@@ -26,7 +25,6 @@ class Dealer: public Person {
         // int getCountDealer();
         
         // string getMoves();    
-        // string getMove();
         // void hit(); 
                                           
         virtual ~Dealer();

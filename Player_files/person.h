@@ -5,7 +5,7 @@
 #include "card.h"
 
 class Person {
-    private:
+    protected:
         card *card_array;
         int card_total;
         string lastcard;
@@ -17,7 +17,6 @@ class Person {
         
         string getMove();
         int getCount();
-
         void setCount();
         void addCard(card new_card);
         int addCard();

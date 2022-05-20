@@ -1,23 +1,21 @@
 #include "Safe_dealer.h"
 
 Safe_dealer::Safe_dealer(){
-    card_total = 0;;
+    card_total = 0;
     card_array = new card[5];
     last_move = "";
 }
 
-
-
 void Safe_dealer::Move(){
-    
-    if(card_total > 14) {
-        last_move = "stand";
-        // cout << last_move;
+    setCount();
+    if(this->Person::card_total > 14) {
+        // this->setMove("stand");
+        this->Person::last_move = "stand";
     }
 
     else {
-        last_move = "hit";
-        //  cout << last_move;
+        this->Person::last_move = "hit";
+        // this->setMove("hit");
     }
 }
 

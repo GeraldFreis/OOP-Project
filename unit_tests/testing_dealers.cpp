@@ -20,7 +20,7 @@ int main(){
     for(int i = 0; i < 4; i++) {cards[i] = initialised_deck.drawCard();
                                  initialised_deck.removeLastCard();}
 
-    Dealer *dealer_1 = new Safe_dealer;
+    Dealer *dealer_1 = new Safe_dealer();
     dealer_1->addCard(cards[0]);
     dealer_1->addCard(cards[1]);
     dealer_1->setCount();
@@ -44,31 +44,44 @@ int main(){
     dealer_1->addCard(cards[2]);
     dealer_1->setCount();
     dealer_1->Move();
+    dealer_1->setCount();
+
     if(dealer_1->winGame() != true) {
+
         if(dealer_1->getCount() > 21){
             cout << "Test 2 failed (dealer is bust and wingame did not report it)" << "\n";
             cout << dealer_1->getMove() << " " << dealer_1->getCount() << "\n";
         }
+
         else if(dealer_1->getCount() > 14 && dealer_1->getMove() != "stand"){
             cout << "test 2 failed (dealer is not bust but was greater than 14 and didn't stand" << "\n";
             cout << dealer_1->getMove() << " " << dealer_1->getCount() << "\n";
         }
+
         else if(dealer_1->getCount() <= 14 && dealer_1->getMove() != "hit"){
             cout << "test 2 failed (dealer was not bust but was less than 14 and did not hit" << "\n";
             cout << dealer_1->getMove() << " " << dealer_1->getCount() << "\n";
         }
+        
         else {
             cout << "Test 2 passed" << "\n";
             cout << dealer_1->getMove() << " " << dealer_1->getCount() << "\n";
         }
     }
+
     else if(dealer_1->winGame() == true && dealer_1->getCount() <= 21){
         cout << "Test 2 failed (dealer was not bust and wingame reported it as bust)" << "\n";
         cout << dealer_1->getMove() << " " << dealer_1->getCount() << "\n";
     }
-    else {
-        cout << "Bool in test 2 did not return a valid bool result" << "\n";
+
+    else if(dealer_1->winGame() == false && dealer_1->getCount() <= 21){
+        cout << "Test 3 passed (dealer was beneath the card limit and wingame was false" << "\n";
         cout << dealer_1->getMove() << " " << dealer_1->getCount() << "\n";
     }
-    cout << dealer_1->getMove();
+
+    else if(dealer_1->winGame() == true && dealer_1->getCount() > 21){
+        cout << "Test 3 passed (dealer was above limit and wingame was true)" << "\n";
+        cout << dealer_1->getMove() << " " << dealer_1->getCount() << "\n";
+
+    }
 }

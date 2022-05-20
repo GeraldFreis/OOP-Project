@@ -9,6 +9,7 @@ class Safe_dealer: public Dealer {
         int card_total;
         card *card_array;
         string last_move;
+        
     public:
         Safe_dealer();
         void Move();
