@@ -8,12 +8,12 @@ Safe_dealer::Safe_dealer(){
 
 void Safe_dealer::Move(){
     
-    if(card_total > 14) {
-        last_move = "stand";
+    if(this->Person::card_total > 14) {
+        this->Person::last_move = "stand";
     }
 
     else {
-        last_move = "hit";
+        this->Person::last_move = "hit";
     }
 }
 

@@ -9,7 +9,7 @@ Person::Person(){ // intialize values for the constructor function
 }
 
 string Person::getMove(){ // function to return the last move
-    return last_move;
+    return this->last_move;
 }
 
 void Person::setMove(string move) {
@@ -29,24 +29,24 @@ card *Person::getCards(){
 }
 
 void Person::setCount() {
-    card_total = 0;  // intializing the total as 0
+    this->card_total = 0;  // intializing the total as 0
     for(int i=0; i<5; i++){  
-        card_total = card_total + card_array[i].getValue(); // updating the card total to each value that is added
+        this->card_total = this->card_total + this->card_array[i].getValue(); // updating the card total to each value that is added
     }
 }
 
 void Person::addCard(card new_card) {
     for(int i=0; i<5; i++){
-        if((card_array[i].getName()=="")&&(card_array[i].getValue()==0)){
-            card_array[i] = new_card;
+        if((this->card_array[i].getName()=="")&&(this->card_array[i].getValue()==0)){
+            this->card_array[i] = new_card;
             break;
         }
     }
-    number_of_cards += 1; // increasing the count of the number of cards
+    this->number_of_cards += 1; // increasing the count of the number of cards
 }
 
 bool Person::winGame() { // function to check if the game has been won or lost
-    if(card_total > 21) { 
+    if(this->card_total > 21) { 
         return false; // if the total of the cards is over 21 then it is a loss, hence the false
     }
     return true; // anything under the number will be in play, hence true

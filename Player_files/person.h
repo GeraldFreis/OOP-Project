@@ -5,7 +5,7 @@
 #include "card.h"
 
 class Person {
-    private:
+    protected:
         card *card_array;
         int card_total;
         string lastcard;
