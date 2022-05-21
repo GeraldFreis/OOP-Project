@@ -61,6 +61,8 @@ class Blackjack: public Bet {
         int dealercount();
 
 
+
+
         int get_bet_amount(); // from Bet
         ~Blackjack();
 };

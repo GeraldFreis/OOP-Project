@@ -45,7 +45,7 @@ void Person::addCard(card new_card) {
     number_of_cards += 1; // increasing the count of the number of cards
 }
 
-bool Person::winGame() { // function to check if the game has been won or lost
+bool Person::under22() { // function to check if the game has been won or lost
     if(card_total > 21) { 
         return false; // if the total of the cards is over 21 then it is a loss, hence the false
     }

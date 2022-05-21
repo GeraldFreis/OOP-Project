@@ -27,7 +27,7 @@ class Person {
         void setMove(string move);
         //void hit();
 
-        bool winGame();
+        bool under22();
         virtual ~Person();
 };
 
