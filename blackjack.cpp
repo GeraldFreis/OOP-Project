@@ -190,8 +190,12 @@ std::vector<WINDOW *> Blackjack::stand(){
 bool Blackjack::bust(){ 
     user->setCount(); // ensuring that the count data member is updated
     dealer->setCount(); // ensuring that the count data member is updated
-
+    dealer->Move(); // ensuring that the dealer has made a move
+    
     if((user->winGame() == false) || dealer->winGame() == false){ // if either the dealer or user are bust
+        return true;
+    }
+    else if(user->getMove() == "stand" && dealer->getMove() == "stand"){
         return true;
     }
 

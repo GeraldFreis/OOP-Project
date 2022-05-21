@@ -324,11 +324,14 @@ void Game::mainscreen(){ // actual game loop
 
                         printw(to_string(blackjack.getdealer()->getCount()).c_str());
                         mvaddstr(0,0, "Press 1 to exit window or 0 to play again");
-                        if(blackjack.gethuman()->getCount() > 21){
+                        if(blackjack.winner() == "dealer"){
                             balance = balance - bet_amount;
                         }
-                        else {
+                        else if(blackjack.winner() == "user"){
                             balance = balance + bet_amount;
+                        }
+                        else {
+                            continue; // do nothing if it is a draw
                         }
                         nodelay(stdscr, FALSE);
                         key_input = getch();
