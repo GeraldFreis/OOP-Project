@@ -13,7 +13,7 @@ string Person::getMove(){ // function to return the last move
 }
 
 void Person::setMove(string move) {
-    last_move = move; // setting the last move to be the move that has just taken place
+    this->last_move = move; // setting the last move to be the move that has just taken place
 }
 
 string Person::lastCard(){ // function that retrieves the last card delt
@@ -21,7 +21,7 @@ string Person::lastCard(){ // function that retrieves the last card delt
 }
 
 int Person::getCount(){ // returns the card total
-    return card_total;
+    return this->card_total;
 }
 
 card *Person::getCards(){ 
@@ -47,9 +47,9 @@ void Person::addCard(card new_card) {
 
 bool Person::winGame() { // function to check if the game has been won or lost
     if(this->card_total > 21) { 
-        return false; // if the total of the cards is over 21 then it is a loss, hence the false
+        return true; // if the total of the cards is over 21 then it is a loss, hence the false
     }
-    return true; // anything under the number will be in play, hence true
+    return false; // anything under the number will be in play, hence true
 }
 
 Person::~Person(){
