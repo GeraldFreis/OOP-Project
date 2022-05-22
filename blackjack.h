@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <vector>
 #include "Game_files/window.h"
@@ -38,7 +39,7 @@ class Blackjack: public Bet {
         int bet_amount;
         Window windowtools;
         Bet *betting;
-        std::vector<WINDOW *> array; 
+        std::vector<WINDOW *> array;
         Human *user;
         Dealer *dealer;
         deck initialised_deck;
@@ -49,6 +50,8 @@ class Blackjack: public Bet {
         Blackjack(int _balance);
         
         std::vector<WINDOW *> game_template();
+        std::vector<WINDOW *> game_template(string a, string b, string c, string d);
+
         std::vector<WINDOW *> start_game(); // returns a pointer to an array of windows
         std::vector<WINDOW *> hit(int hit_number);
         std::vector<WINDOW *> stand();
@@ -66,3 +69,4 @@ class Blackjack: public Bet {
 };
 
 #endif
+
