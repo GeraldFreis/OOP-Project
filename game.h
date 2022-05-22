@@ -68,7 +68,6 @@ class Game: public Blackjack {
         
         Game_manager manager;
 
-
     public:
         // constructors
         Game();

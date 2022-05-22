@@ -3,7 +3,7 @@ all: testall
 testall: output
 	./output
 
-output:  wallet.o game.o window.o bet.o person.o Human.o Safe_dealer.o Dealer.o deck.o card.o blackjack.o main.o
+output:  wallet.o game.o game_manager.o window.o bet.o person.o Human.o Safe_dealer.o Dealer.o deck.o card.o blackjack.o main.o
 	g++ wallet.o game.o game_manager.o window.o bet.o person.o Human.o Safe_dealer.o Dealer.o deck.o card.o blackjack.o main.o -lncurses -lform -o output
 
 wallet.o: Wallet/wallet.h Wallet/wallet.cpp

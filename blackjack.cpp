@@ -217,7 +217,6 @@ std::vector<WINDOW *> Blackjack::stand(){
     // user does nothing, dealer makes a decision based on their total
     dealer->Move(); // dealer calculates move
 
-
     if(dealer->getMove() == "stand"){ // if the dealer chose to stand
         return array;
     }

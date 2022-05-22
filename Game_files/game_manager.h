@@ -1,7 +1,7 @@
 #include <iostream>
 #include <ncurses.h>
-#include "../Player_files/Human.h"
-#include "../Player_files/Dealer.h"
+#include "../blackjack.h"
+
 #ifndef GAME_MANAGER_H
 #define GAME_MANAGER_H
 
@@ -18,7 +18,7 @@ class Game_manager {
         Game_manager(int _balance);
         Game_manager();
         void setbalance(int _balance);
-        void calcbalance(int bet_amount, Human *h, Dealer *D);
+        void calcbalance(int bet_amount, Blackjack *blackjack);
         int getbalance();
         bool isdraw();
 };

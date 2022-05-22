@@ -16,14 +16,15 @@ void Game_manager::setbalance(int _balance){
 }
 
 // calculating the new balance of the user
-void Game_manager::calcbalance(int bet_amount, Human *user, Dealer *house){
-    if(house->getCount() > 21 || user->getCount() > house->getCount()) {
+void Game_manager::calcbalance(int bet_amount, Blackjack *blackjack){
+
+    if(blackjack->getdealer()->getCount()>21 || blackjack->gethuman()->getCount() > blackjack->getdealer()->getCount()) {
         balance = balance + bet_amount;
     }
-    else if(user->getCount() > 21 || user->getCount() < house->getCount()) {
+    else if(blackjack->gethuman()->getCount()>21 || blackjack->gethuman()->getCount() < blackjack->getdealer()->getCount()) {
         balance = balance - bet_amount;
     }
-    else { // if the user and dealer are equal
+    else {
         draw = true;
     }
 }
