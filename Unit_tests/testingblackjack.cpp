@@ -48,7 +48,7 @@ int main() {
     else {
         cout << "Test 3 passed" << "\n";
     }
-     win = blackjack.hit(hitnum);
+    win = blackjack.hit(hitnum);
     user = blackjack.gethuman();
     dealer = blackjack.getdealer();
     user->setCount();

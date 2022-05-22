@@ -28,8 +28,10 @@ int main(){
 //    std::vector<WINDOW *> screen_object_arr =  blackjack.game_template();
     
     bool gamehasbegun = true;
+    int hit_counter = 0;
     while(gamehasbegun){
         std::vector<WINDOW *> screen_object_arr =  blackjack.game_template();
+        std::vector<WINDOW *> dealt_cards; // vector to hold cards dealt at the beginning of the game
 
         dealer_card_1 = screen_object_arr[0];
         dealer_card_2 = screen_object_arr[1];
@@ -42,15 +44,40 @@ int main(){
         stand_button = screen_object_arr[6];
         double_button = screen_object_arr[7];
         refresh();
+
         int key_input = getch();
         switch (key_input)
             {
             case '1':
                 gamehasbegun = false;
                 break;
-            
+                
+            case '2':
+                if(gamehasbegun && (hit_counter < 3)){ // if the user has pressed start game already
+                    dealt_cards = blackjack.hit(hit_counter);
+
+                    if(hit_counter == 0){
+                        player_card_3 = dealt_cards[dealt_cards.size()-2];
+                        if(blackjack.getdealer()->getMove()=="hit") {
+                            dealer_card_3 = dealt_cards[dealt_cards.size()-1];
+                            continue;
+                        }
+                        refresh();
+                    }
+                    else {
+                        player_card_4 = dealt_cards[9];
+                        // wrefresh(player_card_4);
+                        if(blackjack.getdealer()->getMove()=="hit"){
+                            dealer_card_3 = dealt_cards[dealt_cards.size()-1];
+                            continue;
+                        }
+                        refresh();
+                    }
+                    hit_counter += 1;
+                    break;
             default:
                 break;
+            }
             }
     }
     endwin();
