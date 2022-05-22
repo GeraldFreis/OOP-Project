@@ -3,8 +3,8 @@ all: testall
 testall: output
 	./output
 
-output:  wallet.o game.o game_manager.o window.o bet.o person.o Human.o Safe_dealer.o Dealer.o deck.o card.o blackjack.o main.o
-	g++ wallet.o game.o game_manager.o window.o bet.o person.o Human.o Safe_dealer.o Dealer.o deck.o card.o blackjack.o main.o -lncurses -lform -o output
+output:  wallet.o game.o game_manager.o suits.o window.o bet.o person.o Human.o Safe_dealer.o Dealer.o deck.o card.o blackjack.o main.o
+	g++ wallet.o game.o game_manager.o suits.o window.o bet.o person.o Human.o Safe_dealer.o Dealer.o deck.o card.o blackjack.o main.o -lncurses -lform -o output
 
 wallet.o: Wallet/wallet.h Wallet/wallet.cpp
 	g++ -c Wallet/wallet.cpp
@@ -16,7 +16,10 @@ game_manager.o:	Game_files/game_manager.cpp Game_files/game_manager.h
 	g++ -c Game_files/game_manager.cpp -o game_manager.o
 
 window.o:  Game_files/window.h Game_files/window.cpp 
-	g++ -c Game_files/window.cpp  
+	g++ -c Game_files/window.cpp
+
+suits.o: Deck_files/suits.h Deck_files/suits.cpp
+	g++ -c Deck_files/suits.cpp
 
 bet.o:   Game_files/bet.h Game_files/bet.cpp  
 	g++ -c Game_files/bet.cpp 
