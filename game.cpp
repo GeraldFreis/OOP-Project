@@ -105,11 +105,23 @@ void Game::mainscreen(){ // actual game loop
         refresh();
         Dealer *received_dealer; // dealer object that is returned by blackjack when a change to the cards is made
         Human *received_user; // dealer object that is returned by blackjack when a change to the cards is made
+        std::vector<WINDOW *> screen_object_arr; //vector to hold the screen objects
+
         // while loop used to allow the player to make moves within the round 
         while(stage==1){ 
             entered_stage = true; // so the system knows it has entered the moves loop 
             // initialising the blackjack start function into a vector
-            std::vector<WINDOW *> screen_object_arr = blackjack.game_template();
+            if(game_has_begun == false){
+                screen_object_arr = blackjack.game_template();
+            }
+            else {
+                screen_object_arr = blackjack.game_template(
+                    blackjack.getdealer()->getCards()[0].getName(),
+                    blackjack.getdealer()->getCards()[1].getName(),
+                    blackjack.gethuman()->getCards()[0].getName(),
+                    blackjack.gethuman()->getCards()[1].getName()
+                );
+            }
             std::vector<WINDOW *> dealt_cards; // vector to hold cards dealt at the beginning of the game
 
             // setting up the balance and betamount text
@@ -161,28 +173,28 @@ void Game::mainscreen(){ // actual game loop
             
             // showing the cards that were dealt on the screen as a string
             // // showing the dealer cards on screen
-            mvaddch(15,60, ' ');
-            printw(received_dealer->getCards()[0].getName().c_str());
-            mvaddch(15,90, ' ');
-            printw(received_dealer->getCards()[1].getName().c_str());
-            mvaddch(15,120, ' ');
-            printw(received_dealer->getCards()[2].getName().c_str());
-            mvaddch(15,150, ' ');
-            printw(received_dealer->getCards()[3].getName().c_str());
-            mvaddch(15, 165, ' ');
-            printw(received_dealer->getCards()[4].getName().c_str());
-            refresh();
-            // showing the user's cards on the screen
-            mvaddch(45,60, ' ');
-            printw(received_user->getCards()[0].getName().c_str());
-            mvaddch(45,90, ' ');
-            printw(received_user->getCards()[1].getName().c_str());
-            mvaddch(45,120, ' ');
-            printw(received_user->getCards()[2].getName().c_str());
-            mvaddch(45,150, ' ');
-            printw(received_user->getCards()[3].getName().c_str());
-            mvaddch(45, 165, ' ');
-            printw(received_user->getCards()[4].getName().c_str());
+            // mvaddch(15,60, ' ');
+            // printw(received_dealer->getCards()[0].getName().c_str());
+            // mvaddch(15,90, ' ');
+            // printw(received_dealer->getCards()[1].getName().c_str());
+            // mvaddch(15,120, ' ');
+            // printw(received_dealer->getCards()[2].getName().c_str());
+            // mvaddch(15,150, ' ');
+            // printw(received_dealer->getCards()[3].getName().c_str());
+            // mvaddch(15, 165, ' ');
+            // printw(received_dealer->getCards()[4].getName().c_str());
+            // refresh();
+            // // showing the user's cards on the screen
+            // mvaddch(45,60, ' ');
+            // printw(received_user->getCards()[0].getName().c_str());
+            // mvaddch(45,90, ' ');
+            // printw(received_user->getCards()[1].getName().c_str());
+            // mvaddch(45,120, ' ');
+            // printw(received_user->getCards()[2].getName().c_str());
+            // mvaddch(45,150, ' ');
+            // printw(received_user->getCards()[3].getName().c_str());
+            // mvaddch(45, 165, ' ');
+            // printw(received_user->getCards()[4].getName().c_str());
 
             // depending on users input a move is made 
             int key_input = getch();
@@ -270,27 +282,27 @@ void Game::mainscreen(){ // actual game loop
                 break;
             }
             // print out cards in case they didn't print the first time
-            mvaddch(15,60, ' ');
-            printw(received_dealer->getCards()[0].getName().c_str());
-            mvaddch(15,90, ' ');
-            printw(received_dealer->getCards()[1].getName().c_str());
-            mvaddch(15,120, ' ');
-            printw(received_dealer->getCards()[2].getName().c_str());
-            mvaddch(15,150, ' ');
-            printw(received_dealer->getCards()[3].getName().c_str());
-            mvaddch(15, 165, ' ');
-            printw(received_dealer->getCards()[4].getName().c_str());
-            refresh();
-            mvaddch(45,60, ' ');
-            printw(received_user->getCards()[0].getName().c_str());
-            mvaddch(45,90, ' ');
-            printw(received_user->getCards()[1].getName().c_str());
-            mvaddch(45,120, ' ');
-            printw(received_user->getCards()[2].getName().c_str());
-            mvaddch(45,150, ' ');
-            printw(received_user->getCards()[3].getName().c_str());
-            mvaddch(45, 165, ' ');
-            printw(received_user->getCards()[4].getName().c_str());
+            // mvaddch(15,60, ' ');
+            // printw(received_dealer->getCards()[0].getName().c_str());
+            // mvaddch(15,90, ' ');
+            // printw(received_dealer->getCards()[1].getName().c_str());
+            // mvaddch(15,120, ' ');
+            // printw(received_dealer->getCards()[2].getName().c_str());
+            // mvaddch(15,150, ' ');
+            // printw(received_dealer->getCards()[3].getName().c_str());
+            // mvaddch(15, 165, ' ');
+            // printw(received_dealer->getCards()[4].getName().c_str());
+            // refresh();
+            // mvaddch(45,60, ' ');
+            // printw(received_user->getCards()[0].getName().c_str());
+            // mvaddch(45,90, ' ');
+            // printw(received_user->getCards()[1].getName().c_str());
+            // mvaddch(45,120, ' ');
+            // printw(received_user->getCards()[2].getName().c_str());
+            // mvaddch(45,150, ' ');
+            // printw(received_user->getCards()[3].getName().c_str());
+            // mvaddch(45, 165, ' ');
+            // printw(received_user->getCards()[4].getName().c_str());
         } // stage while loop ended
 
         refresh();
