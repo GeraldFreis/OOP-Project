@@ -31,7 +31,7 @@ WINDOW *Window::create_cards(int xpoint, int ypoint, string cardname){ // creati
     // this card
     card = newwin(16,24, xpoint,ypoint);
     box(card, 0, 0);
-    mvwaddstr(card, 1, 1, cardname.c_str());
+    mvwaddstr(card, 5, 5, cardname.c_str());
     wrefresh(card);
     return card;
 };

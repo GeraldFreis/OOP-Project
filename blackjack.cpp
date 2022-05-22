@@ -167,10 +167,6 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
     // creating the two new cards for the player and then if the dealer decides to play displaying
     // returning their cards as well
     if(hit_number == 0){
-        WINDOW *new_player_card_window = windowtools.create_cards(40, 110);
-        
-        array.push_back(new_player_card_window);
-
         // adding a card to the player
         card user_card = initialised_deck.drawCard();
         initialised_deck.removeLastCard();
@@ -178,13 +174,14 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
         user->addCard(user_card);
         user->setMove("hit");
         user->setCount(); // updating the count to include the new card
+
+        WINDOW *new_player_card_window = windowtools.create_cards(40, 110, user->lastCard());
+        
+        array.push_back(new_player_card_window);
+
     }
 
     else {
-        // initialising the window for the player
-        WINDOW *new_player_card_window = windowtools.create_cards(40, 140);
-        array.push_back(new_player_card_window); // adding the window to the array
-
         // adding a card to the player
         card user_card = initialised_deck.drawCard();
         initialised_deck.removeLastCard();
@@ -192,20 +189,24 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
         user->addCard(user_card);
         user->setMove("hit");
         user->setCount();
+
+        // initialising the window for the player
+        WINDOW *new_player_card_window = windowtools.create_cards(40, 140, user->lastCard());
+        array.push_back(new_player_card_window); // adding the window to the array
     
     }
 
-    // // calling the dealer to check what the dealer wants to do
-    // dealer->Move();
-    // if(dealer->getMove() == "hit"){
-    //     WINDOW *dealer_card_window  = windowtools.create_cards(10, 110);
-    //     array.push_back(dealer_card_window);
-        
-    //     // adding the card to the dealer
-    //     dealer->addCard(initialised_deck.drawCard());
-    //     initialised_deck.removeLastCard();
-    //     dealer->setCount(); // ensuring that the dealer's card_total is updated
-    // }
+    // calling the dealer to check what the dealer wants to do
+    dealer->Move();
+    if(dealer->getMove() == "hit"){        
+        // adding the card to the dealer
+        dealer->addCard(initialised_deck.drawCard());
+        initialised_deck.removeLastCard();
+        dealer->setCount(); // ensuring that the dealer's card_total is updated
+
+        WINDOW *dealer_card_window  = windowtools.create_cards(10, 110, dealer->lastCard());
+        array.push_back(dealer_card_window);
+    }
 
 
     return array;
@@ -223,10 +224,10 @@ std::vector<WINDOW *> Blackjack::stand(){
     }
 
     else { // if the dealer chose to hit
-        WINDOW *dealercard = windowtools.create_cards(10, 110); // creating the card
         dealer->addCard(initialised_deck.drawCard()); // adding the card to the dealer
         initialised_deck.removeLastCard();
 
+        WINDOW *dealercard = windowtools.create_cards(10, 110, dealer->lastCard()); // creating the card
         array.push_back(dealercard); // adding the card to the back of the array
         dealer->setCount(); // ensuring that the count for the dealer is updated
         return array;
