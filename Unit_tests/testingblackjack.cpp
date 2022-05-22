@@ -1,6 +1,8 @@
-#include "blackjack.h"
-#include "Player_files/Human.h"
-#include "Player_files/card.h"
+#include "../blackjack.h"
+#include "../Player_files/Human.h"
+#include "../Player_files/card.h"
+#include "../Player_files/Dealer.h"
+#include <ncurses.h>
 
 #include <iostream>
 #include <string>

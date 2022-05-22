@@ -17,7 +17,7 @@ void Person::setMove(string move) {
 }
 
 string Person::lastCard(){ // function that retrieves the last card delt
-    return lastcard;
+    return this->lastcard;
 }
 
 int Person::getCount(){ // returns the card total
@@ -43,6 +43,7 @@ void Person::addCard(card new_card) {
         }
     }
     this->number_of_cards += 1; // increasing the count of the number of cards
+    this->lastcard = new_card.getName();
 }
 
 bool Person::winGame() { // function to check if the game has been won or lost
