@@ -45,6 +45,7 @@ WINDOW *Window::create_buttons(int xpoint, int ypoint, string buttonname){
     // this button
     button = newwin(3,20, ypoint, xpoint);
     box(button, 0, 0);
+    
     if(buttonname != "Exit (ESC)" && buttonname != "Stand (3)"){
         mvwaddstr(button, 1, 7, buttonname.c_str()); // adding the buttonname to the button
     }
@@ -54,6 +55,7 @@ WINDOW *Window::create_buttons(int xpoint, int ypoint, string buttonname){
     else {
         mvwaddstr(button, 1, 6, buttonname.c_str());
     }
+
     wrefresh(button);
     return button;
 };
