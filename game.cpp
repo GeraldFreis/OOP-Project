@@ -81,13 +81,15 @@ void Game::mainscreen(){ // actual game loop
         hit_counter = 0;
         bool draw = false;
         bool entered_stage = false;
+        // initialising the screen and box position
+        printw("Use the keyboard entries on the buttons to play the game");
+        refresh();
         //get input from user to continue 
         key_input = getch();
         switch (key_input)
             {
             case KEY_ESC:
                 test = false;
-                
                 break;
 
             case ' ':
@@ -98,12 +100,7 @@ void Game::mainscreen(){ // actual game loop
                 break;
             }
         Blackjack blackjack(balance);
-        // initialising the screen and box position
-        printw("Use the keyboard entries on the buttons to play the game");
-        refresh();
-        Dealer *received_dealer; // dealer object that is returned by blackjack when a change to the cards is made
-        Human *received_user; // dealer object that is returned by blackjack when a change to the cards is made
-        std::vector<WINDOW *> screen_object_arr; //vector to hold the screen objects
+        std::vector<WINDOW *> screen_object_arr; //vector to hold the screen objects (Cards, buttons etc.)
 
         // while loop used to allow the player to make moves within the round 
         while(stage==1){ 
@@ -128,9 +125,6 @@ void Game::mainscreen(){ // actual game loop
 
             string betamount_string = std::to_string(bet_amount);
             char const *betamount_char = betamount_string.c_str();
-
-            received_dealer = blackjack.getdealer(); // holds the dealer 
-            received_user = blackjack.gethuman(); // holds the user
 
             // setting each object on the screen to the created screen object
             dealer_card_1 = screen_object_arr[0]; // dealers cards
@@ -200,37 +194,19 @@ void Game::mainscreen(){ // actual game loop
                 break;
             case '3':
                 if(game_has_begun) {
-                    received_user->setMove("stand");
-                    if(dealer_chosen){
-                        if(blackjack.getdealer()->getCount() >14){
-                            received_dealer->setMove("stand");
-                        }
-                        else{
-                            received_dealer->setMove("hit");
-                        }
+                    dealt_cards = blackjack.stand();
+                    // if dealer has chosen to stand then ends the move loop 
+                    if(blackjack->getdealer()->getMove() == "stand"){ // if the dealer chose to stand
+                        entered_stage = true;
                     }
                     else{
-                        if(blackjack.getdealer()->getCount() > 20){
-                            received_dealer->setMove("stand");
-                        }
-                        else{
-                            received_dealer->setMove("hit");
-                        }
-                    }
-                    // if dealer has chosen to stand than ends the move loop 
-                    if(received_dealer->getMove() == "stand"){ // if the dealer chose to stand
-                        // user_win = true;
-                        stage++;
-                        endwin();
-                    }
-                    else{
-                        dealt_cards = blackjack.stand();
                         if(blackjack.getdealer()->getMove() == "hit"){ // if the dealer chose to hit
                             dealer_card_3 = dealt_cards[10];
                         }
                     } 
                 }
                 break;
+
             case '4':
                 //switches the dealer by pressing the button once
                 if(dealer_chosen){
@@ -300,5 +276,3 @@ void Game::mainscreen(){ // actual game loop
 int Game::get_balance() {
     return balance;
 }
-
-

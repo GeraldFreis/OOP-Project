@@ -28,22 +28,4 @@ void Dealer::printCardDealer(int num){
     cout << card_array[num-1].getName() << " " << card_array[num-1].getValue() << std::endl;
 }
 
-// int Dealer::getCountDealer(){
-//     card_total =0;  
-//     for(int i=0; i<5; i++){ 
-//         card_total = card_total + card_array[i].getValue();
-//     }
-//     return card_total;
-// }
-
-// void Dealer::dealerMove(){                                       
-// }
-
-// string Dealer::getMoves(){                              
-//     return "lol";
-// }
-
-// void Dealer::hit(){
-// }
-
 Dealer::~Dealer(){delete [] card_array;}
