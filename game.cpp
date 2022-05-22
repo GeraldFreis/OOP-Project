@@ -83,6 +83,30 @@ void Game::mainscreen(){ // actual game loop
         keypad(stdscr, FALSE);
         key_input = getch();
 
+        bool dealer_chosen = false;
+        // printw("Would you like to vs a safe or risky dealer?");
+        // printw("Press one for safe");
+        // printw("Press two for risky");
+        // refresh();
+        // switch (key_input)
+        //     {
+        //     case 1:
+        //         safe_dealer_chosen = true ;
+        //         break;
+
+        //     case KEY_ESC:
+        //         test = false;
+        //         stage=1;
+        //         break;
+
+        //     default:
+        //         break;
+        //     }
+        
+
+
+
+
         switch (key_input)
             {
             case KEY_ESC:
@@ -178,7 +202,16 @@ void Game::mainscreen(){ // actual game loop
             // refresh();
 
             // adding the text:
-            mvaddstr(8,50,"Dealer's cards: ");
+            if(dealer_chosen){
+                mvaddstr(8,50,"Safe ");
+                mvaddstr(8,55,"Dealer's cards: ");
+            }
+            else{
+                mvaddstr(8,50,"Risky ");
+                mvaddstr(8,56,"Dealer's cards: ");
+            }
+            
+            
             mvaddstr(38,50,"Player's cards: ");
 
             mvaddstr(31,10, "Player balance: ");
@@ -286,11 +319,21 @@ void Game::mainscreen(){ // actual game loop
                 if(game_has_begun) {
                     received_user->setMove("stand");
 
-                    if(blackjack.getdealer()->getCount() >15){
-                        received_dealer->setMove("stand");
+                    if(dealer_chosen){
+                        if(blackjack.getdealer()->getCount() >14){
+                            received_dealer->setMove("stand");
+                        }
+                        else{
+                            received_dealer->setMove("hit");
+                        }
                     }
                     else{
-                        received_dealer->setMove("hit");
+                        if(blackjack.getdealer()->getCount() >20){
+                            received_dealer->setMove("stand");
+                        }
+                        else{
+                            received_dealer->setMove("hit");
+                        }
                     }
 
 
@@ -306,6 +349,14 @@ void Game::mainscreen(){ // actual game loop
                         }
                     }
                     
+                }
+                break;
+            case '4':
+                if(dealer_chosen){
+                    dealer_chosen = false; 
+                }
+                else{
+                    dealer_chosen = true;
                 }
                 break;
 

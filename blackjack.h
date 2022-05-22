@@ -57,6 +57,7 @@ class Blackjack: public Bet {
         std::vector<WINDOW *> stand();
         string winner(); // function that returns a string of who won the game
         bool bust(); // checks if either the dealer or user is bust
+       
 
         Human *gethuman();
         Dealer *getdealer();
