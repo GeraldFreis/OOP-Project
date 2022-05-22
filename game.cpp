@@ -1,5 +1,5 @@
 #include "game.h"
-
+#define KEY_ESC 27
 
 Game::Game(){
     balance = 1000;
@@ -82,12 +82,12 @@ void Game::mainscreen(){ // actual game loop
 
         switch (key_input)
             {
-            case '1':
+            case KEY_ESC:
                 test = false;
                 
                 break;
 
-            case '0':
+            case ' ':
                 stage=1;
 
                 break;
@@ -105,7 +105,7 @@ void Game::mainscreen(){ // actual game loop
 
         // initialising the screen and box position
 
-        printw("Press the number 1 to exit, and any other key to move to the game window");
+        printw("Use the keyboard entries on the buttons to play the game");
         refresh();
 
 
@@ -113,8 +113,9 @@ void Game::mainscreen(){ // actual game loop
         Dealer *received_dealer; // dealer object that is returned by blackjack when a change to the cards is made
         Human *received_user; // dealer object that is returned by blackjack when a change to the cards is made
 
-
+        bool entered_stage = false;
         while(stage==1){    
+            entered_stage = true;
             //nodelay(stdscr, TRUE);
             
             // initialising the blackjack start function into a vector
@@ -148,8 +149,8 @@ void Game::mainscreen(){ // actual game loop
             // refresh();
 
             // adding the text:
-            mvaddstr(7,89,"Dealer's cards: ");
-            mvaddstr(37,89,"Player's cards: ");
+            mvaddstr(8,50,"Dealer's cards: ");
+            mvaddstr(38,50,"Player's cards: ");
 
             mvaddstr(31,10, "Player balance: ");
             mvaddstr(31,28, balance_char);
@@ -158,40 +159,40 @@ void Game::mainscreen(){ // actual game loop
 
             // setting up the buttons text
             // start button
-            mvaddstr(11, 16, "Start (s)");
+            mvaddstr(11, 16, "Start (1)");
             // hit button
             mvaddstr(16, 17, "Hit (2)");
             // stand button
             mvaddstr(21, 16, "Stand (3)");
             // double button
-            mvaddstr(26, 16, "Double (4)");
+            mvaddstr(26, 16, "Exit (ESC)");
 
         
             
             // showing the cards that were dealt on the screen as a string
 
             // // showing the dealer cards on screen
-            mvaddch(15,80, ' ');
+            mvaddch(15,60, ' ');
             printw(received_dealer->getCards()[0].getName().c_str());
-            mvaddch(15,110, ' ');
+            mvaddch(15,90, ' ');
             printw(received_dealer->getCards()[1].getName().c_str());
-            mvaddch(15,130, ' ');
+            mvaddch(15,120, ' ');
             printw(received_dealer->getCards()[2].getName().c_str());
-            mvaddch(15,160, ' ');
+            mvaddch(15,150, ' ');
             printw(received_dealer->getCards()[3].getName().c_str());
-            mvaddch(15, 185, ' ');
+            mvaddch(15, 165, ' ');
             printw(received_dealer->getCards()[4].getName().c_str());
             refresh();
             // showing the user's cards on the screen
-            mvaddch(45,80, ' ');
+            mvaddch(45,60, ' ');
             printw(received_user->getCards()[0].getName().c_str());
-            mvaddch(45,110, ' ');
+            mvaddch(45,90, ' ');
             printw(received_user->getCards()[1].getName().c_str());
-            mvaddch(45,130, ' ');
+            mvaddch(45,120, ' ');
             printw(received_user->getCards()[2].getName().c_str());
-            mvaddch(45,160, ' ');
+            mvaddch(45,150, ' ');
             printw(received_user->getCards()[3].getName().c_str());
-            mvaddch(45, 185, ' ');
+            mvaddch(45, 165, ' ');
             printw(received_user->getCards()[4].getName().c_str());
             // refresh();
 
@@ -199,12 +200,12 @@ void Game::mainscreen(){ // actual game loop
 
             switch (key_input)
             {
-            case '1':
+            case KEY_ESC:
                 test = false;
                 stage ++;
                 break;
 
-            case 's':
+            case '1':
                 if(game_has_begun == false){
                     dealt_cards = blackjack.start_game();
                     bet_amount = blackjack.get_bet_amount();
@@ -219,24 +220,10 @@ void Game::mainscreen(){ // actual game loop
                     // refresh();
                     //key_input=getch(); //does this help
                     
-                    
                 }
                 game_has_begun = true;
 
-            default:
-                break;
-            }
-
-            // refresh();
         
-            // key_input = getch();
-
-            switch (key_input)
-            {
-            case '1':
-                test = false;
-                break;
-
             case '2':
                 if(game_has_begun && (hit_counter < 3)){ // if the user has pressed start game already
                     dealt_cards = blackjack.hit(hit_counter);
@@ -285,7 +272,7 @@ void Game::mainscreen(){ // actual game loop
                         key_input = getch();
                         switch (key_input)
                         {
-                        case '1':
+                        case KEY_ESC:
                             stage++;
                             test = false;
                             end_test = false;
@@ -337,7 +324,7 @@ void Game::mainscreen(){ // actual game loop
                         key_input = getch();
                         switch (key_input)
                         {
-                        case '1':
+                        case KEY_ESC:
                             stage++;
                             test = false;
                             end_test = false;
@@ -367,6 +354,29 @@ void Game::mainscreen(){ // actual game loop
             // window_tools.end_win(player_card_2);
             // clear();
             // endwin();
+
+            mvaddch(15,60, ' ');
+            printw(received_dealer->getCards()[0].getName().c_str());
+            mvaddch(15,90, ' ');
+            printw(received_dealer->getCards()[1].getName().c_str());
+            mvaddch(15,120, ' ');
+            printw(received_dealer->getCards()[2].getName().c_str());
+            mvaddch(15,150, ' ');
+            printw(received_dealer->getCards()[3].getName().c_str());
+            mvaddch(15, 165, ' ');
+            printw(received_dealer->getCards()[4].getName().c_str());
+            refresh();
+            // showing the user's cards on the screen
+            mvaddch(45,60, ' ');
+            printw(received_user->getCards()[0].getName().c_str());
+            mvaddch(45,90, ' ');
+            printw(received_user->getCards()[1].getName().c_str());
+            mvaddch(45,120, ' ');
+            printw(received_user->getCards()[2].getName().c_str());
+            mvaddch(45,150, ' ');
+            printw(received_user->getCards()[3].getName().c_str());
+            mvaddch(45, 165, ' ');
+            printw(received_user->getCards()[4].getName().c_str());
         }
         // refresh();
     }
