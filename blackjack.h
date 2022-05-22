@@ -39,7 +39,7 @@ class Blackjack: public Bet {
         int bet_amount;
         Window windowtools;
         Bet *betting;
-        std::vector<WINDOW *> Windowarray; 
+        std::vector<WINDOW *> array;
         Human *user;
         Dealer *dealer;
         deck initialised_deck;
@@ -57,14 +57,11 @@ class Blackjack: public Bet {
         std::vector<WINDOW *> stand();
         string winner(); // function that returns a string of who won the game
         bool bust(); // checks if either the dealer or user is bust
-       
 
         Human *gethuman();
         Dealer *getdealer();
         int usercount();
         int dealercount();
-
-        std::vector<WINDOW *> getarray();
 
 
         int get_bet_amount(); // from Bet

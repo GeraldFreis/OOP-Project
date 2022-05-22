@@ -55,17 +55,17 @@ std::vector<WINDOW *> Blackjack::game_template(){
     // double button
     WINDOW *double_button = windowtools.create_buttons(10, 25);
 
-    // adding each window to the window Windowarray that will be returned
-    Windowarray.push_back(dealer_card_1);
-    Windowarray.push_back(dealer_card_2);
-    Windowarray.push_back(player_card_1);
-    Windowarray.push_back(player_card_2);
-    Windowarray.push_back(start_button);
-    Windowarray.push_back(hit_button);
-    Windowarray.push_back(stand_button);
-    Windowarray.push_back(double_button);
+    // adding each window to the window array that will be returned
+    array.push_back(dealer_card_1);
+    array.push_back(dealer_card_2);
+    array.push_back(player_card_1);
+    array.push_back(player_card_2);
+    array.push_back(start_button);
+    array.push_back(hit_button);
+    array.push_back(stand_button);
+    array.push_back(double_button);
 
-    return Windowarray;
+    return array;
 }
 
 
@@ -123,11 +123,8 @@ std::vector<WINDOW *> Blackjack::game_template(string a, string b, string c, str
 
 
 // starting the game protocol (gives the user and dealer 2 cards)
-std::vector<WINDOW *> Blackjack::start_game(){ 
-    // getting the bet amount 
-    betting->set_bet_amount();
-    bet_amount = betting->get_bet_amount();
-
+std::vector<WINDOW *> Blackjack::start_game(){
+    
     // adding the cards to the player and dealer and retrieving the cards
     // initialising the deck
 
@@ -138,33 +135,46 @@ std::vector<WINDOW *> Blackjack::start_game(){
         initialised_deck.removeLastCard();
     }
 
-    // initialising the windows for the dealer
-    dealer->addCard(cards[2]);
-    WINDOW *dealer_card_1_window = windowtools.create_cards(10,70, dealer->lastCard());
-    dealer->addCard(cards[3]); // giving the user the next card
-    WINDOW *dealer_card_2_window = windowtools.create_cards(10,100, dealer->lastCard());
-
-    // initialising the windows for the user
+    // adding the cards to the user and dealer
     user->addCard(cards[0]);
-    WINDOW *player_card_1_window = windowtools.create_cards(40, 70, user->lastCard());
     user->addCard(cards[1]);
-    WINDOW *player_card_2_window = windowtools.create_cards(40, 100, user->lastCard());
-
-    // erasing the pre-existing dealer and player cards
-    //Windowarray.erase(Windowarray.begin(), Windowarray.begin()+3);
-
-
-    Windowarray[0] = dealer_card_1_window;
-    Windowarray[1] = dealer_card_2_window;
-
-    Windowarray[2] = player_card_1_window;
-    Windowarray[3] = player_card_2_window;
-
-    // ensuring both the dealer and user are updated with the most recent card_totals
-    dealer->setCount();
     user->setCount();
 
-    return Windowarray;
+    dealer->addCard(cards[2]);
+    dealer->addCard(cards[3]);
+    dealer->setCount();
+    // initialising the card windows
+    // dealer->getCards()[0].getName().c_str()
+    WINDOW *dealer_card_1_window = windowtools.create_cards(10,50);
+    WINDOW *dealer_card_2_window = windowtools.create_cards(10,80);
+
+    // creating the players cards
+    WINDOW *player_card_1_window = windowtools.create_cards(40, 50);
+    WINDOW *player_card_2_window = windowtools.create_cards(40, 80);
+
+    // WINDOW *dealer_card_1_window = windowtools.create_cards(10,50, cards[2].getName());
+    // WINDOW *dealer_card_2_window = windowtools.create_cards(10,80, cards[3].getName());
+
+    // // creating the players cards
+    // WINDOW *player_card_1_window = windowtools.create_cards(40, 50, cards[0].getName());
+    // WINDOW *player_card_2_window = windowtools.create_cards(40, 80, cards[1].getName());
+
+    // erasing the pre-existing dealer and player cards
+    array.erase(array.begin(), array.begin()+3);
+
+
+    array[0] = dealer_card_1_window;
+    array[1] = dealer_card_2_window;
+
+    array[2] = player_card_1_window;
+    array[3] = player_card_2_window;
+
+    // getting the bet amount
+    betting->set_bet_amount();
+    bet_amount = betting->get_bet_amount();
+
+    return array;
+
 }
 
 // hit protocol (if user decides to hit)
@@ -184,10 +194,6 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
         user->addCard(user_card);
         user->setMove("hit");
         user->setCount(); // updating the count to include the new card
-        WINDOW *new_player_card_window = windowtools.create_cards(40, 130, user->lastCard());
-        
-        Windowarray.push_back(new_player_card_window);
-
     }
 
     else {
@@ -202,27 +208,23 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
         user->addCard(user_card);
         user->setMove("hit");
         user->setCount();
-
-        // initialising the window for the player
-        WINDOW *new_player_card_window = windowtools.create_cards(40, 160, user->lastCard());
-        Windowarray.push_back(new_player_card_window); // adding the window to the array
+    
     }
 
-    // calling the dealer to check what the dealer wants to do
-    dealer->Move();
-    if(dealer->getMove() == "hit"){
-        // adding the card to the dealer
-        dealer->addCard(initialised_deck.drawCard());
-        initialised_deck.removeLastCard();
-        dealer->setCount(); // ensuring that the dealer's card_total is updated
-
-        WINDOW *dealer_card_window  = windowtools.create_cards(10, 130, dealer->lastCard());
-        Windowarray.push_back(dealer_card_window);
+    // // calling the dealer to check what the dealer wants to do
+    // dealer->Move();
+    // if(dealer->getMove() == "hit"){
+    //     WINDOW *dealer_card_window  = windowtools.create_cards(10, 110);
+    //     array.push_back(dealer_card_window);
         
-    }
+    //     // adding the card to the dealer
+    //     dealer->addCard(initialised_deck.drawCard());
+    //     initialised_deck.removeLastCard();
+    //     dealer->setCount(); // ensuring that the dealer's card_total is updated
+    // }
 
 
-    return Windowarray;
+    return array;
 }
 
 // protocol if the user hits stand
@@ -233,17 +235,17 @@ std::vector<WINDOW *> Blackjack::stand(){
 
 
     if(dealer->getMove() == "stand"){ // if the dealer chose to stand
-        return Windowarray;
+        return array;
     }
 
     else { // if the dealer chose to hit
+        WINDOW *dealercard = windowtools.create_cards(10, 110); // creating the card
         dealer->addCard(initialised_deck.drawCard()); // adding the card to the dealer
         initialised_deck.removeLastCard();
-        WINDOW *dealercard = windowtools.create_cards(10, 130, dealer->lastCard()); // creating the card
-        
-        Windowarray.push_back(dealercard); // adding the card to the back of the array
+
+        array.push_back(dealercard); // adding the card to the back of the array
         dealer->setCount(); // ensuring that the count for the dealer is updated
-        return Windowarray;
+        return array;
     }
 };
 
@@ -314,15 +316,8 @@ int Blackjack::usercount() {
     return user->getCount();
 }
 
-// returning the user and dealer cards
-std::vector<WINDOW *> Blackjack::getarray(){
-    return Windowarray;
-}
-
 Blackjack::~Blackjack(){
     delete betting;
     delete dealer;
     delete user;
 }
-
-
