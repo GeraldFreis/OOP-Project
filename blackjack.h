@@ -39,7 +39,7 @@ class Blackjack: public Bet {
         int bet_amount;
         Window windowtools;
         Bet *betting;
-        std::vector<WINDOW *> array;
+        std::vector<WINDOW *> Windowarray; 
         Human *user;
         Dealer *dealer;
         deck initialised_deck;
@@ -63,6 +63,8 @@ class Blackjack: public Bet {
         Dealer *getdealer();
         int usercount();
         int dealercount();
+
+        std::vector<WINDOW *> getarray();
 
 
         int get_bet_amount(); // from Bet
