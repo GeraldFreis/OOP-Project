@@ -288,6 +288,7 @@ void Game::mainscreen(){ // actual game loop
             }   
             // showing the cards that were dealt on the screen as a string
             // showing the dealer cards on screen
+
             mvaddch(15,60, ' ');
             printw(received_dealer->getCards()[0].getName().c_str());
             mvaddch(15,90, ' ');
