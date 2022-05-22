@@ -121,32 +121,24 @@ void Game::mainscreen(){ // actual game loop
         Human *received_user; // dealer object that is returned by blackjack when a change to the cards is made
 
         bool entered_stage = false;
-        // string a = "hi";
-        // string b = " ";
-        // string c = " ";
-        // string d = " ";
+        std::vector<WINDOW *> screen_object_arr;
 
         while(stage==1){   
 
-            // if(entered_stage == false){
-            //     std::vector<WINDOW *> screen_object_arr = blackjack.game_template();
-            // }
-
-            // if(entered_stage){
-            //     string a = received_dealer->getCards()[0].getName().c_str();
-            //     string b = received_dealer->getCards()[1].getName().c_str();
-            //     string c = received_user->getCards()[0].getName().c_str();
-            //     string d = received_user->getCards()[1].getName().c_str();
-            // }
             entered_stage = true;
-            //nodelay(stdscr, TRUE);
-            std::vector<WINDOW *> screen_object_arr = blackjack.game_template();
+            if(game_has_begun == false){
             // initialising the blackjack start function into a vector
-            
-
-           
-
-            
+                screen_object_arr = blackjack.game_template();
+            }
+            else {
+                screen_object_arr = blackjack.game_template(
+                    blackjack.getdealer()->getCards()[0].getName(),
+                    blackjack.getdealer()->getCards()[1].getName(),
+                    blackjack.gethuman()->getCards()[0].getName(),
+                    blackjack.gethuman()->getCards()[1].getName()
+                );
+            }
+        
 
             std::vector<WINDOW *> dealt_cards; // vector to hold cards dealt at the beginning of the game
 

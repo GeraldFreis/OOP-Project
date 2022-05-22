@@ -69,15 +69,15 @@ std::vector<WINDOW *> Blackjack::game_template(){
 }
 
 
-std::vector<WINDOW *> Blackjack::game_template(string a, string b, string c, string d){
+std::vector<WINDOW *> Blackjack::game_template(string dealer_1, string dealer_2, string player_1, string player_2){
 
     // creating the dealers cards
-    WINDOW *dealer_card_1 = windowtools.create_cards(10, 50, a);
-    WINDOW *dealer_card_2 = windowtools.create_cards(10, 80, b);
+    WINDOW *dealer_card_1 = windowtools.create_cards(10, 50, dealer_1);
+    WINDOW *dealer_card_2 = windowtools.create_cards(10, 80, dealer_2);
 
     // creating the players cards
-    WINDOW *player_card_1 = windowtools.create_cards(40, 50, c);
-    WINDOW *player_card_2 = windowtools.create_cards(40, 80, d);
+    WINDOW *player_card_1 = windowtools.create_cards(40, 50, player_1);
+    WINDOW *player_card_2 = windowtools.create_cards(40, 80, player_2);
 
     // creating the buttons
     // start button
@@ -104,22 +104,6 @@ std::vector<WINDOW *> Blackjack::game_template(string a, string b, string c, str
 
     return array;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // starting the game protocol (gives the user and dealer 2 cards)
