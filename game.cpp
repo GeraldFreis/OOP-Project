@@ -210,7 +210,7 @@ void Game::mainscreen(){ // actual game loop
                         }
                     }
                     else{
-                        if(blackjack.getdealer()->getCount() >20){
+                        if(blackjack.getdealer()->getCount() > 20){
                             received_dealer->setMove("stand");
                         }
                         else{
