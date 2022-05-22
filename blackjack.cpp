@@ -44,16 +44,16 @@ std::vector<WINDOW *> Blackjack::game_template(){
 
     // creating the buttons
     // start button
-    WINDOW *start_button = windowtools.create_buttons(10, 10);
+    WINDOW *start_button = windowtools.create_buttons(10, 10, "Start (1)");
 
     // hit button
-    WINDOW *hit_button = windowtools.create_buttons(10, 15);
+    WINDOW *hit_button = windowtools.create_buttons(10, 15, "Hit (2)");
 
     // stand button
-    WINDOW *stand_button = windowtools.create_buttons(10, 20);
+    WINDOW *stand_button = windowtools.create_buttons(10, 20, "Stand (3)");
 
     // double button
-    WINDOW *double_button = windowtools.create_buttons(10, 25);
+    WINDOW *escape_button = windowtools.create_buttons(10, 25, "Exit (ESC)");
 
     // adding each window to the window array that will be returned
     array.push_back(dealer_card_1);
@@ -63,7 +63,7 @@ std::vector<WINDOW *> Blackjack::game_template(){
     array.push_back(start_button);
     array.push_back(hit_button);
     array.push_back(stand_button);
-    array.push_back(double_button);
+    array.push_back(escape_button);
 
     return array;
 }
@@ -81,16 +81,16 @@ std::vector<WINDOW *> Blackjack::game_template(string dealer_1, string dealer_2,
 
     // creating the buttons
     // start button
-    WINDOW *start_button = windowtools.create_buttons(10, 10);
+    WINDOW *start_button = windowtools.create_buttons(10, 10, "Start (1)");
 
     // hit button
-    WINDOW *hit_button = windowtools.create_buttons(10, 15);
+    WINDOW *hit_button = windowtools.create_buttons(10, 15, "Hit (2)");
 
     // stand button
-    WINDOW *stand_button = windowtools.create_buttons(10, 20);
+    WINDOW *stand_button = windowtools.create_buttons(10, 20, "Stand (3)");
 
     // double button
-    WINDOW *double_button = windowtools.create_buttons(10, 25);
+    WINDOW *escape_button = windowtools.create_buttons(10, 25, "Exit (ESC)");
 
     // adding each window to the window array that will be returned
     array.push_back(dealer_card_1);
@@ -100,7 +100,7 @@ std::vector<WINDOW *> Blackjack::game_template(string dealer_1, string dealer_2,
     array.push_back(start_button);
     array.push_back(hit_button);
     array.push_back(stand_button);
-    array.push_back(double_button);
+    array.push_back(escape_button);
 
     return array;
 }

@@ -64,8 +64,6 @@ Game::~Game(){
     cout << "Thanks for playing" << "\n";
 }
 
-
-
 void Game::mainscreen(){ // actual game loop
     bool test = true; // variable to control the game loop and end if the game is over
     int stage = 1; // variable to control what stage we are in (i.e what screen to show)
@@ -155,46 +153,10 @@ void Game::mainscreen(){ // actual game loop
             }
             mvaddstr(38,50,"Player's cards: ");
             mvaddstr(31,10, "Player balance: ");
+
             mvaddstr(31,28, balance_char);
             mvaddstr(33,10, "Bet amount: ");
             mvaddstr(33,28, betamount_char);
-
-            // setting up the buttons text
-            // start button
-            mvaddstr(11, 16, "Start (1)");
-            // hit button
-            mvaddstr(16, 17, "Hit (2)");
-            // stand button
-            mvaddstr(21, 16, "Stand (3)");
-            // double button
-            mvaddstr(26, 16, "Exit (ESC)");
-
-        
-            
-            // showing the cards that were dealt on the screen as a string
-            // // showing the dealer cards on screen
-            // mvaddch(15,60, ' ');
-            // printw(received_dealer->getCards()[0].getName().c_str());
-            // mvaddch(15,90, ' ');
-            // printw(received_dealer->getCards()[1].getName().c_str());
-            // mvaddch(15,120, ' ');
-            // printw(received_dealer->getCards()[2].getName().c_str());
-            // mvaddch(15,150, ' ');
-            // printw(received_dealer->getCards()[3].getName().c_str());
-            // mvaddch(15, 165, ' ');
-            // printw(received_dealer->getCards()[4].getName().c_str());
-            // refresh();
-            // // showing the user's cards on the screen
-            // mvaddch(45,60, ' ');
-            // printw(received_user->getCards()[0].getName().c_str());
-            // mvaddch(45,90, ' ');
-            // printw(received_user->getCards()[1].getName().c_str());
-            // mvaddch(45,120, ' ');
-            // printw(received_user->getCards()[2].getName().c_str());
-            // mvaddch(45,150, ' ');
-            // printw(received_user->getCards()[3].getName().c_str());
-            // mvaddch(45, 165, ' ');
-            // printw(received_user->getCards()[4].getName().c_str());
 
             // depending on users input a move is made 
             int key_input = getch();
@@ -281,28 +243,6 @@ void Game::mainscreen(){ // actual game loop
             default:
                 break;
             }
-            // print out cards in case they didn't print the first time
-            // mvaddch(15,60, ' ');
-            // printw(received_dealer->getCards()[0].getName().c_str());
-            // mvaddch(15,90, ' ');
-            // printw(received_dealer->getCards()[1].getName().c_str());
-            // mvaddch(15,120, ' ');
-            // printw(received_dealer->getCards()[2].getName().c_str());
-            // mvaddch(15,150, ' ');
-            // printw(received_dealer->getCards()[3].getName().c_str());
-            // mvaddch(15, 165, ' ');
-            // printw(received_dealer->getCards()[4].getName().c_str());
-            // refresh();
-            // mvaddch(45,60, ' ');
-            // printw(received_user->getCards()[0].getName().c_str());
-            // mvaddch(45,90, ' ');
-            // printw(received_user->getCards()[1].getName().c_str());
-            // mvaddch(45,120, ' ');
-            // printw(received_user->getCards()[2].getName().c_str());
-            // mvaddch(45,150, ' ');
-            // printw(received_user->getCards()[3].getName().c_str());
-            // mvaddch(45, 165, ' ');
-            // printw(received_user->getCards()[4].getName().c_str());
         } // stage while loop ended
 
         refresh();

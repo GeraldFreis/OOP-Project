@@ -33,20 +33,27 @@ WINDOW *Window::create_cards(int xpoint, int ypoint, string cardname){ // creati
     // this card
     card = newwin(16,24, xpoint,ypoint);
     box(card, 0, 0);
-    mvwaddstr(card, 5, 5, cardname.c_str());
+    mvwaddstr(card, 5, 5, cardname.c_str()); // adding the cardname to the card
+
     wrefresh(card);
     return card;
 };
 
-WINDOW *Window::create_buttons(int xpoint, int ypoint){
+WINDOW *Window::create_buttons(int xpoint, int ypoint, string buttonname){
     WINDOW *button; // initialising the buttons
 
     // this button
     button = newwin(3,20, ypoint, xpoint);
     box(button, 0, 0);
-
-    // attroff(COLOR_PAIR(1)); // turning the colour off
-    
+    if(buttonname != "Exit (ESC)" && buttonname != "Stand (3)"){
+        mvwaddstr(button, 1, 7, buttonname.c_str()); // adding the buttonname to the button
+    }
+    else if(buttonname == "Exit (ESC)"){
+        mvwaddstr(button, 1, 5, buttonname.c_str());
+    }
+    else {
+        mvwaddstr(button, 1, 6, buttonname.c_str());
+    }
     wrefresh(button);
     return button;
 };
