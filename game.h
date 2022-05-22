@@ -5,8 +5,8 @@
 
 #include "Game_files/window.h"
 #include "Game_files/bet.h"
+#include "Game_files/game_manager.h"
 #include "blackjack.h"
-// #include "Player_files/Dealer.h"
 #include "Player_files/Human.h"
 #include "Player_files/Safe_dealer.h"
 
@@ -65,8 +65,8 @@ class Game: public Blackjack {
         WINDOW *betting_window;
 
         WINDOW *winner;
-
-
+        
+        Game_manager manager;
 
     public:
         // constructors

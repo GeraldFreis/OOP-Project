@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ncurses.h>
+#include "../Deck_files/suits.h"
 #ifndef WINDOW_H
 #define WINDOW_H
 using std::string;
