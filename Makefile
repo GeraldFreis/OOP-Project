@@ -4,13 +4,16 @@ testall: output
 	./output
 
 output:  wallet.o game.o window.o bet.o person.o Human.o Safe_dealer.o Dealer.o deck.o card.o blackjack.o main.o
-	g++ wallet.o game.o window.o bet.o person.o Human.o Safe_dealer.o Dealer.o deck.o card.o blackjack.o main.o -lncurses -lform -o output
+	g++ wallet.o game.o game_manager.o window.o bet.o person.o Human.o Safe_dealer.o Dealer.o deck.o card.o blackjack.o main.o -lncurses -lform -o output
 
 wallet.o: Wallet/wallet.h Wallet/wallet.cpp
 	g++ -c Wallet/wallet.cpp
 
 game.o:	game.cpp game.h 
-	g++ -c game.cpp 
+	g++ -c game.cpp
+
+game_manager.o:	Game_files/game_manager.cpp Game_files/game_manager.h
+	g++ -c Game_files/game_manager.cpp -o game_manager.o
 
 window.o:  Game_files/window.h Game_files/window.cpp 
 	g++ -c Game_files/window.cpp  

@@ -1,5 +1,3 @@
-
-
 #include "game.h"
 #define KEY_ESC 27
 
@@ -30,6 +28,7 @@ Game::Game(){
 
     // the winner window
     WINDOW *winner;
+    Game_manager manager(balance);
 }
 
 Game::Game(int _balance){
@@ -58,6 +57,7 @@ Game::Game(int _balance){
 
     // the winner window
     WINDOW *winner;
+    Game_manager manager(balance);
 }
 
 Game::~Game(){
@@ -196,7 +196,7 @@ void Game::mainscreen(){ // actual game loop
                 if(game_has_begun) {
                     dealt_cards = blackjack.stand();
                     // if dealer has chosen to stand then ends the move loop 
-                    if(blackjack->getdealer()->getMove() == "stand"){ // if the dealer chose to stand
+                    if(blackjack.getdealer()->getMove() == "stand"){ // if the dealer chose to stand
                         entered_stage = true;
                     }
                     else{
@@ -223,18 +223,9 @@ void Game::mainscreen(){ // actual game loop
 
         refresh();
         if(entered_stage){
-            // checks who won to distibute money 
-            if(blackjack.getdealer()->getCount()>21 || blackjack.gethuman()->getCount() > blackjack.getdealer()->getCount()) {
-                balance = balance + bet_amount;
-            }
-            else if(blackjack.gethuman()->getCount()>21 || blackjack.gethuman()->getCount() < blackjack.getdealer()->getCount()) {
-                balance = balance - bet_amount;
-            }
-            else {
-                draw = true;
-            }
-            
-            if(draw){
+            manager.calcbalance(bet_amount, blackjack.gethuman(), blackjack.getdealer());
+            balance = manager.getbalance();
+            if(manager.isdraw() == true){
                 mvaddstr(30, 90, "No winner. Bet returned.");
             }
             else{   
