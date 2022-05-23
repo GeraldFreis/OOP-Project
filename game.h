@@ -37,6 +37,8 @@ class Game: public Blackjack {
         int hit_counter;
         int stand_counter;
 
+        WINDOW *MainWindow;
+
         // initialising the cards for the screen
         // dealer cards
         WINDOW *dealer_card_1; // dealer card 1 

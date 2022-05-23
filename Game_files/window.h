@@ -29,6 +29,7 @@ class Window{
         WINDOW *create_buttons(int xpoint, int ypoint, string buttonname); // creates a button in the window at point x and y
         WINDOW *bet_window(int size);
         WINDOW *winner_window();
+        WINDOW *main_window();
         ~Window();
 };
 

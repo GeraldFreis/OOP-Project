@@ -11,7 +11,6 @@ Game::Game(){
 
     Window window_tools;
     Blackjack blackjack(balance);
-    Game_manager manager(balance);
 }
 
 Game::Game(int _balance){
@@ -22,7 +21,6 @@ Game::Game(int _balance){
     stand_counter = 0;
     Window window_tools;
     Blackjack blackjack(balance);
-    Game_manager manager(balance);
 }
 
 Game::~Game(){
@@ -34,6 +32,8 @@ void Game::mainscreen(){ // actual game loop
     bool dealer_chosen = false; // variable to control whether vs a risky or safe dealer 
 
     while(test){ //while loop to allow the user to play round after round 
+        MainWindow = window_tools.main_window();
+        Game_manager manager(balance);
         initscr();
         clear();
         noecho();
@@ -50,20 +50,8 @@ void Game::mainscreen(){ // actual game loop
         printw("Use the keyboard entries on the buttons to play the game");
         refresh();
         //get input from user to continue 
-        int key_input = getch();
-        switch (key_input)
-            {
-            case KEY_ESC:
-                test = false;
-                break;
-
-            case ' ':
-                stage=1;
-
-                break;
-            default:
-                break;
-            }
+        test = manager.initial_user_input();
+        stage = manager.getstage();
         Blackjack blackjack(balance);
         std::vector<WINDOW *> screen_object_arr; //vector to hold the screen objects (Cards, buttons etc.)
 
@@ -146,8 +134,6 @@ void Game::mainscreen(){ // actual game loop
                     }
                     else if(hit_counter == 1){
                         player_card_4 = dealt_cards[dealt_cards.size()-1];
-                        // wrefresh(player_card_4);
-                        // refresh();
                     }
                     else{
                         player_card_5 = dealt_cards[dealt_cards.size()-1];
@@ -181,35 +167,39 @@ void Game::mainscreen(){ // actual game loop
 
         refresh();
         if(blackjack.bust() == true){
-            manager.setbalance(balance);
-            manager.calcbalance(blackjack.get_bet_amount(), &blackjack);
+            manager.endgame_interface(&manager, &blackjack, screen_object_arr);
+            test = manager.gettest();
+            stage = manager.getstage();
             balance = manager.getbalance();
+            // manager.setbalance(balance);
+            // manager.calcbalance(blackjack.get_bet_amount(), &blackjack);
+            // balance = manager.getbalance();
             
-            if(manager.isdraw() == true){
-                mvaddstr(30, 90, "No winner. Bet returned.");
-            }
-            else{   
-                mvaddstr(30, 90, "The winner was: ");
-                printw(blackjack.winner().c_str());
-                mvaddstr(33, 85, "Totals of user vs dealer: ");
-                printw(to_string(blackjack.gethuman()->getCount()).c_str());
-                printw(" vs ");
-                printw(to_string(blackjack.getdealer()->getCount()).c_str());
-            } 
-            nodelay(stdscr, FALSE);
-            key_input = getch();
-            switch (key_input)
-            {
-            case KEY_ESC:
-                stage++;
-                test = false;
-                end_test = false;
-                break;
-            default:
-                stage++;
-                end_test = false;
-                break;
-            }
+            // if(manager.isdraw() == true){
+            //     mvaddstr(30, 90, "No winner. Bet returned.");
+            // }
+            // else{   
+            //     mvaddstr(30, 90, "The winner was: ");
+            //     printw(blackjack.winner().c_str());
+            //     mvaddstr(33, 85, "Totals of user vs dealer: ");
+            //     printw(to_string(blackjack.gethuman()->getCount()).c_str());
+            //     printw(" vs ");
+            //     printw(to_string(blackjack.getdealer()->getCount()).c_str());
+            // } 
+            // nodelay(stdscr, FALSE);
+            // key_input = getch();
+            // switch (key_input)
+            // {
+            // case KEY_ESC:
+            //     stage++;
+            //     test = false;
+            //     end_test = false;
+            //     break;
+            // default:
+            //     stage++;
+            //     end_test = false;
+            //     break;
+            // }
             endwin();
         }
         }
@@ -221,7 +211,6 @@ void Game::mainscreen(){ // actual game loop
     window_tools.end_win(player_card_2);
     clear();
     endwin();
-
 }
 
 int Game::get_balance() {
