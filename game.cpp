@@ -7,6 +7,7 @@ Game::Game(){
     bet_amount = 0;
     game_has_begun = false;
     hit_counter = 0;
+    stand_counter = 0;
 
     Window window_tools;
     Blackjack blackjack(balance);
@@ -18,6 +19,7 @@ Game::Game(int _balance){
     bet_amount = 0;
     game_has_begun = false;
     hit_counter = 0;
+    stand_counter = 0;
     Window window_tools;
     Blackjack blackjack(balance);
     Game_manager manager(balance);
@@ -29,10 +31,8 @@ Game::~Game(){
 
 void Game::mainscreen(){ // actual game loop
     bool test = true; // variable to control the game loop and end if the game is over
-    int stage = 1; // variable to control what stage we are in (i.e what screen to show)
     bool dealer_chosen = false; // variable to control whether vs a risky or safe dealer 
-    int key_input = 0;
-    bool draw = false;
+
     while(test){ //while loop to allow the user to play round after round 
         initscr();
         clear();
@@ -43,12 +43,14 @@ void Game::mainscreen(){ // actual game loop
         bool game_has_begun = false;
         bool end_test = true;
         hit_counter = 0;
+        stand_counter = 0;
         bool entered_stage = false;
+        int stage = 0;
         // initialising the screen and box position
         printw("Use the keyboard entries on the buttons to play the game");
         refresh();
         //get input from user to continue 
-        key_input = getch();
+        int key_input = getch();
         switch (key_input)
             {
             case KEY_ESC:
@@ -142,21 +144,25 @@ void Game::mainscreen(){ // actual game loop
                     if(hit_counter == 0){
                         player_card_3 = dealt_cards[dealt_cards.size()-2];
                     }
-                    else {
+                    else if(hit_counter == 1){
                         player_card_4 = dealt_cards[dealt_cards.size()-1];
-                        wrefresh(player_card_4);
-                        refresh();
+                        // wrefresh(player_card_4);
+                        // refresh();
+                    }
+                    else{
+                        player_card_5 = dealt_cards[dealt_cards.size()-1];
                     }
                     hit_counter += 1;
                 }
                 break;
             case '3':
                 if(game_has_begun) {
-                    dealt_cards = blackjack.stand();
+                    dealt_cards = blackjack.stand(stand_counter);
                     // if dealer has chosen to stand then ends the move loop 
                     if(blackjack.getdealer()->getMove() == "hit"){ // if the dealer chose to hit
                         dealer_card_3 = dealt_cards[dealt_cards.size()-1];
                     }
+                    stand_counter += 1;
                 }
                 break;
 
@@ -172,7 +178,6 @@ void Game::mainscreen(){ // actual game loop
             default:
                 break;
             }
-         // stage while loop ended
 
         refresh();
         if(blackjack.bust() == true){

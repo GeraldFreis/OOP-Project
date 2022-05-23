@@ -172,7 +172,7 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
         array.push_back(new_player_card_window);
     }
 
-    else {
+    else if(hit_number == 1){
 
         // adding a card to the player
         card user_card = initialised_deck.drawCard();
@@ -186,6 +186,19 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
         WINDOW *new_player_card_window = windowtools.create_cards(40, 140, user->lastCard());
         array.push_back(new_player_card_window); // adding the window to the array
     
+    }
+    else {
+        // adding a card to the player
+        card user_card = initialised_deck.drawCard();
+        initialised_deck.removeLastCard();
+
+        user->addCard(user_card);
+        user->setMove("hit");
+        user->setCount();
+
+                // initialising the window for the player
+        WINDOW *new_player_card_window = windowtools.create_cards(40, 170, user->lastCard());
+        array.push_back(new_player_card_window); // adding the window to the array
     }
 
     // // calling the dealer to check what the dealer wants to do
@@ -205,7 +218,7 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
 }
 
 // protocol if the user hits stand
-std::vector<WINDOW *> Blackjack::stand(){
+std::vector<WINDOW *> Blackjack::stand(int standcount){
     user->setMove("stand");
     // user does nothing, dealer makes a decision based on their total
     dealer->Move(); // dealer calculates move
@@ -215,13 +228,24 @@ std::vector<WINDOW *> Blackjack::stand(){
     }
 
     else { // if the dealer chose to hit
-        dealer->addCard(initialised_deck.drawCard()); // adding the card to the dealer
-        initialised_deck.removeLastCard();
+        if(standcount == 0){
+            dealer->addCard(initialised_deck.drawCard()); // adding the card to the dealer
+            initialised_deck.removeLastCard();
 
-        WINDOW *dealercard = windowtools.create_cards(10, 110, dealer->lastCard()); // creating the card
-        array.push_back(dealercard); // adding the card to the back of the array
-        dealer->setCount(); // ensuring that the count for the dealer is updated
-        return array;
+            WINDOW *dealercard = windowtools.create_cards(10, 110, dealer->lastCard()); // creating the card
+            array.push_back(dealercard); // adding the card to the back of the array
+            dealer->setCount(); // ensuring that the count for the dealer is updated
+            return array;
+        }
+        else {
+            dealer->addCard(initialised_deck.drawCard()); // adding the card to the dealer
+            initialised_deck.removeLastCard();
+
+            WINDOW *dealercard = windowtools.create_cards(10, 140, dealer->lastCard()); // creating the card
+            array.push_back(dealercard); // adding the card to the back of the array
+            dealer->setCount(); // ensuring that the count for the dealer is updated
+            return array;
+        }
     }
 };
 
