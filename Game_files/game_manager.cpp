@@ -28,6 +28,8 @@ void Game_manager::calcbalance(int bet_amount, Blackjack *blackjack){
         draw = true;
     }
 }
+
+
 // returning the new balance of the user
 int Game_manager::getbalance(){
     return balance;

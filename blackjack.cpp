@@ -136,13 +136,6 @@ std::vector<WINDOW *> Blackjack::start_game(){
     WINDOW *player_card_1_window = windowtools.create_cards(40, 50);
     WINDOW *player_card_2_window = windowtools.create_cards(40, 80);
 
-    // WINDOW *dealer_card_1_window = windowtools.create_cards(10,50, cards[2].getName());
-    // WINDOW *dealer_card_2_window = windowtools.create_cards(10,80, cards[3].getName());
-
-    // // creating the players cards
-    // WINDOW *player_card_1_window = windowtools.create_cards(40, 50, cards[0].getName());
-    // WINDOW *player_card_2_window = windowtools.create_cards(40, 80, cards[1].getName());
-
     // erasing the pre-existing dealer and player cards
     array.erase(array.begin(), array.begin()+3);
 
@@ -279,22 +272,26 @@ string Blackjack::winner() {
     }
 }
 
+// returning the bet amount
 int Blackjack::get_bet_amount(){
     return bet_amount;
 }
-
+// returning the user object
 Human *Blackjack::gethuman(){
     return user;
 }
 
+// returning the dealer object
 Dealer *Blackjack::getdealer(){
     return dealer;
 }
 
+// returning the dealer count
 int Blackjack::dealercount() {
     return dealer->getCount();
 }
 
+// returning the user count
 int Blackjack::usercount() {
     return user->getCount();
 }

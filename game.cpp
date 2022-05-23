@@ -143,7 +143,7 @@ void Game::mainscreen(){ // actual game loop
                         player_card_3 = dealt_cards[dealt_cards.size()-2];
                     }
                     else {
-                        player_card_4 = dealt_cards[9];
+                        player_card_4 = dealt_cards[dealt_cards.size()-1];
                         wrefresh(player_card_4);
                         refresh();
                     }
