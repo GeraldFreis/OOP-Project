@@ -1,5 +1,3 @@
-
-
 #include "game.h"
 #define KEY_ESC 27
 
@@ -9,27 +7,10 @@ Game::Game(){
     bet_amount = 0;
     game_has_begun = false;
     hit_counter = 0;
-
-    WINDOW *dealer_card_1; // dealer card 1
-    WINDOW *dealer_card_2;  // dealer card 2
-    WINDOW *dealer_card_3; // dealer card 1
-    WINDOW *dealer_card_4; // dealer card 2
-    WINDOW *player_card_1; // player card 3
-    WINDOW *player_card_2; // player card 4
-    WINDOW *player_card_3; // player card 3
-    WINDOW *player_card_4; // player card 4;
+    stand_counter = 0;
 
     Window window_tools;
     Blackjack blackjack(balance);
-
-    // creating the buttons in the window
-    WINDOW *hit_button;
-    WINDOW *stand_button;
-    WINDOW *double_button;
-    WINDOW *start_button;
-
-    // the winner window
-    WINDOW *winner;
 }
 
 Game::Game(int _balance){
@@ -37,27 +18,9 @@ Game::Game(int _balance){
     bet_amount = 0;
     game_has_begun = false;
     hit_counter = 0;
-
-    WINDOW *dealer_card_1; // dealer card 1
-    WINDOW *dealer_card_2;  // dealer card 2
-    WINDOW *dealer_card_3; // dealer card 1
-    WINDOW *dealer_card_4; // dealer card 2
-    WINDOW *player_card_1; // player card 3
-    WINDOW *player_card_2; // player card 4
-    WINDOW *player_card_3; // player card 3
-    WINDOW *player_card_4; // player card 4;
-
+    stand_counter = 0;
     Window window_tools;
     Blackjack blackjack(balance);
-
-    // creating the buttons in the window
-    WINDOW *hit_button;
-    WINDOW *stand_button;
-    WINDOW *double_button;
-    WINDOW *start_button;
-
-    // the winner window
-    WINDOW *winner;
 }
 
 Game::~Game(){
@@ -66,10 +29,11 @@ Game::~Game(){
 
 void Game::mainscreen(){ // actual game loop
     bool test = true; // variable to control the game loop and end if the game is over
-    int stage = 1; // variable to control what stage we are in (i.e what screen to show)
     bool dealer_chosen = false; // variable to control whether vs a risky or safe dealer 
-    int key_input = 0;
+
     while(test){ //while loop to allow the user to play round after round 
+        MainWindow = window_tools.main_window();
+        Game_manager manager(balance);
         initscr();
         clear();
         noecho();
@@ -79,31 +43,17 @@ void Game::mainscreen(){ // actual game loop
         bool game_has_begun = false;
         bool end_test = true;
         hit_counter = 0;
-        bool draw = false;
+        stand_counter = 0;
         bool entered_stage = false;
-        //get input from user to continue 
-        key_input = getch();
-        switch (key_input)
-            {
-            case KEY_ESC:
-                test = false;
-                
-                break;
-
-            case ' ':
-                stage=1;
-
-                break;
-            default:
-                break;
-            }
-        Blackjack blackjack(balance);
+        int stage = 0;
         // initialising the screen and box position
         printw("Use the keyboard entries on the buttons to play the game");
         refresh();
-        Dealer *received_dealer; // dealer object that is returned by blackjack when a change to the cards is made
-        Human *received_user; // dealer object that is returned by blackjack when a change to the cards is made
-        std::vector<WINDOW *> screen_object_arr; //vector to hold the screen objects
+        //get input from user to continue 
+        test = manager.initial_user_input();
+        stage = manager.getstage();
+        Blackjack blackjack(balance);
+        std::vector<WINDOW *> screen_object_arr; //vector to hold the screen objects (Cards, buttons etc.)
 
         // while loop used to allow the player to make moves within the round 
         while(stage==1){ 
@@ -128,9 +78,6 @@ void Game::mainscreen(){ // actual game loop
 
             string betamount_string = std::to_string(bet_amount);
             char const *betamount_char = betamount_string.c_str();
-
-            received_dealer = blackjack.getdealer(); // holds the dealer 
-            received_user = blackjack.gethuman(); // holds the user
 
             // setting each object on the screen to the created screen object
             dealer_card_1 = screen_object_arr[0]; // dealers cards
@@ -185,52 +132,26 @@ void Game::mainscreen(){ // actual game loop
                     if(hit_counter == 0){
                         player_card_3 = dealt_cards[dealt_cards.size()-2];
                     }
-                    else {
-                        player_card_4 = dealt_cards[9];
-                        wrefresh(player_card_4);
-                        refresh();
+                    else if(hit_counter == 1){
+                        player_card_4 = dealt_cards[dealt_cards.size()-1];
+                    }
+                    else{
+                        player_card_5 = dealt_cards[dealt_cards.size()-1];
                     }
                     hit_counter += 1;
-                    //if user has busted 
-                    if(blackjack.gethuman()->getCount() >21) {
-                        stage++;
-                        endwin();
-                    }
                 }
                 break;
             case '3':
                 if(game_has_begun) {
-                    received_user->setMove("stand");
-                    if(dealer_chosen){
-                        if(blackjack.getdealer()->getCount() >14){
-                            received_dealer->setMove("stand");
-                        }
-                        else{
-                            received_dealer->setMove("hit");
-                        }
+                    dealt_cards = blackjack.stand(stand_counter);
+                    // if dealer has chosen to stand then ends the move loop 
+                    if(blackjack.getdealer()->getMove() == "hit"){ // if the dealer chose to hit
+                        dealer_card_3 = dealt_cards[dealt_cards.size()-1];
                     }
-                    else{
-                        if(blackjack.getdealer()->getCount() >20){
-                            received_dealer->setMove("stand");
-                        }
-                        else{
-                            received_dealer->setMove("hit");
-                        }
-                    }
-                    // if dealer has chosen to stand than ends the move loop 
-                    if(received_dealer->getMove() == "stand"){ // if the dealer chose to stand
-                        // user_win = true;
-                        stage++;
-                        endwin();
-                    }
-                    else{
-                        dealt_cards = blackjack.stand();
-                        if(blackjack.getdealer()->getMove() == "hit"){ // if the dealer chose to hit
-                            dealer_card_3 = dealt_cards[10];
-                        }
-                    } 
+                    stand_counter += 1;
                 }
                 break;
+
             case '4':
                 //switches the dealer by pressing the button once
                 if(dealer_chosen){
@@ -243,49 +164,45 @@ void Game::mainscreen(){ // actual game loop
             default:
                 break;
             }
-        } // stage while loop ended
 
         refresh();
-        if(entered_stage){
-            // checks who won to distibute money 
-            if(blackjack.getdealer()->getCount()>21 || blackjack.gethuman()->getCount() > blackjack.getdealer()->getCount()) {
-                balance = balance + bet_amount;
-            }
-            else if(blackjack.gethuman()->getCount()>21 || blackjack.gethuman()->getCount() < blackjack.getdealer()->getCount()) {
-                balance = balance - bet_amount;
-            }
-            else {
-                draw = true;
-            }
+        if(blackjack.bust() == true){
+            manager.endgame_interface(&manager, &blackjack, screen_object_arr);
+            test = manager.gettest();
+            stage = manager.getstage();
+            balance = manager.getbalance();
+            // manager.setbalance(balance);
+            // manager.calcbalance(blackjack.get_bet_amount(), &blackjack);
+            // balance = manager.getbalance();
             
-            if(draw){
-                mvaddstr(30, 90, "No winner. Bet returned.");
-            }
-            else{   
-                mvaddstr(30, 90, "The winner was: ");
-                printw(blackjack.winner().c_str());
-                mvaddstr(33, 85, "Totals of user vs dealer: ");
-                printw(to_string(blackjack.gethuman()->getCount()).c_str());
-                printw(" vs ");
-                printw(to_string(blackjack.getdealer()->getCount()).c_str());
-            } 
-            nodelay(stdscr, FALSE);
-            key_input = getch();
-            switch (key_input)
-            {
-            case KEY_ESC:
-                stage++;
-                test = false;
-                end_test = false;
-                break;
-            default:
-                stage++;
-                end_test = false;
-                break;
-            }
+            // if(manager.isdraw() == true){
+            //     mvaddstr(30, 90, "No winner. Bet returned.");
+            // }
+            // else{   
+            //     mvaddstr(30, 90, "The winner was: ");
+            //     printw(blackjack.winner().c_str());
+            //     mvaddstr(33, 85, "Totals of user vs dealer: ");
+            //     printw(to_string(blackjack.gethuman()->getCount()).c_str());
+            //     printw(" vs ");
+            //     printw(to_string(blackjack.getdealer()->getCount()).c_str());
+            // } 
+            // nodelay(stdscr, FALSE);
+            // key_input = getch();
+            // switch (key_input)
+            // {
+            // case KEY_ESC:
+            //     stage++;
+            //     test = false;
+            //     end_test = false;
+            //     break;
+            // default:
+            //     stage++;
+            //     end_test = false;
+            //     break;
+            // }
             endwin();
         }
-
+        }
     }
     // closing the windows
     window_tools.end_win(dealer_card_1);
@@ -294,11 +211,8 @@ void Game::mainscreen(){ // actual game loop
     window_tools.end_win(player_card_2);
     clear();
     endwin();
-
 }
 
 int Game::get_balance() {
     return balance;
 }
-
-

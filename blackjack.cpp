@@ -136,13 +136,6 @@ std::vector<WINDOW *> Blackjack::start_game(){
     WINDOW *player_card_1_window = windowtools.create_cards(40, 50);
     WINDOW *player_card_2_window = windowtools.create_cards(40, 80);
 
-    // WINDOW *dealer_card_1_window = windowtools.create_cards(10,50, cards[2].getName());
-    // WINDOW *dealer_card_2_window = windowtools.create_cards(10,80, cards[3].getName());
-
-    // // creating the players cards
-    // WINDOW *player_card_1_window = windowtools.create_cards(40, 50, cards[0].getName());
-    // WINDOW *player_card_2_window = windowtools.create_cards(40, 80, cards[1].getName());
-
     // erasing the pre-existing dealer and player cards
     array.erase(array.begin(), array.begin()+3);
 
@@ -179,7 +172,7 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
         array.push_back(new_player_card_window);
     }
 
-    else {
+    else if(hit_number == 1){
 
         // adding a card to the player
         card user_card = initialised_deck.drawCard();
@@ -193,6 +186,19 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
         WINDOW *new_player_card_window = windowtools.create_cards(40, 140, user->lastCard());
         array.push_back(new_player_card_window); // adding the window to the array
     
+    }
+    else {
+        // adding a card to the player
+        card user_card = initialised_deck.drawCard();
+        initialised_deck.removeLastCard();
+
+        user->addCard(user_card);
+        user->setMove("hit");
+        user->setCount();
+
+                // initialising the window for the player
+        WINDOW *new_player_card_window = windowtools.create_cards(40, 170, user->lastCard());
+        array.push_back(new_player_card_window); // adding the window to the array
     }
 
     // // calling the dealer to check what the dealer wants to do
@@ -212,24 +218,34 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
 }
 
 // protocol if the user hits stand
-std::vector<WINDOW *> Blackjack::stand(){
+std::vector<WINDOW *> Blackjack::stand(int standcount){
     user->setMove("stand");
     // user does nothing, dealer makes a decision based on their total
     dealer->Move(); // dealer calculates move
-
 
     if(dealer->getMove() == "stand"){ // if the dealer chose to stand
         return array;
     }
 
     else { // if the dealer chose to hit
-        dealer->addCard(initialised_deck.drawCard()); // adding the card to the dealer
-        initialised_deck.removeLastCard();
+        if(standcount == 0){
+            dealer->addCard(initialised_deck.drawCard()); // adding the card to the dealer
+            initialised_deck.removeLastCard();
 
-        WINDOW *dealercard = windowtools.create_cards(10, 110, dealer->lastCard()); // creating the card
-        array.push_back(dealercard); // adding the card to the back of the array
-        dealer->setCount(); // ensuring that the count for the dealer is updated
-        return array;
+            WINDOW *dealercard = windowtools.create_cards(10, 110, dealer->lastCard()); // creating the card
+            array.push_back(dealercard); // adding the card to the back of the array
+            dealer->setCount(); // ensuring that the count for the dealer is updated
+            return array;
+        }
+        else {
+            dealer->addCard(initialised_deck.drawCard()); // adding the card to the dealer
+            initialised_deck.removeLastCard();
+
+            WINDOW *dealercard = windowtools.create_cards(10, 140, dealer->lastCard()); // creating the card
+            array.push_back(dealercard); // adding the card to the back of the array
+            dealer->setCount(); // ensuring that the count for the dealer is updated
+            return array;
+        }
     }
 };
 
@@ -280,22 +296,26 @@ string Blackjack::winner() {
     }
 }
 
+// returning the bet amount
 int Blackjack::get_bet_amount(){
     return bet_amount;
 }
-
+// returning the user object
 Human *Blackjack::gethuman(){
     return user;
 }
 
+// returning the dealer object
 Dealer *Blackjack::getdealer(){
     return dealer;
 }
 
+// returning the dealer count
 int Blackjack::dealercount() {
     return dealer->getCount();
 }
 
+// returning the user count
 int Blackjack::usercount() {
     return user->getCount();
 }

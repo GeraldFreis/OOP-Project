@@ -5,8 +5,8 @@
 
 #include "Game_files/window.h"
 #include "Game_files/bet.h"
+#include "Game_files/game_manager.h"
 #include "blackjack.h"
-// #include "Player_files/Dealer.h"
 #include "Player_files/Human.h"
 #include "Player_files/Safe_dealer.h"
 
@@ -35,6 +35,9 @@ class Game: public Blackjack {
         int bet_amount;
         bool game_has_begun;
         int hit_counter;
+        int stand_counter;
+
+        WINDOW *MainWindow;
 
         // initialising the cards for the screen
         // dealer cards
@@ -42,12 +45,14 @@ class Game: public Blackjack {
         WINDOW *dealer_card_2;  // dealer card 2
         WINDOW *dealer_card_3; // dealer card 3
         WINDOW *dealer_card_4; // dealer card 4
+        WINDOW *dealer_card_5;
 
         // player cards
         WINDOW *player_card_1; // player card 1
         WINDOW *player_card_2; // player card 4
         WINDOW *player_card_3; // player card 3
         WINDOW *player_card_4; // player card 4;
+        WINDOW *player_card_5;
 
         // initialising the window object to create the cards, destroy the cards, and create the buttons
         Window window_tools;
@@ -65,8 +70,8 @@ class Game: public Blackjack {
         WINDOW *betting_window;
 
         WINDOW *winner;
-
-
+        
+        Game_manager manager;
 
     public:
         // constructors

@@ -2,14 +2,14 @@
 
 Wallet::Wallet(){ // default constructor
     currentbalance = 0;
-    previousbalances = new int[20];
+    previousbalances = new int[100];
     filename = "users_balances.txt";
     number_of_entries = 0;
 }
 
 Wallet::Wallet(string _filename){ // parameterized constructor
     currentbalance = 0;
-    previousbalances = new int[20];
+    previousbalances = new int[100];
     filename = _filename;
     number_of_entries = 0;
 }
@@ -44,7 +44,7 @@ void Wallet::read() {
     std::ifstream file(filename);
 
     // initialising an array to capture the line values
-    string temparray[40];
+    string temparray[100];
     int index_row = 0;
 
     while(file.good()){ // while we are still in the range of the file
@@ -55,7 +55,7 @@ void Wallet::read() {
     // iterating over every line in the temporary array and transfering that value into the
     // data member previous balances for this class
     number_of_entries = 0;
-    for(int i = 0; i < 20; i++){
+    for(int i = 0; i < 100; i++){
         if(temparray[i] != ""){
             previousbalances[i] = stoi(temparray[i]);
             if(i > 0){
