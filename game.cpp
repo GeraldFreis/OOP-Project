@@ -27,6 +27,7 @@ Game::~Game(){
     cout << "Thanks for playing" << "\n";
 }
 
+// the game loop
 void Game::mainscreen(){ // actual game loop
     bool test = true; // variable to control the game loop and end if the game is over
     bool dealer_chosen = false; // variable to control whether vs a risky or safe dealer 
