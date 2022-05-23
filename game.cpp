@@ -172,35 +172,6 @@ void Game::mainscreen(){ // actual game loop
             test = manager.gettest();
             stage = manager.getstage();
             balance = manager.getbalance();
-            // manager.setbalance(balance);
-            // manager.calcbalance(blackjack.get_bet_amount(), &blackjack);
-            // balance = manager.getbalance();
-            
-            // if(manager.isdraw() == true){
-            //     mvaddstr(30, 90, "No winner. Bet returned.");
-            // }
-            // else{   
-            //     mvaddstr(30, 90, "The winner was: ");
-            //     printw(blackjack.winner().c_str());
-            //     mvaddstr(33, 85, "Totals of user vs dealer: ");
-            //     printw(to_string(blackjack.gethuman()->getCount()).c_str());
-            //     printw(" vs ");
-            //     printw(to_string(blackjack.getdealer()->getCount()).c_str());
-            // } 
-            // nodelay(stdscr, FALSE);
-            // key_input = getch();
-            // switch (key_input)
-            // {
-            // case KEY_ESC:
-            //     stage++;
-            //     test = false;
-            //     end_test = false;
-            //     break;
-            // default:
-            //     stage++;
-            //     end_test = false;
-            //     break;
-            // }
             endwin();
         }
         }
