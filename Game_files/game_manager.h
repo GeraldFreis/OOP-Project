@@ -27,6 +27,7 @@ class Game_manager {
         bool draw;
         int stage;
         bool test;
+        int given_dealer;
 
         WINDOW *dealer_card_1; // dealer card 1 
         WINDOW *dealer_card_2;  // dealer card 2
@@ -53,6 +54,8 @@ class Game_manager {
         bool isdraw();
         int getstage();
         bool gettest();
+
+        int get_chosen_dealer();
 
         void endgame_interface(Game_manager *manager, Blackjack *blackjack, std::vector<WINDOW *> screen_objs);
 

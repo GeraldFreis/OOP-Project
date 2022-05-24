@@ -46,12 +46,12 @@ void Game::mainscreen(){ // actual game loop
         bool entered_stage = false;
         int stage = 0;
         // initialising the screen and box position
-        printw("Use the keyboard entries on the buttons to play the game");
+        mvaddstr(5,10,"Use the space bar to begin (press 1 or 2 to choose either the risky or safe dealer)");
         refresh();
         //get input from user to continue 
         test = manager.initial_user_input();
         stage = manager.getstage();
-        Blackjack blackjack(balance, 1);
+        Blackjack blackjack(balance, manager.get_chosen_dealer());
         std::vector<WINDOW *> screen_object_arr; //vector to hold the screen objects (Cards, buttons etc.)
 
         // while loop used to allow the player to make moves within the round 
@@ -89,7 +89,7 @@ void Game::mainscreen(){ // actual game loop
             double_button = screen_object_arr[7];
 
             // adding the text:
-            if(dealer_chosen){
+            if(manager.get_chosen_dealer() == 0){
                 mvaddstr(8,50,"Safe ");
                 mvaddstr(8,55,"Dealer's cards: ");
             }
@@ -97,6 +97,7 @@ void Game::mainscreen(){ // actual game loop
                 mvaddstr(8,50,"Risky ");
                 mvaddstr(8,56,"Dealer's cards: ");
             }
+            
             mvaddstr(38,50,"Player's cards: ");
             mvaddstr(31,10, "Player balance: ");
 
