@@ -2,7 +2,7 @@
 #include <string>
 #define KEY_DEL 31
 
-
+// constructor for bet
 Bet::Bet(int _balance){
     if(_balance < 0){balance = 0;}
     else {
