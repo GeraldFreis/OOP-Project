@@ -28,8 +28,6 @@ Game::~Game(){
 // the game loop
 void Game::mainscreen(){ // actual game loop
     bool test = true; // variable to control the game loop and end if the game is over
-    bool dealer_chosen = false; // variable to control whether vs a risky or safe dealer 
-
     while(test){ //while loop to allow the user to play round after round 
         MainWindow = window_tools.main_window();
         Game_manager manager(balance);
@@ -158,16 +156,6 @@ void Game::mainscreen(){ // actual game loop
                     }
                     
                     stand_counter += 1;
-                }
-                break;
-
-            case '4':
-                //switches the dealer by pressing the button once
-                if(dealer_chosen){
-                    dealer_chosen = false;
-                }
-                else{
-                    dealer_chosen = true;
                 }
                 break;
             default:
