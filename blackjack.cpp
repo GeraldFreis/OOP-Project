@@ -164,12 +164,12 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
 
     // creating the two new cards for the player and then if the dealer decides to play displaying
     // returning their cards as well
-    if(hit_number == 0){
+    if(hit_number == 0){ // if the player has not hit before
         // adding a card to the player
         card user_card = initialised_deck.drawCard();
         initialised_deck.removeLastCard();
 
-        user->addCard(user_card);
+        user->addCard(user_card); // adding the card to the user
         user->setMove("hit");
         user->setCount(); // updating the count to include the new card
         WINDOW *new_player_card_window = windowtools.create_cards(40, 110, user->lastCard());
@@ -177,13 +177,13 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
         array.push_back(new_player_card_window);
     }
 
-    else if(hit_number == 1){
+    else if(hit_number == 1){ // if the user has hit once
 
         // adding a card to the player
         card user_card = initialised_deck.drawCard();
         initialised_deck.removeLastCard();
 
-        user->addCard(user_card);
+        user->addCard(user_card); // adding the card to the user
         user->setMove("hit");
         user->setCount();
 
@@ -191,13 +191,13 @@ std::vector<WINDOW *> Blackjack::hit(int hit_number){ // if the user chooses to 
         WINDOW *new_player_card_window = windowtools.create_cards(40, 140, user->lastCard());
         array.push_back(new_player_card_window); // adding the window to the array
     
-    }
+    } // if the user has hit twice
     else {
         // adding a card to the player
         card user_card = initialised_deck.drawCard();
         initialised_deck.removeLastCard();
 
-        user->addCard(user_card);
+        user->addCard(user_card); // adding the card to the user
         user->setMove("hit");
         user->setCount();
 
@@ -275,11 +275,11 @@ bool Blackjack::bust(){
     if((user->winGame() == false) || dealer->winGame() == false){ // if either the dealer or user are bust
         return true;
     }
-    else if(user->getMove() == "stand" && dealer->getMove() == "stand"){
+    else if(user->getMove() == "stand" && dealer->getMove() == "stand"){ // if either the dealer or user have both stood
         return true;
     }
 
-    return false;
+    return false; // returning false is neither of the conditions are true
 }
 
 // function that returns a string of who won the game (can be called if either is bust or both stand)
