@@ -7,11 +7,11 @@ Risky_dealer::Risky_dealer(){
 }
 
 void Risky_dealer::Move(){
-    if(card_total == 21) {
-        last_move = "stand";
+    if(this->card_total == 21) {
+        this->Person::last_move = "stand";
     }
     else {
-        last_move = "hit";
+        this->Person::last_move = "hit";
     }
 }
 

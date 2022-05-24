@@ -15,7 +15,7 @@ Blackjack::Blackjack(): Bet(1000){
 
 };
 
-Blackjack::Blackjack(int _balance): Bet (_balance){
+Blackjack::Blackjack(int _balance, int chosendealer): Bet (_balance){
     if(_balance > 0){balance = _balance;}
     else{balance = 0;}
 
@@ -24,7 +24,12 @@ Blackjack::Blackjack(int _balance): Bet (_balance){
 
     // initialising the user and dealer
     user = new Human();
-    dealer = new Safe_dealer();
+    if(chosendealer == 0){
+        dealer = new Safe_dealer();
+    }
+    else {
+        dealer = new Risky_dealer();
+    }
 
     // initialising the deck
     srand ( time(NULL) );

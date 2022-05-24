@@ -10,7 +10,6 @@ Game::Game(){
     stand_counter = 0;
 
     Window window_tools;
-    Blackjack blackjack(balance);
 }
 
 Game::Game(int _balance){
@@ -20,7 +19,6 @@ Game::Game(int _balance){
     hit_counter = 0;
     stand_counter = 0;
     Window window_tools;
-    Blackjack blackjack(balance);
 }
 
 Game::~Game(){
@@ -53,7 +51,7 @@ void Game::mainscreen(){ // actual game loop
         //get input from user to continue 
         test = manager.initial_user_input();
         stage = manager.getstage();
-        Blackjack blackjack(balance);
+        Blackjack blackjack(balance, 1);
         std::vector<WINDOW *> screen_object_arr; //vector to hold the screen objects (Cards, buttons etc.)
 
         // while loop used to allow the player to make moves within the round 

@@ -8,6 +8,7 @@
 #include "Player_files/card.h"
 #include "Player_files/deck.h"
 #include "Player_files/Safe_dealer.h"
+#include "Player_files/Risky_dealer.h"
 
 #ifndef BLACKJACK_H
 #define BLACKJACK_H
@@ -47,7 +48,7 @@ class Blackjack: public Bet {
 
     public:
         Blackjack();
-        Blackjack(int _balance);
+        Blackjack(int _balance, int chosen_dealer);
         
         std::vector<WINDOW *> game_template();
         std::vector<WINDOW *> game_template(string dealer_1, string dealer_2, 
