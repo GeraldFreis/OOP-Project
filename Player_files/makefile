@@ -17,7 +17,8 @@
 
 # clean: 
 # 	rm -f playertest *.o
-
+#include "../Deck_files/deck.h"
+#include "../Deck_files/card.h"
 
 
 all: testall
@@ -25,8 +26,8 @@ all: testall
 testall: playertest
 	./playertest
 
-playertest: card.h card.cpp deck.h deck.cpp Dealer.h Dealer.cpp Human.h Human.cpp person.h person.cpp  main-player.cpp
-	g++ -Wall card.cpp deck.cpp Dealer.cpp Human.cpp person.cpp main-player.cpp -o playertest
+playertest: ../Deck_files/card.h ../Deck_files/card.cpp ../Deck_files/deck.h ../Deck_files/deck.cpp Safe_dealer.h Safe_dealer.cpp Dealer.h Dealer.cpp Human.h Human.cpp person.h person.cpp  main-player.cpp
+	g++ -Wall ../Deck_files/card.cpp ../Deck_files/deck.cpp Safe_dealer.cpp Dealer.cpp Human.cpp person.cpp main-player.cpp -o playertest
 
 clean: 
 	rm -f playertest *.o

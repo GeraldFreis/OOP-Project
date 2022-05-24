@@ -1,8 +1,8 @@
 #ifndef PERSON_H
 #define PERSON_H
 #include <iostream>
-#include "deck.h"
-#include "card.h"
+#include "../Deck_files/deck.h"
+#include "../Deck_files/card.h"
 
 /*
 Superclass / base class of Dealer and Human

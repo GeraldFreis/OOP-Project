@@ -6,8 +6,7 @@
 #include "person.h"
 #include "Dealer.h"
 #include "Human.h"
-#include "deck.h"
-#include "card.h"
+#include "Safe_dealer.h"
 using namespace std;
 
 int main(){
@@ -50,7 +49,7 @@ int main(){
         wallet = wallet - bet;
 
     //create a dealer and a human 
-    Dealer dealer1;
+    Safe_dealer dealer1;
     Human player1;  
 
 
@@ -97,18 +96,18 @@ int main(){
                 player1.printCardHuman(j+3);
                 j++;
                 //check whether the player exceeds 21
-                if(player1.getCountHuman() > 21){
-                    cout << "total: " << player1.getCountHuman() << " Bust " << endl;
+                if(player1.getCount() > 21){
+                    cout << "total: " << player1.getCount() << " Bust " << endl;
                     bust = true;
                     break;
                 }
-                else if(player1.getCountHuman() == 21){
-                    cout << "total: " << player1.getCountHuman() << " BlackJack " << endl;
+                else if(player1.getCount() == 21){
+                    cout << "total: " << player1.getCount() << " BlackJack " << endl;
                     blackjack = true;
                     break;
                 }
                 else{
-                    cout << "total: " << player1.getCountHuman() << endl;
+                    cout << "total: " << player1.getCount() << endl;
 
                 }
             }
@@ -131,20 +130,20 @@ int main(){
                 l++;
             
                 //check dealers total 
-                if(dealer1.getCountDealer() < 22){
-                    if(dealer1.getCountDealer() > player1.getCountHuman()){
+                if(dealer1.getCount() < 22){
+                    if(dealer1.getCount() > player1.getCount()){
                         dealer_win = true;
-                        cout << "Dealer total: " << dealer1.getCountDealer() << endl;
+                        cout << "Dealer total: " << dealer1.getCount() << endl;
                         break;
                     }
-                    else if(dealer1.getCountDealer() == player1.getCountHuman()){
+                    else if(dealer1.getCount() == player1.getCount()){
                         stand = true;
-                        cout << "Dealer total: " << dealer1.getCountDealer() << endl;
+                        cout << "Dealer total: " << dealer1.getCount() << endl;
                         break;
                     }
                 }
                 else{
-                    cout << "Dealer total: " << dealer1.getCountDealer() << endl;
+                    cout << "Dealer total: " << dealer1.getCount() << endl;
                     cout << "dealer bust" << endl;
                     dealer_lost = true;
                     break;

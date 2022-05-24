@@ -1,7 +1,7 @@
 #include <iostream>
 #include "person.h"
-#include "deck.h"
-#include "card.h"
+#include "../Deck_files/deck.h"
+#include "../Deck_files/card.h"
 using std::cout; using std::string; using std::cin;
 
 #ifndef DEALER_H

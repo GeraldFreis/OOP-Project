@@ -2,8 +2,8 @@
 #define HUMAN_H
 #include <iostream>
 #include <string>
-#include "deck.h"
-#include "card.h"
+#include "../Deck_files/deck.h"
+#include "../Deck_files/card.h"
 #include "person.h"
 using namespace std;
 
