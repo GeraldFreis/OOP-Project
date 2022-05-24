@@ -70,13 +70,6 @@ void Game::mainscreen(){ // actual game loop
             }
             std::vector<WINDOW *> dealt_cards; // vector to hold cards dealt at the beginning of the game
 
-            // setting up the balance and betamount text
-            string balance_string = std::to_string(balance);
-            char const *balance_char = balance_string.c_str();
-
-            string betamount_string = std::to_string(bet_amount);
-            char const *betamount_char = betamount_string.c_str();
-
             // setting each object on the screen to the created screen object
             dealer_card_1 = screen_object_arr[0]; // dealers cards
             dealer_card_2 = screen_object_arr[1];
@@ -90,29 +83,30 @@ void Game::mainscreen(){ // actual game loop
             // adding the text:
             if(manager.get_chosen_dealer() == 0){
                 mvaddstr(8,50,"Safe ");
-                mvaddstr(8,55,"Dealer's cards: ");
             }
             else{
                 mvaddstr(8,50,"Risky ");
-                mvaddstr(8,56,"Dealer's cards: ");
             }
 
+            mvaddstr(8,56,"Dealer's cards: ");
             mvaddstr(38,50,"Player's cards: ");
             mvaddstr(31,10, "Player balance: ");
-
-            mvaddstr(31,28, balance_char);
+            
+            // setting up the balance and betamount text
+            mvaddstr(31,28, std::to_string(balance).c_str());
             mvaddstr(33,10, "Bet amount: ");
-            mvaddstr(33,28, betamount_char);
+            mvaddstr(33,28, std::to_string(bet_amount).c_str());
             manager.setdraw();
+
             // depending on users input a move is made 
             int key_input = getch();
             switch (key_input)
             {
-            case KEY_ESC:
+            case KEY_ESC: // if the user presses escape (exiting the screen)
                 test = false;
                 stage ++;
                 break;
-            case '1':
+            case '1': // if the user presses one
                 if(game_has_begun == false){
                     dealt_cards = blackjack.start_game(); // returns an array of cards to diplay on screen 
                     bet_amount = blackjack.get_bet_amount(); // switches to bet input window 
@@ -125,7 +119,7 @@ void Game::mainscreen(){ // actual game loop
                 }
                 game_has_begun = true;
                 break;
-            case '2':
+            case '2': // if the user presses two
                 if(game_has_begun && (hit_counter < 3)){ // if the user has pressed start game already
                     dealt_cards = blackjack.hit(hit_counter);
                     if(hit_counter == 0){
@@ -140,7 +134,7 @@ void Game::mainscreen(){ // actual game loop
                     hit_counter += 1;
                 }
                 break;
-            case '3':
+            case '3': // if the user presses three
                 if(game_has_begun && stand_counter < 3) {
                     dealt_cards = blackjack.stand(stand_counter);
                     // if dealer has chosen to stand then ends the move loop 
