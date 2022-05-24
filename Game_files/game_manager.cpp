@@ -48,6 +48,7 @@ void Game_manager::calcbalance(int bet_amount, Blackjack *blackjack){
     else if(user->winGame() == false && dealer->winGame() != false){
         balance = balance - bet_amount;
     }
+    
     else {
         draw = true;
     }
