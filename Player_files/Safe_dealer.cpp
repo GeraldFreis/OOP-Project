@@ -5,7 +5,7 @@ Safe_dealer::Safe_dealer(){
     card_array = new card[5];
     last_move = "";
 }
-
+// calculates the safe dealer's move
 void Safe_dealer::Move(){
     
     if(this->Person::card_total > 14) {

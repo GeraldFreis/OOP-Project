@@ -7,10 +7,6 @@
 using std::cout; using std::string; using std::endl;
 
 
-        // card *array;
-        // int length;
-
-
 deck::deck(){
     length = 312;
     array = new card[312];

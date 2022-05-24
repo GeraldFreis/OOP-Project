@@ -6,8 +6,9 @@ Risky_dealer::Risky_dealer(){
     last_move = "";
 }
 
+// calculates the risky dealers move
 void Risky_dealer::Move(){
-    if(this->card_total == 21) {
+    if(this->Person::card_total == 21) {
         this->Person::last_move = "stand";
     }
     else {
