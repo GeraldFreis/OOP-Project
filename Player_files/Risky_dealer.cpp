@@ -1,5 +1,6 @@
 #include "Risky_dealer.h"
 
+// constructor
 Risky_dealer::Risky_dealer(){
     card_total = 0;
     card_array = new card[5];
@@ -16,7 +17,7 @@ void Risky_dealer::Move(){
     }
 }
 
-
+// destructor
 Risky_dealer::~Risky_dealer(){
     delete [] card_array;
 }
