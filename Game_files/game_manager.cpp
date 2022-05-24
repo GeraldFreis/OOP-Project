@@ -28,7 +28,7 @@ void Game_manager::calcbalance(int bet_amount, Blackjack *blackjack){
     dealer->setCount();
     user->setCount();
     if(dealer->getCount() > 21 && user->getCount() > 21 || dealer->winGame() == false && user->winGame() == false){
-        draw = true;
+        balance = balance - bet_amount;
     }
     else if(dealer->getCount() > 21){ 
         balance = balance + bet_amount;
@@ -96,7 +96,16 @@ void Game_manager::endgame_interface(Game_manager *manager, Blackjack *blackjack
         balance = manager->getbalance();
         
         if(manager->isdraw() == true){
-            mvaddstr(30, 90, "No winner. Bet returned.");
+            if(blackjack->winner() == "dealer"){
+                mvaddstr(33, 85, "Totals of user vs dealer: ");
+                printw(std::to_string(blackjack->gethuman()->getCount()).c_str());
+                printw(" vs ");
+                printw(std::to_string(blackjack->getdealer()->getCount()).c_str());
+                mvaddstr(30, 88, "Dealer won as user was bust");
+            }
+            else {
+                 mvaddstr(30, 90, "No winner. Bet returned.");
+            }
         }
         else{   
             mvaddstr(30, 90, "The winner was: ");

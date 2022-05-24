@@ -242,13 +242,25 @@ std::vector<WINDOW *> Blackjack::stand(int standcount){
             dealer->setCount(); // ensuring that the count for the dealer is updated
             return array;
         }
-        else {
+        else if(standcount == 1){
             dealer->addCard(initialised_deck.drawCard()); // adding the card to the dealer
             initialised_deck.removeLastCard();
 
             WINDOW *dealercard = windowtools.create_cards(10, 140, dealer->lastCard()); // creating the card
             array.push_back(dealercard); // adding the card to the back of the array
             dealer->setCount(); // ensuring that the count for the dealer is updated
+            return array;
+        }
+        else if(standcount == 2){
+            dealer->addCard(initialised_deck.drawCard()); // adding the card to the dealer
+            initialised_deck.removeLastCard();
+
+            WINDOW *dealercard = windowtools.create_cards(10, 170, dealer->lastCard()); // creating the card
+            array.push_back(dealercard); // adding the card to the back of the array
+            dealer->setCount(); // ensuring that the count for the dealer is updated
+            return array;
+        }
+        else {
             return array;
         }
     }
@@ -275,12 +287,12 @@ string Blackjack::winner() {
     user->setCount();
     dealer->setCount();
 
-    if(dealer->getCount() > 21) { // if the dealer is bust the user wins
-        return "user";
+    if (user->getCount() > 21) { // if the user is bust the dealer wins
+        return "dealer";
     }
 
-    else if (user->getCount() > 21) { // if the user is bust the dealer wins
-        return "dealer";
+    if(dealer->getCount() > 21) { // if the dealer is bust the user wins
+        return "user";
     }
 
     else if (user->getMove() == "stand" && dealer->getMove() == "stand") { // if both the user and dealer stand

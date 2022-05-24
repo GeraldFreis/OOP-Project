@@ -147,8 +147,16 @@ void Game::mainscreen(){ // actual game loop
                     dealt_cards = blackjack.stand(stand_counter);
                     // if dealer has chosen to stand then ends the move loop 
                     if(blackjack.getdealer()->getMove() == "hit"){ // if the dealer chose to hit
-                        dealer_card_3 = dealt_cards[dealt_cards.size()-1];
+                        if(stand_counter == 0){
+                            dealer_card_3 = dealt_cards[dealt_cards.size()-1];
+                        } else if(stand_counter == 1){
+                            dealer_card_4 = dealt_cards[dealt_cards.size()-1];
+                        }
+                        else {
+                            dealer_card_5 = dealt_cards[dealt_cards.size()-1];
+                        }
                     }
+                    
                     stand_counter += 1;
                 }
                 break;
