@@ -5,8 +5,8 @@
 #include "Game_files/bet.h"
 #include "Player_files/Dealer.h"
 #include "Player_files/Human.h"
-#include "Player_files/card.h"
-#include "Player_files/deck.h"
+#include "Deck_files/card.h"
+#include "Deck_files/deck.h"
 #include "Player_files/Safe_dealer.h"
 #include "Player_files/Risky_dealer.h"
 

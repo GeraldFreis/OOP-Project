@@ -39,11 +39,11 @@ Risky_dealer.o:  Player_files/Risky_dealer.h Player_files/Risky_dealer.cpp
 Dealer.o:  Player_files/Dealer.cpp Player_files/Dealer.h  
 	g++ -c Player_files/Dealer.cpp 
 
-deck.o:  Player_files/deck.h Player_files/deck.cpp 
-	g++ -c Player_files/deck.cpp
+deck.o:  Deck_files/deck.h Deck_files/deck.cpp 
+	g++ -c Deck_files/deck.cpp
 
-card.o: Player_files/card.cpp Player_files/card.h
-	g++ -c Player_files/card.cpp 
+card.o: Deck_files/card.cpp Deck_files/card.h
+	g++ -c Deck_files/card.cpp 
 
 blackjack.o: blackjack.cpp blackjack.h
 	g++ -c blackjack.cpp
