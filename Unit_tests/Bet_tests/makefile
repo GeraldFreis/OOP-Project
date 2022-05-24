@@ -3,7 +3,7 @@ testall: tests
 tests: programout
 	./programout
 
-programout: bet.o window.o suits.o deck.o card.o
+programout: bet.o window.o suits.o deck.o card.o bet_testing.cpp
 	g++ bet.o window.o suits.o deck.o card.o bet_testing.cpp -lncurses -lform -o programout
 
 bet.o: ../../Game_files/bet.cpp ../../Game_files/bet.h

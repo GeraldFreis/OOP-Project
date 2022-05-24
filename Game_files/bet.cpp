@@ -4,7 +4,7 @@
 
 
 Bet::Bet(int _balance){
-    if(balance < 0){balance = 0;}
+    if(_balance < 0){balance = 0;}
     else {
         balance = _balance;
     }
