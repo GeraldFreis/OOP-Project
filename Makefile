@@ -1,9 +1,9 @@
 all: testall
-
-testall: output
+	
+testall: output 
 	./output
 
-output:  wallet.o game.o game_manager.o suits.o window.o bet.o person.o Human.o Safe_dealer.o Risky_dealer.o  Dealer.o deck.o card.o blackjack.o main.o
+output:  wallet.o game.o game_manager.o suits.o window.o bet.o person.o Human.o Safe_dealer.o Risky_dealer.o Dealer.o deck.o card.o blackjack.o main.o
 	g++ wallet.o game.o game_manager.o suits.o window.o bet.o person.o Human.o Safe_dealer.o Risky_dealer.o Dealer.o deck.o card.o blackjack.o main.o -lncurses -lform -o output
 
 wallet.o: Wallet/wallet.h Wallet/wallet.cpp

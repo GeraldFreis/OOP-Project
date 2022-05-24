@@ -4,7 +4,10 @@
 
 
 Bet::Bet(int _balance){
-    balance = _balance;
+    if(_balance < 0){balance = 0;}
+    else {
+        balance = _balance;
+    }
     raw_bet_amount = "";
     // copy = "";
     bet_amount = 0;
@@ -186,4 +189,8 @@ void Bet::set_bet_amount(){ // uses bet_interface to find the bet amount and che
 
 int Bet::get_bet_amount(){ // returns bet amount 
     return bet_amount;
+}
+
+int Bet::get_balance(){
+    return balance;
 }

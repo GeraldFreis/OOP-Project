@@ -55,6 +55,14 @@ bool Game_manager::initial_user_input(){
     bool test_var = true;
     this->test = true;
     while(test_var == true){
+
+        if(balance == 0){ // if the user has no money
+            mvaddstr(5, 10, "                         ");
+            // mvaddch(5, 40, ' ');
+            printw("You do not have sufficient funds to play (HIT ESC To exit)");
+            printw("    Balance: ");
+            printw(std::to_string(balance).c_str());
+        }
         //get input from user to continue 
         int key_input = getch();
         switch (key_input)
@@ -66,16 +74,26 @@ bool Game_manager::initial_user_input(){
                 break;
 
             case ' ':
-                stage = 1;
-                test_var = false;
+                if(balance != 0){
+                    stage = 1;
+                    test_var = false;
+                }
                 break;
 
             case '4':
-                given_dealer = 1;
+                if(balance != 0){
+                    given_dealer = 1;
+                    stage = 1;
+                    test_var = false;
+                }
                 break;
             
             case '5':
-                given_dealer = 0;
+                if(balance != 0){
+                    given_dealer = 0;
+                    stage = 1;
+                    test_var = false;
+                }
                 break;
 
             default:
@@ -95,18 +113,19 @@ void Game_manager::endgame_interface(Game_manager *manager, Blackjack *blackjack
         manager->calcbalance(blackjack->get_bet_amount(), blackjack);
         balance = manager->getbalance();
         
+        // if it is a draw then we show the draw things on the screen
         if(manager->isdraw() == true){
-            if(blackjack->winner() == "dealer"){
+            if(blackjack->winner() == "dealer"){ // if both the player and dealer are bust
                 mvaddstr(33, 85, "Totals of user vs dealer: ");
                 printw(std::to_string(blackjack->gethuman()->getCount()).c_str());
                 printw(" vs ");
                 printw(std::to_string(blackjack->getdealer()->getCount()).c_str());
                 mvaddstr(30, 88, "Dealer won as user was bust");
-            }
+            }// if both the player and dealer have the same card total
             else {
                  mvaddstr(30, 90, "No winner. Bet returned.");
             }
-        }
+        } // if one of the two win
         else{   
             mvaddstr(30, 90, "The winner was: ");
             printw( blackjack->winner().c_str());

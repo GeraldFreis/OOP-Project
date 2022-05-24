@@ -28,9 +28,7 @@ Game::~Game(){
 // the game loop
 void Game::mainscreen(){ // actual game loop
     bool test = true; // variable to control the game loop and end if the game is over
-    bool dealer_chosen = false; // variable to control whether vs a risky or safe dealer 
-
-    while(test){ //while loop to allow the user to play round after round 
+    while(test == true){ //while loop to allow the user to play round after round 
         MainWindow = window_tools.main_window();
         Game_manager manager(balance);
 
@@ -49,8 +47,8 @@ void Game::mainscreen(){ // actual game loop
         // initialising the screen and box position
         mvaddstr(5,10,"Use the space bar to begin (press 4 for risky dealer or 5 to choose the safe dealer)");
         refresh();
-        //get input from user to continue 
-        test = manager.initial_user_input();
+        //get input from user to continue
+        if(manager.initial_user_input() == false) {test = false; break;}
         stage = manager.getstage();
         Blackjack blackjack(balance, manager.get_chosen_dealer());
         std::vector<WINDOW *> screen_object_arr; //vector to hold the screen objects (Cards, buttons etc.)
@@ -158,16 +156,6 @@ void Game::mainscreen(){ // actual game loop
                     }
                     
                     stand_counter += 1;
-                }
-                break;
-
-            case '4':
-                //switches the dealer by pressing the button once
-                if(dealer_chosen){
-                    dealer_chosen = false;
-                }
-                else{
-                    dealer_chosen = true;
                 }
                 break;
             default:

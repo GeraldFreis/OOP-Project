@@ -63,7 +63,11 @@ void Wallet::read() {
             }
         }
     }
+    // setting the current balance
     currentbalance = previousbalances[number_of_entries];
+    if(currentbalance == 0){ // if the user is broke
+        currentbalance = 1000;
+    }
 }
 
 void Wallet::write(){
