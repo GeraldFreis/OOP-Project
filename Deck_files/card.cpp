@@ -24,7 +24,7 @@ void card::newValue(int new_value){
     value = new_value;
 }
 
-// getting the name of the card
+//getting the name of the card
 string card::getName(){return name;}
 
 // getting the value of the card
