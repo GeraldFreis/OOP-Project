@@ -15,21 +15,30 @@ Wallet::Wallet(string _filename){ // parameterized constructor
 }
 
 // methods
+
+// getting the current balance
 int Wallet::getbalance(){
     return currentbalance;
 }
+
+// printing the current balance
 void Wallet::printbalance(){
     cout << currentbalance << "\n";
 }
 
+// returning the previous balances
 int *Wallet::getpreviousbalances(){
     return previousbalances;
 }
+
+// printing the previous balance (for testing purposes)
 void Wallet::printpreviousbalances(){
     for(int i = 0; i < number_of_entries; i++){
         cout << previousbalances[i] << "\n";
     }
 }
+
+// setting the balance of the wallet
 void Wallet::setbalance(int updated_balance){
     currentbalance = updated_balance; // updating the current balance
 
@@ -70,6 +79,7 @@ void Wallet::read() {
     }
 }
 
+// writing to the text file
 void Wallet::write(){
 
     std::ofstream file(filename);
