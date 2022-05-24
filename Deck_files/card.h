@@ -4,6 +4,16 @@
 #include <string>
 using std::cout; using std::string;
 
+/*
+class card has attrs:
+    name (string)
+    value (int)
+has public methods:
+    newName -> sets the name of the card
+    newValue -> sets the value of the card
+    getName  -> returns the name of the card   
+    getValue -> returns the value of the card
+*/
 class card{
     private:
         string name;
