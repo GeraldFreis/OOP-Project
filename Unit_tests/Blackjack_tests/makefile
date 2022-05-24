@@ -1,4 +1,4 @@
-ll: testall
+all: testall
 	
 testall: output 
 	./output
