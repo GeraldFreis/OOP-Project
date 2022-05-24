@@ -166,7 +166,6 @@ void Game::mainscreen(){ // actual game loop
                 break;
             }
 
-<<<<<<< HEAD
             refresh();
             if(blackjack.bust() == true){
                 
@@ -177,17 +176,6 @@ void Game::mainscreen(){ // actual game loop
                 endwin();
             }
             
-=======
-        refresh();
-        if(blackjack.bust() == true){
-
-            manager.endgame_interface(&manager, &blackjack, screen_object_arr);
-            test = manager.gettest();
-            stage = manager.getstage();
-            balance = manager.getbalance();
-            endwin();
-        }
->>>>>>> c6bca28ee0b9bd2bdc529ab5ee07c41391802424
         }
     }
     // closing the windows
