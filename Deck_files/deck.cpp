@@ -18,6 +18,7 @@ deck::deck(){
     
 }
 
+// filling the deck with all of the cards (6 of a kind)
 void deck::fillDeck(){
     card c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13;
     c1 = card("Ace",11);
@@ -52,6 +53,7 @@ void deck::fillDeck(){
 
 }
 
+// adding a card to the deck (with the formal parameter card)
 void deck::addCard(card new_card){
     for(int i=0; i<length; i++){
         if((array[i].getName()=="")&&(array[i].getValue()==0)){
@@ -61,16 +63,18 @@ void deck::addCard(card new_card){
     }
 }
 
+// removing a card from the deck
 void deck::removeCard(int num){
     array[num].newName("");
     array[num].newValue(0);
 }
 
+// removing the last card from the deck
 void deck::removeLastCard(){
     int card_val;
     int i=0;
     card_val = drawn_cards[0];
-    while(card_val!=0 && i<312){
+    while(card_val!=0 && i<312){ // iterating till the card is empty
         card_val = drawn_cards[i];
         i++;
     }
@@ -98,7 +102,7 @@ void deck::printInt(){
 
 
 
-
+// drawing a card from the deck
 card deck::drawCard(){
     //srand ( time(NULL) );         need to fix this so it doesnt always use the same seed of rand numbers 
     int draw =0;
@@ -119,7 +123,7 @@ card deck::drawCard(){
     return array[draw];
 }
 
-
+// printing the cards
 void deck::printCard(int deck_num){
     cout << array[deck_num-1].getName() << " " << array[deck_num-1].getValue() << endl;
 }

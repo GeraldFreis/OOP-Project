@@ -91,7 +91,7 @@ void Game::mainscreen(){ // actual game loop
             mvaddstr(8,56,"Dealer's cards: ");
             mvaddstr(38,50,"Player's cards: ");
             mvaddstr(31,10, "Player balance: ");
-            
+
             // setting up the balance and betamount text
             mvaddstr(31,28, std::to_string(balance).c_str());
             mvaddstr(33,10, "Bet amount: ");
@@ -157,11 +157,11 @@ void Game::mainscreen(){ // actual game loop
             }
 
             refresh();
-            if(blackjack.bust() == true){
-                manager.endgame_interface(&manager, &blackjack, screen_object_arr);
-                test = manager.gettest();
-                stage = manager.getstage();
-                balance = manager.getbalance();
+            if(blackjack.bust() == true){ // if the game is over (either dealer or user is bust)
+                manager.endgame_interface(&manager, &blackjack, screen_object_arr); // final interface
+                test = manager.gettest(); // getting the test that was updated in the endgame interface
+                stage = manager.getstage(); //getting the stage that was updated in the endgame interface
+                balance = manager.getbalance(); // getting the balance that was updated in the endgame interface
                 endwin();
             }
             
