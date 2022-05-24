@@ -1,6 +1,7 @@
 #include "window.h"
 #include <random>
 
+// default constructor
 Window::Window(){
     colour_grey_array = new int[3];
     colour_grey_array[0] = 128;
