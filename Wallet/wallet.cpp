@@ -3,7 +3,7 @@
 Wallet::Wallet(){ // default constructor
     currentbalance = 0;
     previousbalances = new int[100];
-    filename = "users_balances.txt";
+    filename = "../users_balances.txt";
     number_of_entries = 0;
 }
 
