@@ -21,3 +21,5 @@ deck.o: ../../Deck_files/deck.cpp ../../Deck_files/deck.h
 card.o: ../../Deck_files/card.h ../../Deck_files/card.cpp
 	g++ -c ../../Deck_files/card.cpp
 
+clean: 
+	rm -f output *.o
