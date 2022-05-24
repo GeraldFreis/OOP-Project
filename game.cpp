@@ -33,6 +33,7 @@ void Game::mainscreen(){ // actual game loop
     while(test){ //while loop to allow the user to play round after round 
         MainWindow = window_tools.main_window();
         Game_manager manager(balance);
+
         initscr();
         clear();
         noecho();
@@ -97,7 +98,7 @@ void Game::mainscreen(){ // actual game loop
                 mvaddstr(8,50,"Risky ");
                 mvaddstr(8,56,"Dealer's cards: ");
             }
-            
+
             mvaddstr(38,50,"Player's cards: ");
             mvaddstr(31,10, "Player balance: ");
 
@@ -142,7 +143,7 @@ void Game::mainscreen(){ // actual game loop
                 }
                 break;
             case '3':
-                if(game_has_begun) {
+                if(game_has_begun && stand_counter < 3) {
                     dealt_cards = blackjack.stand(stand_counter);
                     // if dealer has chosen to stand then ends the move loop 
                     if(blackjack.getdealer()->getMove() == "hit"){ // if the dealer chose to hit
@@ -167,6 +168,7 @@ void Game::mainscreen(){ // actual game loop
 
         refresh();
         if(blackjack.bust() == true){
+
             manager.endgame_interface(&manager, &blackjack, screen_object_arr);
             test = manager.gettest();
             stage = manager.getstage();
