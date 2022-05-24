@@ -5,6 +5,7 @@ Game_manager::Game_manager(int _balance){
     draw = false;
     stage = 0;
     test = true;
+    given_dealer = 0;
 }
 
 Game_manager::Game_manager(){
@@ -12,6 +13,7 @@ Game_manager::Game_manager(){
     draw = false;
     stage = 0;
     test = true;
+    given_dealer = 0;
 }
 
 // setting the balance of the user
@@ -62,6 +64,15 @@ bool Game_manager::initial_user_input(){
                 stage = 1;
                 test_var = false;
                 break;
+
+            case '1':
+                given_dealer = 1;
+                break;
+            
+            case '2':
+                given_dealer = 0;
+                break;
+
             default:
                 break;
             }
@@ -124,4 +135,9 @@ bool Game_manager::gettest(){
 // function to return the stage of the game
 int Game_manager::getstage(){
     return stage;
+}
+
+// getting the chosen dealer
+int Game_manager::get_chosen_dealer(){
+    return given_dealer;
 }

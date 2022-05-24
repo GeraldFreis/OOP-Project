@@ -10,7 +10,6 @@ Game::Game(){
     stand_counter = 0;
 
     Window window_tools;
-    Blackjack blackjack(balance);
 }
 
 Game::Game(int _balance){
@@ -20,7 +19,6 @@ Game::Game(int _balance){
     hit_counter = 0;
     stand_counter = 0;
     Window window_tools;
-    Blackjack blackjack(balance);
 }
 
 Game::~Game(){
@@ -48,12 +46,12 @@ void Game::mainscreen(){ // actual game loop
         bool entered_stage = false;
         int stage = 0;
         // initialising the screen and box position
-        printw("Use the keyboard entries on the buttons to play the game");
+        mvaddstr(5,10,"Use the space bar to begin (press 1 or 2 to choose either the risky or safe dealer)");
         refresh();
         //get input from user to continue 
         test = manager.initial_user_input();
         stage = manager.getstage();
-        Blackjack blackjack(balance);
+        Blackjack blackjack(balance, manager.get_chosen_dealer());
         std::vector<WINDOW *> screen_object_arr; //vector to hold the screen objects (Cards, buttons etc.)
 
         // while loop used to allow the player to make moves within the round 
@@ -91,7 +89,7 @@ void Game::mainscreen(){ // actual game loop
             double_button = screen_object_arr[7];
 
             // adding the text:
-            if(dealer_chosen){
+            if(manager.get_chosen_dealer() == 0){
                 mvaddstr(8,50,"Safe ");
                 mvaddstr(8,55,"Dealer's cards: ");
             }
@@ -99,6 +97,7 @@ void Game::mainscreen(){ // actual game loop
                 mvaddstr(8,50,"Risky ");
                 mvaddstr(8,56,"Dealer's cards: ");
             }
+            
             mvaddstr(38,50,"Player's cards: ");
             mvaddstr(31,10, "Player balance: ");
 
@@ -172,35 +171,6 @@ void Game::mainscreen(){ // actual game loop
             test = manager.gettest();
             stage = manager.getstage();
             balance = manager.getbalance();
-            // manager.setbalance(balance);
-            // manager.calcbalance(blackjack.get_bet_amount(), &blackjack);
-            // balance = manager.getbalance();
-            
-            // if(manager.isdraw() == true){
-            //     mvaddstr(30, 90, "No winner. Bet returned.");
-            // }
-            // else{   
-            //     mvaddstr(30, 90, "The winner was: ");
-            //     printw(blackjack.winner().c_str());
-            //     mvaddstr(33, 85, "Totals of user vs dealer: ");
-            //     printw(to_string(blackjack.gethuman()->getCount()).c_str());
-            //     printw(" vs ");
-            //     printw(to_string(blackjack.getdealer()->getCount()).c_str());
-            // } 
-            // nodelay(stdscr, FALSE);
-            // key_input = getch();
-            // switch (key_input)
-            // {
-            // case KEY_ESC:
-            //     stage++;
-            //     test = false;
-            //     end_test = false;
-            //     break;
-            // default:
-            //     stage++;
-            //     end_test = false;
-            //     break;
-            // }
             endwin();
         }
         }
