@@ -28,6 +28,7 @@ Game::~Game(){
 // the game loop
 void Game::mainscreen(){ // actual game loop
     bool test = true; // variable to control the game loop and end if the game is over
+
     while(test == true){ //while loop to allow the user to play round after round 
         MainWindow = window_tools.main_window();
         Game_manager manager(balance);
@@ -167,11 +168,7 @@ void Game::mainscreen(){ // actual game loop
             
         }
     }
-    // closing the windows
-    window_tools.end_win(dealer_card_1);
-    window_tools.end_win(dealer_card_2);
-    window_tools.end_win(player_card_1);
-    window_tools.end_win(player_card_2);
+    // // closing the windows
     clear();
     endwin();
 }
