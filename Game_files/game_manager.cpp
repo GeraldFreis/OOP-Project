@@ -141,3 +141,7 @@ int Game_manager::getstage(){
 int Game_manager::get_chosen_dealer(){
     return given_dealer;
 }
+
+void Game_manager::setdraw(){
+    draw = false;
+}

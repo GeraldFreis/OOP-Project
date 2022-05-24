@@ -104,7 +104,7 @@ void Game::mainscreen(){ // actual game loop
             mvaddstr(31,28, balance_char);
             mvaddstr(33,10, "Bet amount: ");
             mvaddstr(33,28, betamount_char);
-
+            manager.setdraw();
             // depending on users input a move is made 
             int key_input = getch();
             switch (key_input)
@@ -165,14 +165,16 @@ void Game::mainscreen(){ // actual game loop
                 break;
             }
 
-        refresh();
-        if(blackjack.bust() == true){
-            manager.endgame_interface(&manager, &blackjack, screen_object_arr);
-            test = manager.gettest();
-            stage = manager.getstage();
-            balance = manager.getbalance();
-            endwin();
-        }
+            refresh();
+            if(blackjack.bust() == true){
+                
+                manager.endgame_interface(&manager, &blackjack, screen_object_arr);
+                test = manager.gettest();
+                stage = manager.getstage();
+                balance = manager.getbalance();
+                endwin();
+            }
+            
         }
     }
     // closing the windows

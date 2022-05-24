@@ -54,6 +54,7 @@ class Game_manager {
         bool isdraw();
         int getstage();
         bool gettest();
+        void setdraw();
 
         int get_chosen_dealer();
 
