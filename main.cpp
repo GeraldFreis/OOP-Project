@@ -1,5 +1,5 @@
 #include <iostream>
-#include "game.h"
+#include "Game_files/game.h"
 #include "Wallet/wallet.h"
 using std::cout; using std::string;
 

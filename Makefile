@@ -9,8 +9,8 @@ output:  wallet.o game.o game_manager.o suits.o window.o bet.o person.o Human.o 
 wallet.o: Wallet/wallet.h Wallet/wallet.cpp
 	g++ -c Wallet/wallet.cpp
 
-game.o:	game.cpp game.h 
-	g++ -c game.cpp
+game.o:	Game_files/game.cpp Game_files/game.h 
+	g++ -c Game_files/game.cpp
 
 game_manager.o:	Game_files/game_manager.cpp Game_files/game_manager.h
 	g++ -c Game_files/game_manager.cpp -o game_manager.o
@@ -45,8 +45,8 @@ deck.o:  Deck_files/deck.h Deck_files/deck.cpp
 card.o: Deck_files/card.cpp Deck_files/card.h
 	g++ -c Deck_files/card.cpp 
 
-blackjack.o: blackjack.cpp blackjack.h
-	g++ -c blackjack.cpp
+blackjack.o: Game_files/blackjack.cpp Game_files/blackjack.h
+	g++ -c Game_files/blackjack.cpp
 
 main.o:	main.cpp
 	g++ -c main.cpp

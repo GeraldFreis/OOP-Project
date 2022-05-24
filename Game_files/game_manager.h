@@ -1,6 +1,6 @@
 #include <iostream>
 #include <ncurses.h>
-#include "../blackjack.h"
+#include "blackjack.h"
 #define KEY_ESC 27
 
 #ifndef GAME_MANAGER_H
