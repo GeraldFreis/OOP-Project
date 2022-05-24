@@ -65,11 +65,11 @@ bool Game_manager::initial_user_input(){
                 test_var = false;
                 break;
 
-            case '1':
+            case '4':
                 given_dealer = 1;
                 break;
             
-            case '2':
+            case '5':
                 given_dealer = 0;
                 break;
 

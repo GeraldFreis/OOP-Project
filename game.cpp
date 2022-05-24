@@ -47,7 +47,7 @@ void Game::mainscreen(){ // actual game loop
         bool entered_stage = false;
         int stage = 0;
         // initialising the screen and box position
-        mvaddstr(5,10,"Use the space bar to begin (press 1 or 2 to choose either the risky or safe dealer)");
+        mvaddstr(5,10,"Use the space bar to begin (press 4 for risky dealer or 5 to choose the safe dealer)");
         refresh();
         //get input from user to continue 
         test = manager.initial_user_input();
@@ -168,7 +168,6 @@ void Game::mainscreen(){ // actual game loop
 
             refresh();
             if(blackjack.bust() == true){
-                
                 manager.endgame_interface(&manager, &blackjack, screen_object_arr);
                 test = manager.gettest();
                 stage = manager.getstage();
