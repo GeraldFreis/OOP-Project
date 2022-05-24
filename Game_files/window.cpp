@@ -34,7 +34,7 @@ WINDOW *Window::create_cards(int xpoint, int ypoint, string cardname){ // creati
     // this card
     card = newwin(16,24, xpoint,ypoint);
     box(card, 0, 0);
-    mvwaddstr(card, 4, 9, cardname.c_str()); // adding the cardname to the card
+    mvwaddstr(card, 4, 10, cardname.c_str()); // adding the cardname to the card
 
     // choosing a random suit for the card
     int randomint = 0 + (rand() % 4);
