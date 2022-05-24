@@ -17,6 +17,7 @@ void Safe_dealer::Move(){
     }
 }
 
+// destructor for the safe dealer
 Safe_dealer::~Safe_dealer(){
     delete [] card_array;
 }
