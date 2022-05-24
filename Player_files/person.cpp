@@ -8,7 +8,7 @@ Person::Person(){ // intialize values for the constructor function
     number_of_cards = 0;
 }
 
-string Person::getMove(){ // function to return the last move
+string Person::getMove(){ // function to return the last move from either dealer or player
     return this->last_move;
 }
 
