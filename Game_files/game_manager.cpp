@@ -25,7 +25,12 @@ void Game_manager::setbalance(int _balance){
 void Game_manager::calcbalance(int bet_amount, Blackjack *blackjack){
     Dealer *dealer = blackjack->getdealer();
     Human *user = blackjack->gethuman();
-    if(dealer->getCount() > 21){ 
+    dealer->setCount();
+    user->setCount();
+    if(dealer->getCount() > 21 && user->getCount() > 21 || dealer->winGame() == false && user->winGame() == false){
+        draw = true;
+    }
+    else if(dealer->getCount() > 21){ 
         balance = balance + bet_amount;
     }
     else if(user->getCount() > 21){ 
