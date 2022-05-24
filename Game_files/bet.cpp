@@ -1,14 +1,17 @@
 #include "bet.h"
+#include <string>
+#define KEY_DEL 31
+
 
 Bet::Bet(int _balance){
     balance = _balance;
     raw_bet_amount = "";
+    // copy = "";
     bet_amount = 0;
 };
 
 
 bool Bet::isvalid_bet_amount(char betting_input) { // checks if the entered character is a number, and if so adds it to raw_bet_amount
-    
     switch(betting_input) {
 
         case '0': // if the user enters a 0
@@ -62,9 +65,17 @@ bool Bet::isvalid_bet_amount(char betting_input) { // checks if the entered char
             printw("%c", betting_input);
             return true;
 
+        // case KEY_DEL:
+        //     // for(int i=0; raw_bet_amount.length()-1; i++){
+        //     //     copy[i] = raw_bet_amount[i];
+        //     // }
+        //     // raw_bet_amount = copy;
+        //     raw_bet_amount += '9';
+        //     printw("%c", betting_input);
+        //     return true;
+
         case 'q': // if the user enters a q (they want to quit the screen)
             return false;
-            
 
         default: // if the user entered a key which was not a number, just ignore
             return true;
@@ -106,7 +117,6 @@ string Bet::bet_interface(){ // creates the window and prompts the user for the 
     bool betting_test = true;
     
     mvaddch(35, 100, ' '); // moves where the user enters the number
-
     // checking user input
     while(betting_test == true){
         betting_input = getch();

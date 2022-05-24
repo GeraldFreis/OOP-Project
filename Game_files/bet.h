@@ -34,6 +34,7 @@ using std::string;
 class Bet {
     private:
         string raw_bet_amount; // string to hold the raw bet amount entered in the field
+        // string copy;
         int bet_amount;
         int balance;
 
