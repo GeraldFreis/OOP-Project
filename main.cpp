@@ -8,7 +8,7 @@ int main() {
     Wallet user_funds("users_balances.txt");
     user_funds.read();
 
-    // initialising the game window
+    //initialising the game window
     Game game(user_funds.getbalance());
     game.mainscreen(); // game window
     user_funds.setbalance(game.get_balance());
